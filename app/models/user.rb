@@ -3,4 +3,7 @@ class User < ApplicationRecord
 
   has_many :cabinets
   has_many :ingredients, through: :cabinets
+
+  has_many :recipes
+  
 end
