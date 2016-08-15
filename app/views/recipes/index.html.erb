@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+<% @recipes.each do |recipe| %>
+  <tr>
+    <td><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></td>
+    <td><a href="/recipes/<%= recipe.id %>"><%= recipe.description %></a></td>
+  </tr>
+<% end %>
+</table>

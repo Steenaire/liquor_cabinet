@@ -1,0 +1,11 @@
+<h1><%= @recipe.name %></h1>
+<p><%= @recipe.description %></p>
+<div class = "recipe-card">
+  <p>Ingredients:</p>
+  <ul>
+    <% @recipe.ingredients.each do |ingredient| %>
+      <li><%= ingredient.name %></li>
+    <% end %>
+  </ul>
+  <p><%= @recipe.instructions %></p>
+</div>
