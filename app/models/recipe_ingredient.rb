@@ -9,7 +9,7 @@ class RecipeIngredient < ApplicationRecord
   end
 
   def oz_to_ml
-    return "#{self.quantity*29.57}mL"
+    return "#{(self.quantity*29.57).round}mL"
   end
 
 end
