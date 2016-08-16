@@ -3,14 +3,13 @@ class RecipeIngredient < ApplicationRecord
   belongs_to :recipe
 
   def measure_unit
-    return "oz" if self.ingredient.volume || self.ingredient.weight
-    return "" if self.ingredient.count
-    return "dash" if self.ingredient.dash
+    return "#{self.quantity}oz" if self.ingredient.volume || self.ingredient.weight
+    return "#{self.quantity.round} dash" if self.ingredient.dash
+    return "#{self.quantity.round} " if self.ingredient.count
   end
 
-  def measure_count
-    return self.quantity.round() if self.ingredient.count || if self.ingredient.dash
-    return self.quantity
+  def oz_to_ml
+    return "#{self.quantity*29.57}mL"
   end
 
 end
