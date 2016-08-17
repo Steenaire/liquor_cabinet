@@ -1,22 +1,26 @@
 <h1><%= @user.username %>'s Liquor Cabinet</h1>
 
-<p>See what drinks you can make!</p>
-<a href="/recipes/?personal_index=true">Garnish required</a>
-<a href="/recipes/?personal_index_ignore_garnish=true">Ignore Garnish</a>
+<% if current_user.id == @user.id %>
+  <p>See what drinks you can make!</p>
+  <a href="/recipes/?personal_index_ignore_brand=true"><p>Garnish required/Ignore Brand</p></a>
+  <a href="/recipes/?personal_index_ignore_garnish=true"><p>Ignore Garnish/Ignore Brand</p></a>
+  <a href=""><p>Garnish required/Brand required</p></a>
+  <a href=""><p>Ignore Garnish/Brand required</p></a>
 
-<p>Add a new ingredient to your cabinet:</p>
+  <p>Add a new ingredient to your cabinet:</p>
 
-<%= form_tag '/cabinets', method: :post do %>
+  <%= form_tag '/cabinets', method: :post do %>
 
-  <div>
-    <%= label_tag :ingredient_id %>
-    <%= collection_select :ingredient, :ingredient_id, Ingredient.all, :id, :name %>
-  </div>
-  <div>
-    <%= hidden_field_tag :user_id, current_user.id %>
-  </div>
-  <%= submit_tag "Add Ingredient" %>
+    <div>
+      <%= label_tag :ingredient_id %>
+      <%= collection_select :ingredient, :ingredient_id, Ingredient.all, :id, :name %>
+    </div>
+    <div>
+      <%= hidden_field_tag :user_id, current_user.id %>
+    </div>
+    <%= submit_tag "Add Ingredient" %>
 
+  <% end %>
 <% end %>
 
 <table>
@@ -27,7 +31,10 @@
   <% @user.cabinets.each do |cabinet| %>
     <tr>
       <td><%= cabinet.ingredient.name %></td>
-      <td><%= link_to "Remove from Cabinet", "/cabinets/#{cabinet.id}", method: :delete %></td>
+      <td><% if current_user.id == @user.id %>
+            <%= link_to "Remove from Cabinet", "/cabinets/#{cabinet.id}", method: :delete %>
+          <% end %>
+      </td>
     </tr>
   <% end %>
 </table>
