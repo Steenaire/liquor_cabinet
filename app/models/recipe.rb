@@ -5,4 +5,8 @@ class Recipe < ApplicationRecord
 
   belongs_to :user
 
+  def self.search(search)
+    where("lower(name) LIKE ?", "%#{search.downcase}%") 
+  end
+
 end

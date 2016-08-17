@@ -12,3 +12,10 @@
   </tr>
 <% end %>
 </table>
+<div class="form-group navbar-form navbar-left">
+  <p>Search recipes</p>
+  <%= form_tag('/recipes/search') do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag "Search" %>
+  <% end %>
+</div>

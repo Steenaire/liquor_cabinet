@@ -1,5 +1,9 @@
 <h1><%= @user.username %>'s Liquor Cabinet</h1>
 
+<p>See what drinks you can make!</p>
+<a href="/recipes/?personal_index=true">Garnish required</a>
+<a href="/recipes/?personal_index_ignore_garnish=true">Ignore Garnish</a>
+
 <p>Add a new ingredient to your cabinet:</p>
 
 <%= form_tag '/cabinets', method: :post do %>
