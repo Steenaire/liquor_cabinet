@@ -40,21 +40,16 @@ class Recipe < ApplicationRecord
     no_brand_recipes.each do |recipe|
       holder = 0
       recipe.recipe_ingredients.each do |recipe_ingredient|
-        
         users_cabinets.each do |user_cabinet|
-
           if user_cabinet.ingredient == recipe_ingredient.ingredient && user_cabinet.brand == recipe_ingredient.brand
             holder += 1
           end
-
         end
-
       end
 
       if holder == recipe.recipe_ingredients.length
         branded_recipes << recipe
       end
-
     end
 
     return branded_recipes
