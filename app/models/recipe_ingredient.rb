@@ -1,6 +1,7 @@
 class RecipeIngredient < ApplicationRecord
   belongs_to :ingredient
   belongs_to :recipe
+  belongs_to :brand
 
   def measure_unit
     return "#{self.quantity}oz" if self.volume || self.weight
