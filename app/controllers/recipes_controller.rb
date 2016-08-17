@@ -4,9 +4,9 @@ class RecipesController < ApplicationController
       users_ingredients = current_user.ingredients
       recipes_all = Recipe.all
 
-    if params[:personal_index_ignore_brand]
+    if params[:personal_index]&&params[:ignore_brand]
       @recipes = Recipe.check_user_inventory(recipes_all,users_ingredients)
-    elsif params[:personal_index_ignore_garnish]
+    elsif params[:personal_index]&&params[:ignore_garnish]
       @recipes = Recipe.strip_garnishes(recipes_all,users_ingredients)
     else
       @recipes = Recipe.all

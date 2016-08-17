@@ -2,10 +2,18 @@
 
 <% if current_user.id == @user.id %>
   <p>See what drinks you can make!</p>
-  <a href="/recipes/?personal_index_ignore_brand=true"><p>Garnish required/Ignore Brand</p></a>
-  <a href="/recipes/?personal_index_ignore_garnish=true"><p>Ignore Garnish/Ignore Brand</p></a>
-  <a href=""><p>Garnish required/Brand required</p></a>
-  <a href=""><p>Ignore Garnish/Brand required</p></a>
+  <a href="/recipes/?personal_index=true&ignore_brand=true">
+  <p>Garnish required/Ignore Brand</p>
+  </a>
+  <a href="/recipes/?personal_index=true&ignore_garnish=true">
+  <p>Ignore Garnish/Ignore Brand</p>
+  </a>
+  <a href="/recipes/?personal_index=true&ignore_brand=false">
+  <p>Garnish required/Brand required</p>
+  </a>
+  <a href="/recipes/?personal_index=true&ignore_brand=false&ignore_garnish=true">
+  <p>Ignore Garnish/Brand required</p>
+  </a>
 
   <p>Add a new ingredient to your cabinet:</p>
 
