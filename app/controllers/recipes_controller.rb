@@ -8,7 +8,7 @@ class RecipesController < ApplicationController
     if params[:personal_index]&&params[:ignore_brand]
       @recipes = Recipe.check_user_inventory(recipes_all,users_ingredients)
 
-    elsif params[:personal_index]&&params[:ignore_garnish]
+    elsif params[:personal_index]&&params[:ignore_garnish] #Not working, shows all drinks even those without the ingredients for
       @recipes = Recipe.strip_garnishes(recipes_all,users_ingredients)
 
     elsif params[:require_brand_ignore_garnish]
