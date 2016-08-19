@@ -11,13 +11,12 @@ class RecipesController < ApplicationController
     elsif params[:personal_index]&&params[:ignore_garnish]
       @recipes = Recipe.strip_garnishes(recipes_all,users_ingredients)
 
-    elsif params[:require_brand]&&params[:ignore_garnish] #DOESN'T WORK YET!!
-      no_garnish_recipes = Recipe.strip_garnishes(recipes_all,users_ingredients)
-      @recipes = Recipe.brand_matters(users_cabinets,no_garnish_recipes)
+    elsif params[:require_brand_ignore_garnish]
+      @recipes = Recipe.brand_matters_garnish_doesnt(recipes_all,users_cabinets)
 
     elsif params[:require_brand]
       no_brand_recipes = Recipe.check_user_inventory(recipes_all,users_ingredients)
-      @recipes = Recipe.brand_matters(users_cabinets,no_brand_recipes)
+      @recipes = Recipe.brand_matters(no_brand_recipes,users_cabinets)
 
     else
       @recipes = Recipe.all

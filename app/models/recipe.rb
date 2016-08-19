@@ -33,7 +33,7 @@ class Recipe < ApplicationRecord
       return recipes
   end
 
-  def self.brand_matters(users_cabinets,no_brand_recipes)
+  def self.brand_matters(no_brand_recipes,users_cabinets)
     branded_recipes = []
     holder = 0
 
@@ -53,6 +53,34 @@ class Recipe < ApplicationRecord
     end
 
     return branded_recipes
+  end
+
+  def self.brand_matters_garnish_doesnt(recipes_all,users_cabinets)
+    branded_recipes = []
+    holder = 0
+
+    recipes_all.each do |recipe|
+      holder = 0
+      recipe.recipe_ingredients.each do |recipe_ingredient|
+        users_cabinets.each do |user_cabinet|
+          unless recipe_ingredient.garnish
+            if user_cabinet.ingredient == recipe_ingredient.ingredient && user_cabinet.brand == recipe_ingredient.brand
+              holder += 1
+            end
+          end
+        end
+        if recipe_ingredient.garnish
+          holder += 1
+        end
+      end
+
+      if holder == recipe.recipe_ingredients.length
+        branded_recipes << recipe
+      end
+    end
+
+    return branded_recipes
+
   end
 
 end
