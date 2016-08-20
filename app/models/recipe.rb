@@ -9,7 +9,7 @@ class Recipe < ApplicationRecord
     where("lower(name) LIKE ?", "%#{search.downcase}%") 
   end
 
-  def self.check_user_inventory(recipes_all,users_ingredients)
+  def self.ignore_brand_garnish_matters(recipes_all,users_ingredients)
     recipes = []
     recipes_all.each do |recipe|
       comparisons = recipe.ingredients - users_ingredients
@@ -18,22 +18,35 @@ class Recipe < ApplicationRecord
     return recipes
   end
 
-  def self.strip_garnishes(recipes_all,users_ingredients)
-      recipes_garnish_stripped = []
-      recipes = []
+  def self.ignore_brand_ignore_garnish(recipes_all,users_cabinets)
+    branded_recipes = []
+    holder = 0
 
-      recipes_all.each do |recipe|
-        recipe.recipe_ingredients.each do |recipe_ingredient|
-          recipes_garnish_stripped = recipe.ingredients - [recipe_ingredient.ingredient] if recipe_ingredient.garnish
+    recipes_all.each do |recipe|
+      holder = 0
+      recipe.recipe_ingredients.each do |recipe_ingredient|
+        users_cabinets.each do |user_cabinet|
+          unless recipe_ingredient.garnish
+            if user_cabinet.ingredient == recipe_ingredient.ingredient
+              holder += 1
+            end
+          end
         end
-
-        comparisons = recipes_garnish_stripped - users_ingredients
-        recipes << recipe if (comparisons-users_ingredients).empty?
+        if recipe_ingredient.garnish
+          holder += 1
+        end
       end
-      return recipes
+
+      if holder == recipe.recipe_ingredients.length
+        branded_recipes << recipe
+      end
+    end
+
+    return branded_recipes
+
   end
 
-  def self.brand_matters(no_brand_recipes,users_cabinets)
+  def self.brand_matters_garnish_matters(no_brand_recipes,users_cabinets)
     branded_recipes = []
     holder = 0
 
