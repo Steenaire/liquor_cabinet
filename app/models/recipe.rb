@@ -68,7 +68,7 @@ class Recipe < ApplicationRecord
     return branded_recipes
   end
 
-  def self.brand_matters_garnish_doesnt(recipes_all,users_cabinets)
+  def self.brand_matters_ignore_garnish(recipes_all,users_cabinets)
     branded_recipes = []
     holder = 0
 

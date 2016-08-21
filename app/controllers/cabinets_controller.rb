@@ -13,7 +13,7 @@ class CabinetsController < ApplicationController
   end
 
   def create
-    @cabinet = Cabinet.new(user_id: current_user.id, brand_id: 2, ingredient_id: params[:ingredient][:ingredient_id])
+    @cabinet = Cabinet.new(user_id: current_user.id, brand_id: params[:brand][:brand_id], ingredient_id: params[:ingredient][:ingredient_id])
 
     if @cabinet.save
       flash[:success] = "Ingredient Added!"

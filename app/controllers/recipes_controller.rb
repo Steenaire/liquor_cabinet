@@ -12,7 +12,7 @@ class RecipesController < ApplicationController
       @recipes = Recipe.ignore_brand_ignore_garnish(recipes_all,users_cabinets)
 
     elsif params[:require_brand_ignore_garnish]
-      @recipes = Recipe.brand_matters_garnish_doesnt(recipes_all,users_cabinets)
+      @recipes = Recipe.brand_matters_ignore_garnish(recipes_all,users_cabinets)
 
     elsif params[:require_brand]
       no_brand_recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)

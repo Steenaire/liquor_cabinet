@@ -24,6 +24,10 @@
       <%= collection_select :ingredient, :ingredient_id, Ingredient.all, :id, :name %>
     </div>
     <div>
+      <%= label_tag :brand_id %>(Optional)
+      <%= collection_select :brand, :brand_id, Brand.all, :id, :name, selected: 2 %>
+    </div>
+    <div>
       <%= hidden_field_tag :user_id, current_user.id %>
     </div>
     <%= submit_tag "Add Ingredient" %>
@@ -38,7 +42,7 @@
   </tr>
   <% @user.cabinets.each do |cabinet| %>
     <tr>
-      <td><%= cabinet.ingredient.name %></td>
+      <td><%= cabinet.brand.name %> <%= cabinet.ingredient.name %></td>
       <td><% if current_user.id == @user.id %>
             <%= link_to "Remove from Cabinet", "/cabinets/#{cabinet.id}", method: :delete %>
           <% end %>
