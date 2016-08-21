@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <li><a href="/users/<%= current_user.id %>"><%= current_user.username %>'s Cabinet</a></li>
+      <li><%= link_to "Log Out", "/logout", method: :delete %></li>
+    <% else %>
+      <li><a href="/login">Log In</a></li>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
