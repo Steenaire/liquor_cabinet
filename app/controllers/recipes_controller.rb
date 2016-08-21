@@ -26,6 +26,19 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find_by(id: params[:id])
+    @convert_to = "metric"
+    @unit = "oz"
+    if params[:metric]
+      @recipe.recipe_ingredients.each do |recipe_ingredient|
+        recipe_ingredient.quantity = recipe_ingredient.oz_to_ml
+        @convert_to = "imperial"
+        @unit = "mL"
+      end
+    elsif params[:imperial]
+      @recipe = Recipe.find_by(id: params[:id])
+      @unit = "oz"
+    end
+  
   end
 
   def search
