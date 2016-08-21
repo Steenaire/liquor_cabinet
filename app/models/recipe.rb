@@ -9,6 +9,10 @@ class Recipe < ApplicationRecord
     where("lower(name) LIKE ?", "%#{search.downcase}%") 
   end
 
+  def self.ingredient_search(ingredient_search)
+    Recipe.includes(:ingredients).where('lower(ingredients.name) LIKE ?', "%#{ingredient_search.downcase}%").references(:ingredients)
+  end
+
   def self.ignore_brand_garnish_matters(recipes_all,users_ingredients)
     recipes = []
     recipes_all.each do |recipe|

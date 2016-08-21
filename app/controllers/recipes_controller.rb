@@ -45,6 +45,9 @@ class RecipesController < ApplicationController
     if params[:search]
       @recipes = Recipe.search(params[:search])
       render :index
+    elsif params[:ingredient_search]
+      @recipes = Recipe.ingredient_search(params[:ingredient_search])
+      render :index
     else
       @recipes = Recipe.all
     end
