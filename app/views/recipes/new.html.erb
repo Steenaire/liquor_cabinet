@@ -1,0 +1,34 @@
+<% if @recipe && @recipe.errors.any? %>
+  <ul class = "error">
+    <% @recipe.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= nested_form_for @recipe do |f| %>
+      <div class="form-group">
+        <%= f.label :name %>:
+        <%= f.text_field :name, class: "form-control" %><br />
+      </div>
+
+      <div class="form-group">
+        <%= f.label :instructions %>:
+        <%= f.text_field :instructions, class: "form-control" %><br />
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description %>:
+        <%= f.text_field :description, class: "form-control" %><br />
+      </div>
+
+      <div class="form-group">
+        <%= f.fields_for :recipe_ingredients do |ingredient| %>
+          <%= ingredient.label :ingredient %>
+          <%= collection_select :ingredient, :ingredient_id, Ingredient.all, :id, :name %>
+        <% end %>
+      </div>
+
+      <%= f.submit %>
+<% end %>
+<a href = "/recipes/new?add_ingredient=true">Add Ingredient</a>

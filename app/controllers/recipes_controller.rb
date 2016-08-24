@@ -1,23 +1,28 @@
 class RecipesController < ApplicationController
 
   def index
+    if current_user
       users_ingredients = current_user.ingredients
       recipes_all = Recipe.all
       users_cabinets = current_user.cabinets
 
-    if params[:personal_index]&&params[:ignore_brand]
-      @recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)
+      if params[:personal_index]&&params[:ignore_brand]
+        @recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)
 
-    elsif params[:personal_index]&&params[:ignore_garnish]
-      @recipes = Recipe.ignore_brand_ignore_garnish(recipes_all,users_cabinets)
+      elsif params[:personal_index]&&params[:ignore_garnish]
+        @recipes = Recipe.ignore_brand_ignore_garnish(recipes_all,users_cabinets)
 
-    elsif params[:require_brand_ignore_garnish]
-      @recipes = Recipe.brand_matters_ignore_garnish(recipes_all,users_cabinets)
+      elsif params[:require_brand_ignore_garnish]
+        @recipes = Recipe.brand_matters_ignore_garnish(recipes_all,users_cabinets)
 
-    elsif params[:require_brand]
-      no_brand_recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)
-      @recipes = Recipe.brand_matters_garnish_matters(no_brand_recipes,users_cabinets)
+      elsif params[:require_brand]
+        no_brand_recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)
+        @recipes = Recipe.brand_matters_garnish_matters(no_brand_recipes,users_cabinets)
 
+      else
+        @recipes = Recipe.all
+
+      end
     else
       @recipes = Recipe.all
     end
@@ -50,6 +55,21 @@ class RecipesController < ApplicationController
       render :index
     else
       @recipes = Recipe.all
+    end
+  end
+
+  def new
+    @recipe = Recipe.new
+    @recipe.recipe_ingredients.build
+  end
+
+  def create
+    recipe = Recipe.new(name: params[:name], instructions: params[:instructions], description: params[:description], user_id: current_user.id)
+    if recipe.save
+      redirect_to "/recipes/#{recipe.id}"
+    else
+      flash[:danger] = "Recipe not created!"
+      render :new
     end
   end
 

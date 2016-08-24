@@ -23,6 +23,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    if current_user
+      @user = User.find(params[:id])
+    else
+      flash[:warning] = "Please sign in to see user cabinets"
+      redirect_to '/login'
+    end
   end
 end

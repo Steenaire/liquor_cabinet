@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show', as: 'user'
 
   get '/recipes', to: 'recipes#index'
-  get '/recipes/:id', to: 'recipes#show'
+  get '/recipes/new', to: 'recipes#new', as: 'new_recipe'
+  post '/recipes', to: 'recipes#create'
+  get '/recipes/:id', to: 'recipes#show', as: 'recipe'
   post '/recipes/search', to: 'recipes#search'
 
   delete '/cabinets/:id', to: 'cabinets#destroy'
