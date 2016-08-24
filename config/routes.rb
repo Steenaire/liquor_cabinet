@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   delete '/cabinets/:id', to: 'cabinets#destroy'
   get '/cabinets', to: 'cabinets#new', as: 'new_cabinet'
   post '/cabinets', to: 'cabinets#create'
+
+  get '/test/', to: 'recipes#test'
 end

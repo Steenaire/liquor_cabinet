@@ -15,3 +15,7 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+//= require smoothscroll
+//= require wow.min
+//= require app.min
+//= require custom
