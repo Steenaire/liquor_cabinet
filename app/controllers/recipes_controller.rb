@@ -64,13 +64,25 @@ class RecipesController < ApplicationController
   end
 
   def create
-    recipe = Recipe.new(name: params[:name], instructions: params[:instructions], description: params[:description], user_id: current_user.id)
+    recipe = Recipe.new(recipe_params)
     if recipe.save
       redirect_to "/recipes/#{recipe.id}"
     else
       flash[:danger] = "Recipe not created!"
-      render :new
+      redirect_to '/recipes/new'
     end
+  end
+
+  private
+
+  def recipe_params
+    params.require(:recipe).permit(
+      :name,
+      :instructions,
+      :description,
+      :user_id,
+      recipe_ingredient_attributes: [:id, :ingredient_id, :recipe_id, :quantity, :volume, :garnish, :weight, :count, :dash, :brand_id]
+      )
   end
 
 end

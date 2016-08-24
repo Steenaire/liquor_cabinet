@@ -5,6 +5,8 @@ class Recipe < ApplicationRecord
 
   belongs_to :user
 
+  accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true
+
   def self.search(search)
     where("lower(name) LIKE ?", "%#{search.downcase}%") 
   end

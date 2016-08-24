@@ -1,3 +1,44 @@
+<!-- Content Start -->
+
+
+
+<!-- Start Pages Title  -->
+
+<section id="page-title" class="page-title-style2">
+  <div class="color-overlay"></div>
+  <div class="container inner-img">
+    <div class="row">
+      <div class="Page-title">
+        <div class="col-md-12 text-center">
+          <div class="title-text">
+            <h6>Great Service</h6>
+            <h2 class="page-title"><%= @recipe.name %></h2>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <div class="breadcrumb-trail breadcrumbs">
+            <span class="trail-begin"><a href="#">Home</a></span>
+            <span class="sep">/</span> <span class="trail-end">Faq</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End Pages Title  -->
+
+<!-- Main container -->
+<main class="main-content">
+  <!-- Start Faq Page -->
+
+  <section id="faq-result">
+    <div class="faq-all-content">
+      <section class="light-wrapper">
+
+        <div class="container">
+                    <div class="inner">
+
 <% if @recipe && @recipe.errors.any? %>
   <ul class = "error">
     <% @recipe.errors.full_messages.each do |message| %>
@@ -21,11 +62,26 @@
         <%= f.label :description %>:
         <%= f.text_field :description, class: "form-control" %><br />
       </div>
+        <%= f.hidden_field :user_id, value: current_user.id%>
 
       <div class="form-group">
         <%= f.fields_for :recipe_ingredients do |ingredient| %>
+          <%= ingredient.label :brand %>
+          <%= collection_select :brand, :brand_id, Brand.all, :id, :name %><br />
           <%= ingredient.label :ingredient %>
-          <%= collection_select :ingredient, :ingredient_id, Ingredient.all, :id, :name %>
+          <%= collection_select :ingredient, :ingredient_id, Ingredient.all, :id, :name %><br />
+          <%= ingredient.label :quantity %>
+          <%= ingredient.text_field :quantity, class: "form-control" %><br />
+          <%= ingredient.label :volume %>
+          <%= ingredient.text_field :volume, class: "form-control" %><br />
+          <%= ingredient.label :garnish %>
+          <%= ingredient.text_field :garnish, class: "form-control" %><br />
+          <%= ingredient.label :weight %>
+          <%= ingredient.text_field :weight, class: "form-control" %><br />
+          <%= ingredient.label :count %>
+          <%= ingredient.text_field :count, class: "form-control" %><br />
+          <%= ingredient.label :dash %>
+          <%= ingredient.text_field :dash, class: "form-control" %><br />
         <% end %>
       </div>
 
