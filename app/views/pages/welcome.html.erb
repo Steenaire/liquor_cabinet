@@ -60,16 +60,16 @@
 
       <div class="row text-center">
         <ol class="process">
-          <li class="col-md-3 col-sm-6"><i class="fa fa-cutlery" aria-hidden="true"></i>
-            <h4>Pick a restaurant</h4>
+          <li class="col-md-3 col-sm-6"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <h4>Record your liquor inventory</h4>
 
           </li>
-          <li class="col-md-3 col-sm-6"> <i class="fa fa-car"></i>
-            <h4>Order a takeaway</h4>
+          <li class="col-md-3 col-sm-6"> <i class="fa fa-list-ol"></i>
+            <h4>See what drinks you can make</h4>
 
           </li>
-          <li class="col-md-3 col-sm-6"> <i class="fa fa-beer"></i>
-            <h4>Your food is delivered</h4>
+          <li class="col-md-3 col-sm-6"> <i class="fa fa-glass"></i>
+            <h4>Choose a delicious recipe</h4>
 
           </li>
           <li class="col-md-3 col-sm-6"> <i class="fa fa-thumbs-o-up"></i>
@@ -103,244 +103,44 @@
     <!-- Single Restaurant detail -->
     <div class="row">
       <!-- Restaurant detail -->
-      <div class="col-md-6 col-xs-12">
-        <div class="item-block">
-          <header>
-            <a href="#"><img src="img/Bayleaf.jpg" alt=""></a>
-            <div class="hgroup">
-              <h4><a href="#">Bayleaf Indiantakeaway (Ongar)</a></h4>
-              <h5>Indian<span class="label label-warning">Popular</span></h5>
-            </div>
-            <div class="header-meta">
-              <span class="location">Menlo park, CA</span>
-            </div>
-          </header>
+      <% @recipes.each do |recipe| %>
+        <div class="col-md-6 col-xs-12">
+          <div class="item-block">
+            <header>
+              <a href="#"><img src="img/Bayleaf.jpg" alt=""></a>
+              <div class="hgroup">
+                <h4><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></h4>
+                <h5><span class="label label-warning">Popular</span></h5>
+              </div>
+              <div class="header-meta">
+                <span class><a href="/users/<%= recipe.user.id %>">Submitted by <%= recipe.user.username %></a></span>
+              </div>
+            </header>
 
-          <footer>
-            <p class="status">
-                                <span>
-                        <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                                <span class="review">
-                          (<span>155</span>)
-                                </span>
-                                </span>
-            </p>
-            <p class="status"><strong>Min:</strong> £15</p>
-            <p class="status"><strong>Delivery:</strong> 60 min</p>
+            <footer>
+              <p class="status">
+                                  <span>
+                          <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                                  <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                                  <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                                  <span style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                                  <span style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                                  <span class="review">
+                            (<span>155</span>)
+                                  </span>
+                                  </span>
+              </p>
+              <p class="status"><strong></strong> </p>
+              <p class="status"><strong></strong> </p>
 
-            <div class="action-btn">
-              <a class="btn btn-xs btn-danger" href="order-online.html">Place Order</a>
-            </div>
-          </footer>
+              <div class="action-btn">
+                <a class="btn btn-xs btn-danger" href="/recipes/<%= recipe.id %>">Make this!</a>
+              </div>
+            </footer>
+          </div>
         </div>
-      </div>
-      <!-- END Restaurant detail -->
-
-      <!-- Restaurant detail -->
-      <div class="col-md-6 col-xs-12">
-        <div class="item-block">
-          <header>
-            <a href="#"><img src="img/Bayleaf-Indiantakeaway-Ongar.jpg" alt=""></a>
-            <div class="hgroup">
-              <h4><a href="#">Bayleaf Indiantakeaway (Ongar)</a></h4>
-              <h5>Indian</h5>
-            </div>
-            <div class="header-meta">
-              <span class="location">Menlo park, CA</span>
-            </div>
-          </header>
-
-          <footer>
-            <p class="status">
-                                <span>
-                        <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                                <span class="review">
-                          (<span>100</span>)
-                                </span>
-                                </span>
-            </p>
-            <p class="status"><strong>Min:</strong> £15</p>
-            <p class="status"><strong>Delivery:</strong> 60 min</p>
-
-            <div class="action-btn">
-              <a class="btn btn-xs btn-danger" href="order-online.html">Place Order</a>
-            </div>
-          </footer>
-        </div>
-      </div>
-      <!-- END Restaurant detail -->
-    </div>
-    <!-- End Single Restaurant detail -->
-
-    <!-- Single Restaurant detail -->
-    <div class="row">
-      <!-- Restaurant detail -->
-      <div class="col-md-6 col-xs-12">
-        <div class="item-block">
-          <header>
-            <a href="#"><img src="img/Zeera-Indian-Cuisine.png" alt=""></a>
-            <div class="hgroup">
-              <h4><a href="#">Bayleaf Indiantakeaway (Ongar)</a></h4>
-              <h5>Bangladeshi</h5>
-            </div>
-            <div class="header-meta">
-              <span class="location">Menlo park, CA</span>
-            </div>
-          </header>
-
-          <footer>
-            <p class="status">
-                                <span>
-                        <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                                <span class="review">
-                          (<span>46</span>)
-                                </span>
-                                </span>
-            </p>
-            <p class="status"><strong>Min:</strong> £15</p>
-            <p class="status"><strong>Delivery:</strong> 60 min</p>
-
-            <div class="action-btn">
-              <a class="btn btn-xs btn-danger" href="order-online.html">Place Order</a>
-            </div>
-          </footer>
-        </div>
-      </div>
-      <!-- END Restaurant detail -->
-
-      <!-- Restaurant detail -->
-      <div class="col-md-6 col-xs-12">
-        <div class="item-block">
-          <header>
-            <a href="#"><img src="img/Bayleaf.jpg" alt=""></a>
-            <div class="hgroup">
-              <h4><a href="#">Bayleaf</a></h4>
-              <h5>Indian</h5>
-            </div>
-            <div class="header-meta">
-              <span class="location">Menlo park, CA</span>
-            </div>
-          </header>
-
-          <footer>
-            <p class="status">
-                                <span>
-                        <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                                <span class="review">
-                          (<span>35</span>)
-                                </span>
-                                </span>
-            </p>
-            <p class="status"><strong>Min:</strong> £15</p>
-            <p class="status"><strong>Delivery:</strong> 60 min</p>
-
-            <div class="action-btn">
-              <a class="btn btn-xs btn-danger" href="order-online.html">Place Order</a>
-            </div>
-          </footer>
-        </div>
-      </div>
-      <!-- END Restaurant detail -->
-    </div>
-    <!-- End Single Restaurant detail -->
-
-    <!-- Single Restaurant detail -->
-    <div class="row">
-      <!-- Restaurant detail -->
-      <div class="col-md-6 col-xs-12">
-        <div class="item-block">
-          <header>
-            <a href="#"><img src="img/Deea-Bangladeshi-Cuisine.png" alt=""></a>
-            <div class="hgroup">
-              <h4><a href="#">Bayleaf Indiantakeaway (Ongar)</a></h4>
-              <h5>Bangladeshi</h5>
-            </div>
-            <div class="header-meta">
-              <span class="location">Menlo park, CA</span>
-            </div>
-          </header>
-
-          <footer>
-            <p class="status">
-                                <span>
-                        <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                                <span class="review">
-                          (<span>155</span>)
-                                </span>
-                                </span>
-            </p>
-            <p class="status"><strong>Min:</strong> £15</p>
-            <p class="status"><strong>Delivery:</strong> 60 min</p>
-
-            <div class="action-btn">
-              <a class="btn btn-xs btn-success" href="order-online.html">Offer</a>
-              <a class="btn btn-xs btn-danger" href="order-online.html">Place Order</a>
-            </div>
-          </footer>
-        </div>
-      </div>
-      <!-- END Restaurant detail -->
-
-      <!-- Restaurant detail -->
-      <div class="col-md-6 col-xs-12">
-        <div class="item-block">
-          <header>
-            <a href="#"><img src="img/Deea-Bangladeshi-Cuisine.png" alt=""></a>
-            <div class="hgroup">
-              <h4><a href="#">Deea Bangladeshi Cuisine</a></h4>
-              <h5>Indian<span class="label label-warning">Popular</span></h5>
-            </div>
-            <div class="header-meta">
-              <span class="location">Menlo park, CA</span>
-            </div>
-          </header>
-
-          <footer>
-            <p class="status">
-                                <span>
-                        <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                                <span style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                                <span class="review">
-                          (<span>100</span>)
-                                </span>
-                                </span>
-            </p>
-            <p class="status"><strong>Min:</strong> £15</p>
-            <p class="status"><strong>Delivery:</strong> 60 min</p>
-
-            <div class="action-btn">
-              <a class="btn btn-xs btn-success" href="order-online.html">Offer</a>
-              <a class="btn btn-xs btn-danger" href="order-online.html">Place Order</a>
-            </div>
-          </footer>
-        </div>
-      </div>
-      <!-- END Restaurant detail -->
-    </div>
-    <!-- End Single Restaurant detail -->
+        <!-- END Restaurant detail -->
+      <% end %>
 
   </div>
 
@@ -357,7 +157,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="lookbook-product">
-          <h2>Delicious food is just a click away! Explore our enlisted restaurants – we believe, you will love them. </h2>
+          <h2>Your journey in mixology begins now.</h2>
 
         </div>
       </div>
@@ -377,7 +177,7 @@
     <div class="row">
       <div class="col-md-12 text-center">
 
-        <h2 class="font-lg">Discover  <span class="font-semibold chef-red">New Restaurant</span> & Book Now</h2>
+        <h2 class="font-lg">Discover a <span class="font-semibold chef-red">New Drink</span> & Start Mixing</h2>
       </div>
       <!-- col-md-12 -->
     </div>

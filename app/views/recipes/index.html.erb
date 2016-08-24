@@ -68,7 +68,7 @@
               <div class="filter-option-content">
                 <div class="restaurant-status-section">
                   <div class="restaurant-status-title gray-deep-bg">
-                    <i class="fa fa-cutlery" aria-hidden="true"></i> Status
+                    <i class="fa fa-glass" aria-hidden="true"></i> Status
                   </div>
                   <div class="restaurant-status-filter">
                     <ul class="list-unstyled">
@@ -83,7 +83,7 @@
                 </div>
                 <div class="restaurant-service-section">
                   <div class="restaurant-service-title gray-deep-bg">
-                    <i class="fa fa-cutlery" aria-hidden="true"></i> Service
+                    <i class="fa fa-glass" aria-hidden="true"></i> Service
                   </div>
                   <div class="restaurant-service-filter">
                     <ul class="list-unstyled">
@@ -106,7 +106,7 @@
 
                 <div class="restaurant-cuisines-section">
                   <div class="restaurant-cuisines-title gray-deep-bg">
-                    <i class="fa fa-cutlery" aria-hidden="true"></i> Cuisine
+                    <i class="fa fa-glass" aria-hidden="true"></i> Cuisine
                   </div>
                   <div class="restaurant-cuisines-filter">
                     <ul class="list-unstyled">
@@ -193,36 +193,3 @@
 </main>
 
 <!-- Content End -->
-
-
-
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Submitted by</th>
-  </tr>
-<% @recipes.each do |recipe| %>
-  <tr>
-    <td><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></td>
-    <td><a href="/recipes/<%= recipe.id %>"><%= recipe.description %></a></td>
-    <td><a href="/users/<%= recipe.user.id %>"><%= recipe.user.username %></a></td>
-  </tr>
-<% end %>
-</table>
-<div class="form-group navbar-form navbar-left">
-  <p>Search recipes by name</p>
-  <%= form_tag('/recipes/search') do %>
-    <%= text_field_tag :search %>
-    <%= submit_tag "Search" %>
-  <% end %>
-</div>
-<div class="form-group navbar-form navbar-left">
-  <p>Search recipes by ingredient</p>
-  <%= form_tag('/recipes/search') do %>
-    <%= text_field_tag :ingredient_search %>
-    <%= submit_tag "Search" %>
-  <% end %>
-</div>
-<%= image_tag 'stock-photo-old-fashioned-cocktail-156379562.jpg' %>
