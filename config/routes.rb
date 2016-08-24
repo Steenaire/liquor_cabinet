@@ -12,11 +12,10 @@ Rails.application.routes.draw do
   get '/recipes', to: 'recipes#index'
   get '/recipes/:id', to: 'recipes#show'
   post '/recipes/search', to: 'recipes#search'
-  get '/', to: 'recipes#index'
 
   delete '/cabinets/:id', to: 'cabinets#destroy'
   get '/cabinets', to: 'cabinets#new', as: 'new_cabinet'
   post '/cabinets', to: 'cabinets#create'
 
-  get '/test/', to: 'recipes#test'
+  get '/', to: 'pages#welcome'
 end

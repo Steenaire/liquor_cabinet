@@ -1,20 +1,148 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>LiquorCabinet</title>
-    <%= csrf_meta_tags %>
+<!DOCTYPE HTML>
+<html lang="en">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Liquor Cabinet is an app to track your liquor inventory, find recipes that you can make, and get recommendations">
+  <meta name="keywords" content="drinks, cocktails, liquor, mixology, recipes, recommendations">
+  <meta name="author" content="iglyphic">
+  <link rel="shortcut icon" href="img/favicon.png">
 
-  <body>
-    <% if current_user %>
-      <li><a href="/users/<%= current_user.id %>"><%= current_user.username %>'s Cabinet</a></li>
-      <li><%= link_to "Log Out", "/logout", method: :delete %></li>
-    <% else %>
-      <li><a href="/login">Log In</a></li>
-    <% end %>
+  <title>Liquor Cabinet</title>
+
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="style-2 nav-on-header">
+
+<!-- Start Loading -->
+<!-- <section class="loading-overlay">
+  <div class="Loading-Page">
+    <h1 class="loader">Loading...</h1>
+  </div>
+</section> -->
+<!-- End Loading  -->
+
+<!-- Start Navigation bar -->
+<nav class="navbar">
+  <div class="container">
+
+    <!-- Logo -->
+    <div class="pull-left">
+      <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
+
+      <div class="logo-wrapper">
+        <a class="logo" href="index.html"><img src="img/logo.png" alt="logo"></a>
+        <a class="logo-alt" href="index.html"><img src="img/logo.png" alt="logo-alt"></a>
+      </div>
+
+    </div>
+    <!-- END Logo -->
+
+    <!-- User account -->
+    <div class="pull-right user-login">
+      <% if current_user %>
+        <a class="btn btn-sm btn-primary" href="/users/<%= current_user.id %>"><%= current_user.username %>'s Cabinet</a>
+        <%= link_to "Log Out", "/logout", method: :delete %>
+      <% else %>
+        <a class="btn btn-sm btn-primary" href="user-login.html">Login</a> or &nbsp;
+        <a href="user-register.html">Register</a>
+      <% end %>
+    </div>
+    <!-- END User account -->
+
+    <!-- Navigation menu -->
+    <ul class="nav-menu user-login">
+      <li>
+        <a class="active" href="index.html">Home</a>
+        <ul>
+          <li><a class="active" href="index.html">Home 1</a></li>
+          <li><a href="index2.html">Home 2</a></li>
+          <li><a href="index3.html">Home 3</a></li>
+          <li><a href="index4.html">Home 4</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Restaurant list</a>
+        <ul>
+          <li><a href="restaurant-list.html">Restaurant Search List</a></li>
+          <li><a href="restaurant-list2.html">Restaurant Search List2</a></li>
+          <li><a href="restaurant-list3.html">Restaurant Search List3</a></li>
+          <li><a href="restaurant-list4.html">Restaurant Search List4</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Order</a>
+        <ul>
+          <li><a href="reservation.html">Reservation</a></li>
+          <li><a href="reservation2.html">Reservation 2</a></li>
+          <li><a href="order-online.html">Order Online</a></li>
+          <li><a href="order-online2.html">Order Online 2</a></li>
+          <li><a href="order-process.html">Order Process</a></li>
+          <li><a href="order-online-cart-empty.html">Order Online empty cart</a></li>
+          <li><a href="order-details.html">Order Details</a></li>
+          <li><a href="order-history.html">Order History</a></li>
+          <li><a href="order-summary.html">Order Summary</a></li>
+          <li><a href="order-success.html">Success Page</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Blog</a>
+        <ul>
+          <li><a href="page-blog.html">Blog</a></li>
+          <li><a href="page-post.html">Single Post</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">Pages</a>
+        <ul>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="page-contact.html">Contact Us</a></li>
+          <li><a href="page-faq-sidebar.html">Faq with sidebar</a></li>
+          <li><a href="page-faq-fullwidth.html">Faq Full Width</a></li>
+          <li><a href="user-login.html">Login</a></li>
+          <li><a href="user-register.html">User Register</a></li>
+          <li><a href="user-forget-pass.html">Forget Password</a></li>
+          <li><a href="myaccount.html">My Account</a></li>
+          <li><a href="modify-address.html">Modify Address</a></li>
+          <li><a href="page-careers.html">Careers</a></li>
+          <li><a href="page-privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Extra</a>
+        <ul>
+          <li><a href="404.html">404 Page</a></li>
+          <li><a href="coming-soon.html">Coming Soon</a></li>
+          <li><a href="pricing-table-one.html">Pricing Table One</a></li>
+          <li><a href="pricing-table-two.html">Pricing Table Two</a></li>
+          <li><a href="service-shortcode.html">Service Shortcode</a></li>
+          <li><a href="footer-two.html">Footer Two</a></li>
+          <li><a href="footer-three.html">Footer Three</a></li>
+          <li><a href="page-contact-two.html">Contact Two</a></li>
+          <li><a href="page-contact-three.html">Contact Three</a></li>
+          <li><a href="page-gallery.html">Gallery</a></li>
+          <li><a href="restaurant-list-transparent-header.html">Page Head Transparent</a></li>
+        </ul>
+      </li>
+    </ul>
+    <!-- END Navigation menu -->
+
+  </div>
+</nav>
+<!-- End Navigation bar -->
 
     <%= yield %>
   </body>
