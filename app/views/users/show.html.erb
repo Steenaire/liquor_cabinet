@@ -1,54 +1,134 @@
-<h1><%= @user.username %>'s Liquor Cabinet</h1>
+<!-- Start Pages Title  -->
 
-<% if current_user.id == @user.id %>
-  <p>See what drinks you can make!</p>
-  <a href="/recipes/?personal_index=true&ignore_brand=true">
-  <p>Garnish required/Ignore Brand</p>
-  </a>
-  <a href="/recipes/?personal_index=true&ignore_garnish=true">
-  <p>Ignore Garnish/Ignore Brand</p>
-  </a>
-  <a href="/recipes/?personal_index=true&require_brand=true">
-  <p>Garnish required/Brand required</p>
-  </a>
-  <a href="/recipes/?personal_index=true&require_brand_ignore_garnish=true">
-  <p>Ignore Garnish/Brand required</p>
-  </a>
-
-  <p>Add a new ingredient to your cabinet:</p>
-
-  <%= form_tag '/cabinets', method: :post do %>
-
-    <div>
-      <%= label_tag :ingredient_id %>
-      <%= collection_select :ingredient, :ingredient_id, Ingredient.all, :id, :name %>
+<section id="page-title" class="page-title-style2">
+  <div class="color-overlay"></div>
+  <div class="container inner-img">
+    <div class="row">
+      <div class="Page-title">
+        <div class="col-md-12 text-center">
+          <div class="title-text">
+            <h6>Great Service</h6>
+            <h2 class="page-title"><%= @user.username %>'s Liquor Cabinet</h2>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <div class="breadcrumb-trail breadcrumbs">
+            <span class="trail-begin"><a href="/">Home</a></span>
+            <span class="sep">/</span> <span class="trail-end">My Account</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= label_tag :brand_id %>(Optional)
-      <%= collection_select :brand, :brand_id, Brand.all, :id, :name, selected: 2 %>
-    </div>
-    <div>
-      <%= hidden_field_tag :user_id, current_user.id %>
-    </div>
-    <%= submit_tag "Add Ingredient" %>
+  </div>
+</section>
 
-  <% end %>
-<% end %>
+<!-- End Pages Title  -->
+<main class="main-content">
+  <!-- Content Start -->
+  <section class="cfo-area">
+    <div class="container">
+      <div class="row">
 
-<table>
-  <tr>
-    <th>Liquor</th>
-    <th>Remove?</th>
-  </tr>
-  <% @user.cabinets.each do |cabinet| %>
-    <tr>
-      <td><%= cabinet.brand.name %> <%= cabinet.ingredient.name %></td>
-      <td><% if current_user.id == @user.id %>
-            <%= link_to "Remove from Cabinet", "/cabinets/#{cabinet.id}", method: :delete %>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 account-cfoinfo clearfix">
+
+          <div class="cfoaccount">
+            <ul class="list-unstyled">
+              <li><a href="myaccount.html"><i class="fa fa-home" aria-hidden="true"></i> My Account</a></li>
+              <li><a href="myaccount.html"><i class="fa fa-user" aria-hidden="true"></i> My Cabinet</a></li>
+              <li><a href="orderhistory.html"><i class="fa fa-history" aria-hidden="true"></i> My Drinks</a></li>
+            </ul>
+          </div>
+          <!-- END OF Myaccount menu  -->
+
+          <!-- End of account cfoInfo -->
+        </div>
+
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+          <div class="contact-details myaccount-contact">
+            <h2>Account access</h2>
+            <div class="account-table">
+              <table class="table">
+                <tbody>
+                <tr>
+                  <td class="commonname-td">
+                    Login Info
+                  </td>
+                  <td class="nameshow-td">
+                    <%= current_user.username %>
+                  </td>
+                  <td class="nameshow-td">
+                    <%= current_user.email %>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <!-- END OF CONTACT DETAILS SECTION -->
+
+          <div class="contact-details myaccount-contact">
+            <h2>My Cabinet Inventory</h2>
+              <% if current_user.id == @user.id %>
+                <p>Add a new ingredient to your cabinet:
+
+                <%= form_tag '/cabinets', class: "search-form-select", method: :post do %>
+                    <%= label_tag :ingredient_id %>
+                    <%= collection_select :ingredient, :ingredient_id, Ingredient.all, :id, :name %>
+                    <%= label_tag :brand_id %>(Optional)
+                    <%= collection_select :brand, :brand_id, Brand.all, :id, :name, selected: 2 %>
+                    <%= hidden_field_tag :user_id, current_user.id %>
+                  <%= submit_tag "Add Ingredient" %>
+                  </p>
+                <% end %>
+              <% end %>
+
+            <div class="row">
+                <div class="address-form">
+
+                  <div class="form-group">
+
+                      <% @user.cabinets.each do |cabinet| %>
+                        <div class="col-md-4">
+                          <%= cabinet.brand.name %> <%= cabinet.ingredient.name %></td>
+                          <% if current_user.id == @user.id %>
+                            <%= link_to "/cabinets/#{cabinet.id}", method: :delete do %>
+                              <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            <% end %>
+                          <% end %>
+                        </div>
+                      <% end %>
+
+                  </div>
+
+                </div>
+            </div>
+
+          </div>
+
+          <!-- END OF DELIVERY ADDRESS SECTION -->
+          <% if current_user.id == @user.id %>
+            <p>See what drinks you can make!</p>
+            <a href="/recipes/?personal_index=true&ignore_brand=true">
+            <p>Garnish required/Ignore Brand</p>
+            </a>
+            <a href="/recipes/?personal_index=true&ignore_garnish=true">
+            <p>Ignore Garnish/Ignore Brand</p>
+            </a>
+            <a href="/recipes/?personal_index=true&require_brand=true">
+            <p>Garnish required/Brand required</p>
+            </a>
+            <a href="/recipes/?personal_index=true&require_brand_ignore_garnish=true">
+            <p>Ignore Garnish/Brand required</p>
+            </a>
           <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
 
-<a href="/recipes">Back to Index</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main container end -->
+</main>
+
+<!-- Content End -->

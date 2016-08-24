@@ -35,115 +35,253 @@
 <!-- End Loading  -->
 
 <!-- Start Navigation bar -->
-<nav class="navbar">
-  <div class="container">
+  <nav class="navbar">
+    <div class="container">
 
-    <!-- Logo -->
-    <div class="pull-left">
-      <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
+      <!-- Logo -->
+      <div class="pull-left">
+        <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
 
-      <div class="logo-wrapper">
-        <a class="logo" href="index.html"><img src="img/logo.png" alt="logo"></a>
-        <a class="logo-alt" href="index.html"><img src="img/logo.png" alt="logo-alt"></a>
+        <div class="logo-wrapper">
+          <a class="logo" href="index.html"><img src="img/logo.png" alt="logo"></a>
+          <a class="logo-alt" href="index.html"><img src="img/logo.png" alt="logo-alt"></a>
+        </div>
+
       </div>
+      <!-- END Logo -->
+
+      <!-- User account -->
+      <div class="pull-right user-login">
+        <% if current_user %>
+          <a class="btn btn-sm btn-primary" href="/users/<%= current_user.id %>"><%= current_user.username %>'s Cabinet</a>
+          <%= link_to "Log Out", "/logout", method: :delete %>
+        <% else %>
+          <a class="btn btn-sm btn-primary" href="user-login.html">Login</a> or &nbsp;
+          <a href="user-register.html">Register</a>
+        <% end %>
+      </div>
+      <!-- END User account -->
+
+      <!-- Navigation menu -->
+      <ul class="nav-menu user-login">
+        <li>
+          <a class="active" href="/">Home</a>
+          <ul>
+            <li><a class="active" href="index.html">Home 1</a></li>
+            <li><a href="index2.html">Home 2</a></li>
+            <li><a href="index3.html">Home 3</a></li>
+            <li><a href="index4.html">Home 4</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Restaurant list</a>
+          <ul>
+            <li><a href="restaurant-list.html">Restaurant Search List</a></li>
+            <li><a href="restaurant-list2.html">Restaurant Search List2</a></li>
+            <li><a href="restaurant-list3.html">Restaurant Search List3</a></li>
+            <li><a href="restaurant-list4.html">Restaurant Search List4</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Order</a>
+          <ul>
+            <li><a href="reservation.html">Reservation</a></li>
+            <li><a href="reservation2.html">Reservation 2</a></li>
+            <li><a href="order-online.html">Order Online</a></li>
+            <li><a href="order-online2.html">Order Online 2</a></li>
+            <li><a href="order-process.html">Order Process</a></li>
+            <li><a href="order-online-cart-empty.html">Order Online empty cart</a></li>
+            <li><a href="order-details.html">Order Details</a></li>
+            <li><a href="order-history.html">Order History</a></li>
+            <li><a href="order-summary.html">Order Summary</a></li>
+            <li><a href="order-success.html">Success Page</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Blog</a>
+          <ul>
+            <li><a href="page-blog.html">Blog</a></li>
+            <li><a href="page-post.html">Single Post</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#">Pages</a>
+          <ul>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="page-contact.html">Contact Us</a></li>
+            <li><a href="page-faq-sidebar.html">Faq with sidebar</a></li>
+            <li><a href="page-faq-fullwidth.html">Faq Full Width</a></li>
+            <li><a href="user-login.html">Login</a></li>
+            <li><a href="user-register.html">User Register</a></li>
+            <li><a href="user-forget-pass.html">Forget Password</a></li>
+            <li><a href="myaccount.html">My Account</a></li>
+            <li><a href="modify-address.html">Modify Address</a></li>
+            <li><a href="page-careers.html">Careers</a></li>
+            <li><a href="page-privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Extra</a>
+          <ul>
+            <li><a href="404.html">404 Page</a></li>
+            <li><a href="coming-soon.html">Coming Soon</a></li>
+            <li><a href="pricing-table-one.html">Pricing Table One</a></li>
+            <li><a href="pricing-table-two.html">Pricing Table Two</a></li>
+            <li><a href="service-shortcode.html">Service Shortcode</a></li>
+            <li><a href="footer-two.html">Footer Two</a></li>
+            <li><a href="footer-three.html">Footer Three</a></li>
+            <li><a href="page-contact-two.html">Contact Two</a></li>
+            <li><a href="page-contact-three.html">Contact Three</a></li>
+            <li><a href="page-gallery.html">Gallery</a></li>
+            <li><a href="restaurant-list-transparent-header.html">Page Head Transparent</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- END Navigation menu -->
 
     </div>
-    <!-- END Logo -->
-
-    <!-- User account -->
-    <div class="pull-right user-login">
-      <% if current_user %>
-        <a class="btn btn-sm btn-primary" href="/users/<%= current_user.id %>"><%= current_user.username %>'s Cabinet</a>
-        <%= link_to "Log Out", "/logout", method: :delete %>
-      <% else %>
-        <a class="btn btn-sm btn-primary" href="user-login.html">Login</a> or &nbsp;
-        <a href="user-register.html">Register</a>
-      <% end %>
-    </div>
-    <!-- END User account -->
-
-    <!-- Navigation menu -->
-    <ul class="nav-menu user-login">
-      <li>
-        <a class="active" href="index.html">Home</a>
-        <ul>
-          <li><a class="active" href="index.html">Home 1</a></li>
-          <li><a href="index2.html">Home 2</a></li>
-          <li><a href="index3.html">Home 3</a></li>
-          <li><a href="index4.html">Home 4</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Restaurant list</a>
-        <ul>
-          <li><a href="restaurant-list.html">Restaurant Search List</a></li>
-          <li><a href="restaurant-list2.html">Restaurant Search List2</a></li>
-          <li><a href="restaurant-list3.html">Restaurant Search List3</a></li>
-          <li><a href="restaurant-list4.html">Restaurant Search List4</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Order</a>
-        <ul>
-          <li><a href="reservation.html">Reservation</a></li>
-          <li><a href="reservation2.html">Reservation 2</a></li>
-          <li><a href="order-online.html">Order Online</a></li>
-          <li><a href="order-online2.html">Order Online 2</a></li>
-          <li><a href="order-process.html">Order Process</a></li>
-          <li><a href="order-online-cart-empty.html">Order Online empty cart</a></li>
-          <li><a href="order-details.html">Order Details</a></li>
-          <li><a href="order-history.html">Order History</a></li>
-          <li><a href="order-summary.html">Order Summary</a></li>
-          <li><a href="order-success.html">Success Page</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Blog</a>
-        <ul>
-          <li><a href="page-blog.html">Blog</a></li>
-          <li><a href="page-post.html">Single Post</a></li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="#">Pages</a>
-        <ul>
-          <li><a href="about-us.html">About Us</a></li>
-          <li><a href="page-contact.html">Contact Us</a></li>
-          <li><a href="page-faq-sidebar.html">Faq with sidebar</a></li>
-          <li><a href="page-faq-fullwidth.html">Faq Full Width</a></li>
-          <li><a href="user-login.html">Login</a></li>
-          <li><a href="user-register.html">User Register</a></li>
-          <li><a href="user-forget-pass.html">Forget Password</a></li>
-          <li><a href="myaccount.html">My Account</a></li>
-          <li><a href="modify-address.html">Modify Address</a></li>
-          <li><a href="page-careers.html">Careers</a></li>
-          <li><a href="page-privacy-policy.html">Privacy Policy</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Extra</a>
-        <ul>
-          <li><a href="404.html">404 Page</a></li>
-          <li><a href="coming-soon.html">Coming Soon</a></li>
-          <li><a href="pricing-table-one.html">Pricing Table One</a></li>
-          <li><a href="pricing-table-two.html">Pricing Table Two</a></li>
-          <li><a href="service-shortcode.html">Service Shortcode</a></li>
-          <li><a href="footer-two.html">Footer Two</a></li>
-          <li><a href="footer-three.html">Footer Three</a></li>
-          <li><a href="page-contact-two.html">Contact Two</a></li>
-          <li><a href="page-contact-three.html">Contact Three</a></li>
-          <li><a href="page-gallery.html">Gallery</a></li>
-          <li><a href="restaurant-list-transparent-header.html">Page Head Transparent</a></li>
-        </ul>
-      </li>
-    </ul>
-    <!-- END Navigation menu -->
-
-  </div>
-</nav>
+  </nav>
 <!-- End Navigation bar -->
 
     <%= yield %>
+
+        <!-- start footer area -->
+    <section id="index-footer" class="footer-area-content">
+
+
+      <!-- Newsletter -->
+      <div id="newsletter">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h3><i class="fa fa-envelope-o"></i>Keep in touch, Join our newsletter</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <div class="col-sm-8">
+                <input type="email" required="required" placeholder="Your Email Address" id="email" class="form-control" name="email">
+              </div>
+              <div class="col-sm-4">
+                <a href="#" class="btn btn-subscribe">Subscribe</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END: Newsletter -->
+
+      <div class="container">
+        <div class="footer-wrapper style-3">
+          <footer class="type-1">
+            <div class="footer-columns-entry">
+              <div class="row">
+                <div class="col-md-3 col-sm-3">
+                  <h3 class="column-title">Popular cities</h3>
+                  <ul class="column">
+                    <li><a href="#">Food delivery London</a></li>
+                    <li><a href="#">Food delivery Ambleside</a></li>
+                    <li><a href="#">Food delivery Huddersfield</a></li>
+                  </ul>
+                  <h3 class="column-title">Popular Areas</h3>
+                  <ul class="column">
+                    <li><a href="#">Food delivery Abergavenny</a></li>
+                    <li><a href="#">Food delivery Cardiff</a></li>
+                    <li><a href="#">Food delivery Crewe</a></li>
+                  </ul>
+                  <div class="clear"></div>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                  <h3 class="column-title">Popular cuisines</h3>
+                  <ul class="column">
+                    <li><a href="#">Fast food in India</a></li>
+                    <li><a href="#">Italian in Italy</a></li>
+                    <li><a href="#">Chinese Food in China</a></li>
+                    <li><a href="#">Dessert in Turkish</a></li>
+                    <li><a href="#">Seafood in European</a></li>
+                    <li><a href="#">Chinese food in Tapes</a></li>
+                    <li><a href="#">Middle Eastern in French</a></li>
+                  </ul>
+                  <div class="clear"></div>
+                </div>
+
+                <div class="col-md-3 col-sm-3">
+                  <h3 class="column-title">Restaurants</h3>
+                  <ul class="column">
+                    <li><a href="#">American Burger Banani</a></li>
+                    <li><a href="#">Burger-n-Boost Dhanmondi</a></li>
+                    <li><a href="#">Steak House</a></li>
+                    <li><a href="#">Subfactory</a></li>
+                    <li><a href="#">Tastebud</a></li>
+                    <li><a href="#">Kiva Han Coffee Boutique</a></li>
+                    <li><a href="#">Live Kitchen</a></li>
+                  </ul>
+                  <div class="clear"></div>
+                </div>
+
+                <div class="col-md-3 col-sm-3">
+                  <h3 class="column-title">Thefoody</h3>
+                  <ul class="column">
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="page-blog.html">News</a></li>
+                    <li><a href="#">Terms and conditions</a></li>
+                    <li><a href="page-privacy-policy.html"> Privacy policy</a></li>
+                    <li><a href="#">TheFoody free App for Android and iPhone</a></li>
+                    <li><a href="page-careers.html">Careers</a></li>
+
+                  </ul>
+                  <div class="clear"></div>
+                </div>
+              </div>
+            </div>
+
+          </footer>
+        </div>
+      </div>
+
+
+      <div class="footer-bottom footer-wrapper style-3">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="footer-bottom-navigation">
+                <div class="cell-view">
+                  <div class="footer-links">
+                    <a href="#">Site Map</a>
+                    <a href="restaurant-list.html">Search</a>
+                    <a href="#">Terms</a>
+                    <a href="page-privacy-policy.html">Privacy policy</a>
+                    <a href="order-online.html">Order online</a>
+                    <a href="page-contact.html">Contact Us</a>
+                    <a href="page-careers.html">Careers</a>
+                  </div>
+                  <div class="copyright">Created with by <a target="_blank" href="#">iGlyphic</a> . All right reserved</div>
+                </div>
+                <div class="cell-view">
+                  <div class="social-content">
+                    <a class="post-facebook" href="#"><i class="fa fa-facebook"></i></a>
+                    <a class="post-google-plus" href="#"><i class="fa fa-google-plus"></i></a>
+                    <a class="post-twitter" href="#"><i class="fa fa-twitter"></i></a>
+                    <a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+    </section>
+    <!-- footer area end -->
+
+    <!-- Back to top Link -->
+    <div id="to-top" class="main-bg"><span class="fa fa-chevron-up"></span></div>
+
   </body>
 </html>
