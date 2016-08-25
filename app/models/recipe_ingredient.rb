@@ -1,7 +1,7 @@
 class RecipeIngredient < ApplicationRecord
-  belongs_to :ingredient
-  belongs_to :recipe
-  belongs_to :brand
+  belongs_to :ingredient, optional: true
+  belongs_to :recipe, optional: true, :dependent => :delete
+  belongs_to :brand, optional: true
 
   def measure_unit(unit)
     return "#{self.quantity}#{unit}" if self.volume || self.weight

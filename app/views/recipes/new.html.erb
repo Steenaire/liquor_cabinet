@@ -49,7 +49,7 @@
 
 <%= nested_form_for @recipe do |f| %>
       <div class="form-group">
-        <%= f.label :name %>:
+        <%= f.label "Recipe Name" %>:
         <%= f.text_field :name, class: "form-control" %><br />
       </div>
 
@@ -64,24 +64,27 @@
       </div>
         <%= f.hidden_field :user_id, value: current_user.id%>
 
+        <p>Ingredients:</p>
+        
       <div class="form-group">
         <%= f.fields_for :recipe_ingredients do |ingredient| %>
-          <%= ingredient.label :brand %>
-          <%= collection_select :brand, :brand_id, Brand.all, :id, :name %><br />
           <%= ingredient.label :ingredient %>
-          <%= collection_select :ingredient, :ingredient_id, Ingredient.all, :id, :name %><br />
+          <%= collection_select :ingredient, :ingredient_id, Ingredient.all, :id, :name %>
+          <%= ingredient.label "Brand (Optional)" %>
+          <%= collection_select :brand, :brand_id, Brand.all, :id, :name, selected: 2 %>
+          <%= ingredient.label "Is garnish?" %>
+          <%= ingredient.select :garnish, [[true], [false]], selected: false %>
           <%= ingredient.label :quantity %>
-          <%= ingredient.text_field :quantity, class: "form-control" %><br />
-          <%= ingredient.label :volume %>
-          <%= ingredient.text_field :volume, class: "form-control" %><br />
-          <%= ingredient.label :garnish %>
-          <%= ingredient.text_field :garnish, class: "form-control" %><br />
-          <%= ingredient.label :weight %>
-          <%= ingredient.text_field :weight, class: "form-control" %><br />
+          <%= ingredient.text_field :quantity %>
+          Measurement (select one):
+          <%= ingredient.label "Volume (oz)" %>
+          <%= ingredient.select :volume, [[true], [false]], selected: true%>
+          <%= ingredient.label "Weight (oz)" %>
+          <%= ingredient.select :weight, [[true], [false]], selected: false %>
           <%= ingredient.label :count %>
-          <%= ingredient.text_field :count, class: "form-control" %><br />
+          <%= ingredient.select :count, [[true], [false]], selected: false %>
           <%= ingredient.label :dash %>
-          <%= ingredient.text_field :dash, class: "form-control" %><br />
+          <%= ingredient.select :dash, [[true], [false]], selected: false %>
         <% end %>
       </div>
 
