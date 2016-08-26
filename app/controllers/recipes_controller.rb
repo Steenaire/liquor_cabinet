@@ -65,8 +65,6 @@ class RecipesController < ApplicationController
 
   def create
     recipe = Recipe.new(recipe_params)
-    recipe.recipe_ingredients.first.ingredient_id = params[:ingredient][:ingredient_id]
-    recipe.recipe_ingredients.first.brand_id = params[:brand][:brand_id]
     if recipe.save
       redirect_to "/recipes/#{recipe.id}"
     else
@@ -83,7 +81,7 @@ class RecipesController < ApplicationController
       :instructions,
       :description,
       :user_id,
-      recipe_ingredients_attributes: [:id, :quantity, :volume, :garnish, :weight, :count, :dash, :recipe_id, ingredients_attributes: [:id, :_destroy], brands_attributes: [:id, :_destroy]]
+      recipe_ingredients_attributes: [:id, :quantity, :volume, :garnish, :weight, :count, :dash, :recipe_id, :ingredient_id, :brand_id]
       )
   end
 

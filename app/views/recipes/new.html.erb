@@ -65,13 +65,13 @@
         <%= f.hidden_field :user_id, value: current_user.id%>
 
         <p>Ingredients:</p>
-        
-      <div class="form-group">
+
+      <div class="form-group nested-fields">
         <%= f.fields_for :recipe_ingredients do |ingredient| %>
           <%= ingredient.label :ingredient %>
-          <%= collection_select :ingredient, :ingredient_id, Ingredient.all, :id, :name %>
+          <%= ingredient.collection_select :ingredient_id, Ingredient.all, :id, :name %>
           <%= ingredient.label "Brand (Optional)" %>
-          <%= collection_select :brand, :brand_id, Brand.all, :id, :name, selected: 2 %>
+          <%= ingredient.collection_select :brand_id, Brand.all, :id, :name, selected: 2 %>
           <%= ingredient.label "Is garnish?" %>
           <%= ingredient.select :garnish, [[true], [false]], selected: false %>
           <%= ingredient.label :quantity %>
@@ -85,6 +85,7 @@
           <%= ingredient.select :count, [[true], [false]], selected: false %>
           <%= ingredient.label :dash %>
           <%= ingredient.select :dash, [[true], [false]], selected: false %>
+          <br>
         <% end %>
       </div>
 
