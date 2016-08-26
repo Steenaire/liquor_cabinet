@@ -60,7 +60,11 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    @recipe.recipe_ingredients.build
+    if params[:ingredients]
+      params[:ingredients].to_i.times { @recipe.recipe_ingredients.build }
+    else
+      @recipe.recipe_ingredients.build
+    end
   end
 
   def create
