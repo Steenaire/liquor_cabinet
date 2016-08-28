@@ -68,28 +68,8 @@
         <hr>
 
       <div class="form-group nested-fields">
-        <%= f.fields_for :recipe_ingredients do |ingredient| %>
-          <%= ingredient.label :ingredient %>
-          <%= ingredient.collection_select :ingredient_id, Ingredient.all, :id, :name %>
-          <%= ingredient.label "Brand (Optional)" %>
-          <%= ingredient.collection_select :brand_id, Brand.all, :id, :name, selected: 2 %>
-          <%= ingredient.label "Is garnish?" %>
-          <%= ingredient.select :garnish, [[true], [false]], selected: false %>
-          <%= ingredient.label :quantity %>
-          <%= ingredient.text_field :quantity %>
-          Measurement (select one):
-          <%= ingredient.label "Volume (oz)" %>
-          <%= ingredient.select :volume, [[true], [false]], selected: true%>
-          <%= ingredient.label "Weight (oz)" %>
-          <%= ingredient.select :weight, [[true], [false]], selected: false %>
-          <%= ingredient.label :count %>
-          <%= ingredient.select :count, [[true], [false]], selected: false %>
-          <%= ingredient.label :dash %>
-          <%= ingredient.select :dash, [[true], [false]], selected: false %>
-          <br>
-          <hr>
-        <% end %>
-        <%= link_to_add_association('Additional Ingredient', f, :recipe_ingredients) %>
+        
+        <%= link_to_add_association('Click to add ingredient', f, :recipe_ingredients) %>
       </div>
 
       <%= f.submit %>
