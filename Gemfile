@@ -29,7 +29,8 @@ gem 'font-awesome-rails'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'nested_form'
-gem "cocoon"
+gem 'cocoon'
+gem 'ratyrate'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

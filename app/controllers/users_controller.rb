@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   def show
     if current_user
       @user = User.find(params[:id])
+      @recipes = Recipe.where(user_id: @user.id)
     else
       flash[:warning] = "Please sign in to see user cabinets"
       redirect_to '/login'
