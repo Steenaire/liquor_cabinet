@@ -1,0 +1,20 @@
+
+          <%= f.label :ingredient %>
+          <%= f.collection_select :ingredient_id, Ingredient.all, :id, :name %>
+          <%= f.label "Brand (Optional)" %>
+          <%= f.collection_select :brand_id, Brand.all, :id, :name, selected: 2 %>
+          <%= f.label "Is garnish?" %>
+          <%= f.select :garnish, [[true], [false]], selected: false %>
+          <%= f.label :quantity %>
+          <%= f.text_field :quantity %>
+          Measurement (select one):
+          <%= f.label "Volume (oz)" %>
+          <%= f.select :volume, [[true], [false]], selected: true%>
+          <%= f.label "Weight (oz)" %>
+          <%= f.select :weight, [[true], [false]], selected: false %>
+          <%= f.label :count %>
+          <%= f.select :count, [[true], [false]], selected: false %>
+          <%= f.label :dash %>
+          <%= f.select :dash, [[true], [false]], selected: false %>
+          <br>
+          <hr>
