@@ -21,3 +21,4 @@
 //= require custom
 //= require jquery_nested_form
 //= require cocoon
+//= require jquery.raty.min

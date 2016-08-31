@@ -3,6 +3,8 @@ class Recipe < ApplicationRecord
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
 
+  has_many :ratings
+
   belongs_to :user
 
   accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
@@ -100,6 +102,22 @@ class Recipe < ApplicationRecord
 
     return branded_recipes
 
+  end
+
+  def average_rating
+    if self.ratings.any?
+      all_ratings = 0
+      self.ratings.each do |rating|
+        all_ratings += rating.score
+      end
+      return all_ratings/self.ratings.length
+    else
+      return 0
+    end
+  end
+
+  def total_ratings
+    return self.ratings.length
   end
 
 end
