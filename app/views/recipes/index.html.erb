@@ -167,55 +167,117 @@ Start Pages Title  -->
                     <%= recipe.average_rating %>
                   <% end %>
                   <span>
-                    <% if recipe.average_rating.round == 5 %>
-                    <span>
-                      <span onmouseover="ratingStarHover(this,1,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,2,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,3,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,4,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,5,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                    </span>
-                    <% elsif recipe.average_rating.round == 4 %>
-                    <span>
-                      <span onmouseover="ratingStarHover(this,1)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,2)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,3)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,4)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,5)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                    </span>
-                    <% elsif recipe.average_rating.round == 3 %>
-                    <span>
-                      <span onmouseover="ratingStarHover(this,1)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,2)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,3)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,4)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,5)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                    </span>
-                    <% elsif recipe.average_rating.round == 2 %>
-                    <span>
-                      <span onmouseover="ratingStarHover(this,1)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,2)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,3)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,4)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,5)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                    </span>
-                    <% elsif recipe.average_rating.round == 1 %>
-                    <span>
-                      <span onmouseover="ratingStarHover(this,1)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,2)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,3)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,4)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,5)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                    </span>
+
+                    <% if current_user&&current_user.ratings.find_by(recipe_id: recipe.id) %>
+                          <% if current_user.ratings.find_by(recipe_id: recipe.id).score == 5 %>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                          <% elsif current_user.ratings.find_by(recipe_id: recipe.id).score == 4 %>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #CCCCCC;'>
+                              <i class='fa fa-star' ></i> </span>
+                          <% elsif current_user.ratings.find_by(recipe_id: recipe.id).score == 3 %>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #CCCCCC;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #CCCCCC;'>
+                              <i class='fa fa-star' ></i> </span>
+                          <% elsif current_user.ratings.find_by(recipe_id: recipe.id).score == 2 %>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #CCCCCC;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #CCCCCC;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #CCCCCC;'>
+                              <i class='fa fa-star' ></i> </span>
+                          <% elsif current_user.ratings.find_by(recipe_id: recipe.id).score == 1 %>
+                            <span style='color: #FFCC00;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #CCCCCC;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #CCCCCC;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #CCCCCC;'>
+                              <i class='fa fa-star' ></i> </span>
+                            <span style='color: #CCCCCC;'>
+                              <i class='fa fa-star' ></i> </span>
+                          <% end %>
                     <% else %>
-                    <span>
-                      <span onmouseover="ratingStarHover(this,1)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,2)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,3)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,4)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                      <span onmouseover="ratingStarHover(this,5)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
-                    </span>
+                      <% if recipe.average_rating.round == 5 %>
+                      <span>
+                        <span id="1" onmouseover="ratingStarHover(this,1,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                        <span id="2" onmouseover="ratingStarHover(this,2,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                        <span id="3" onmouseover="ratingStarHover(this,3,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                        <span id="4" onmouseover="ratingStarHover(this,4,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                        <span id="5" onmouseover="ratingStarHover(this,5,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                      </span>
+                      <% elsif recipe.average_rating.round == 4 %>
+                      <span>
+                        <span id="1" onmouseover="ratingStarHover(this,1,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                        <span id="2" onmouseover="ratingStarHover(this,2,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                        <span id="3" onmouseover="ratingStarHover(this,3,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                        <span id="4" onmouseover="ratingStarHover(this,4,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                        <span id="5" onmouseover="ratingStarHover(this,5,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                      </span>
+                      <% elsif recipe.average_rating.round == 3 %>
+                      <span>
+                        <span id="1" onmouseover="ratingStarHover(this,1,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                        <span id="2" onmouseover="ratingStarHover(this,2,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                        <span id="3" onmouseover="ratingStarHover(this,3,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                        <span id="4" onmouseover="ratingStarHover(this,4,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                        <span id="5" onmouseover="ratingStarHover(this,5,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                      </span>
+                      <% elsif recipe.average_rating.round == 2 %>
+                      <span>
+                        <span id="1" onmouseover="ratingStarHover(this,1,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                        <span id="2" onmouseover="ratingStarHover(this,2,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                        <span id="3" onmouseover="ratingStarHover(this,3,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                        <span id="4" onmouseover="ratingStarHover(this,4,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                        <span id="5" onmouseover="ratingStarHover(this,5,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                      </span>
+                      <% elsif recipe.average_rating.round == 1 %>
+                      <span>
+                        <span id="1" onmouseover="ratingStarHover(this,1,<%= current_user.id %>,<%= recipe.id %>)" style="color: #ED1C3B;"><i class="fa fa-star" ></i></span>
+                        <span id="2" onmouseover="ratingStarHover(this,2,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                        <span id="3" onmouseover="ratingStarHover(this,3,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                        <span id="4" onmouseover="ratingStarHover(this,4,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                        <span id="5" onmouseover="ratingStarHover(this,5,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                      </span>
+                      <% else %>
+                      <span>
+                        <span id="1" onmouseover="ratingStarHover(this,1,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                        <span id="2" onmouseover="ratingStarHover(this,2,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                        <span id="3" onmouseover="ratingStarHover(this,3,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                        <span id="4" onmouseover="ratingStarHover(this,4,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                        <span id="5" onmouseover="ratingStarHover(this,5,<%= current_user.id %>,<%= recipe.id %>)" style="color: #CCCCCC;"><i class="fa fa-star" ></i></span>
+                      </span>
+                      <% end %>
                     <% end %>
+
+                    
                     <span class="review">
                       (<span><%= recipe.total_ratings %></span>)
                     </span>

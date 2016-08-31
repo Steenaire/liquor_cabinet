@@ -1,8 +1,11 @@
 class RatingsController < ApplicationController
   def create
     if current_user.ratings.any?
+      puts "Has ratings"
       current_user.ratings.each do |rating|
+        "eaching through ratings"
         if rating.recipe_id == params[:recipe_id]
+          "rating destroyed"
           rating.destroy
         end
       end
