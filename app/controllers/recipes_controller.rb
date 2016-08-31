@@ -77,6 +77,15 @@ class RecipesController < ApplicationController
     end
   end
 
+  def destroy
+    recipe = Recipe.find_by(id: params[:id])
+    recipe.recipe_ingredients.each do |recipe_ingredient|
+      recipe_ingredient.destroy
+    end
+    recipe.destroy
+    redirect_to "/users/#{current_user.id}"
+  end
+
   private
 
   def recipe_params
