@@ -22,6 +22,20 @@ class Recipe < ApplicationRecord
     Recipe.includes(:ingredients).where('lower(ingredients.name) LIKE ?', "%#{ingredient_search.downcase}%").references(:ingredients)
   end
 
+  def self.popular_ingredients()
+    popular_recipes = []
+    recipes = Recipe.all
+    recipes.each do |recipe|
+      if recipe.average_rating > 3
+        popular_recipes << recipe
+      end
+      if popular_recipes.length == 10
+        return popular_recipes
+      end
+    end
+    return popular_recipes
+  end
+
   def self.ignore_brand_garnish_matters(recipes_all,users_ingredients)
     recipes = []
     recipes_all.each do |recipe|

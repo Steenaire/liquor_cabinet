@@ -27,8 +27,6 @@ class RecipesController < ApplicationController
       @recipes = Recipe.all
     end
 
-    @token = form_authenticity_token
-
   end
 
   def show
@@ -74,7 +72,6 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to "/recipes/#{@recipe.id}"
     else
-      flash[:danger] = "Recipe not created!"
       render 'new'
     end
   end
@@ -90,14 +87,14 @@ class RecipesController < ApplicationController
 
   private
 
-  def recipe_params
-    params.require(:recipe).permit(
-      :name,
-      :instructions,
-      :description,
-      :user_id,
-      recipe_ingredients_attributes: [:id, :quantity, :volume, :garnish, :weight, :count, :dash, :recipe_id, :ingredient_id, :brand_id, :_destroy]
-      )
-  end
+    def recipe_params
+      params.require(:recipe).permit(
+        :name,
+        :instructions,
+        :description,
+        :user_id,
+        recipe_ingredients_attributes: [:id, :quantity, :volume, :garnish, :weight, :count, :dash, :recipe_id, :ingredient_id, :brand_id, :_destroy]
+        )
+    end
 
 end

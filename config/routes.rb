@@ -23,4 +23,8 @@ Rails.application.routes.draw do
   get '/', to: 'pages#welcome'
 
   post '/ratings', to: 'ratings#create'
+
+  get '/ingredients/new', to: 'ingredients#new'
+  post '/ingredients', to: 'ingredients#create'
+  get '/ingredients', to: 'ingredients#index'
 end

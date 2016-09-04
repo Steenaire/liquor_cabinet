@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def welcome
-    @recipes = Recipe.all
+    @recipes = Recipe.popular_ingredients
   end
 
 end
