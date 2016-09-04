@@ -73,3 +73,7 @@ function ratingStarRate(element,score,userId,recipeId) {
         element.parentElement.innerHTML = "<span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span>";
     }
 }
+
+function reRateDrink() {
+    
+}

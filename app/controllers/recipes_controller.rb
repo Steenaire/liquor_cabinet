@@ -70,12 +70,12 @@ class RecipesController < ApplicationController
   end
 
   def create
-    recipe = Recipe.new(recipe_params)
-    if recipe.save
-      redirect_to "/recipes/#{recipe.id}"
+    @recipe = Recipe.new(recipe_params)
+    if @recipe.save
+      redirect_to "/recipes/#{@recipe.id}"
     else
       flash[:danger] = "Recipe not created!"
-      redirect_to '/recipes/new'
+      render 'new'
     end
   end
 
