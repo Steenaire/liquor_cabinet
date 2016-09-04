@@ -27,6 +27,8 @@ class RecipesController < ApplicationController
       @recipes = Recipe.all
     end
 
+    @token = form_authenticity_token
+
   end
 
   def show
