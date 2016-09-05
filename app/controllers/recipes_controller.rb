@@ -5,20 +5,6 @@ class RecipesController < ApplicationController
     @grey_star = '#CCCCCC'
     @red_star = '#ED1C3B'
 
-    @five_gold_stars = [@gold_star,@gold_star,@gold_star,@gold_star,@gold_star]
-    @four_gold_stars = [@gold_star,@gold_star,@gold_star,@gold_star,@grey_star]
-    @three_gold_stars = [@gold_star,@gold_star,@gold_star,@grey_star,@grey_star]
-    @two_gold_stars = [@gold_star,@gold_star,@grey_star,@grey_star,@grey_star]
-    @one_gold_star = [@gold_star,@grey_star,@grey_star,@grey_star,@grey_star]
-
-    @five_red_stars = [@red_star,@red_star,@red_star,@red_star,@red_star]
-    @four_red_stars = [@red_star,@red_star,@red_star,@red_star,@grey_star]
-    @three_red_stars = [@red_star,@red_star,@red_star,@grey_star,@grey_star]
-    @two_red_stars = [@red_star,@red_star,@grey_star,@grey_star,@grey_star]
-    @one_red_star = [@red_star,@grey_star,@grey_star,@grey_star,@grey_star]
-
-    @five_grey_stars = [@grey_star,@grey_star,@grey_star,@grey_star,@grey_star]
-
     if current_user
       users_ingredients = current_user.ingredients
       recipes_all = Recipe.all
@@ -26,26 +12,28 @@ class RecipesController < ApplicationController
 
       if params[:personal_index]&&params[:ignore_brand]
         recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)
+        @recipes = Kaminari.paginate_array(recipes).page params[:page]
 
       elsif params[:personal_index]&&params[:ignore_garnish]
         recipes = Recipe.ignore_brand_ignore_garnish(recipes_all,users_cabinets)
+        @recipes = Kaminari.paginate_array(recipes).page params[:page]
 
       elsif params[:require_brand_ignore_garnish]
         recipes = Recipe.brand_matters_ignore_garnish(recipes_all,users_cabinets)
+        @recipes = Kaminari.paginate_array(recipes).page params[:page]
 
       elsif params[:require_brand]
         no_brand_recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)
         recipes = Recipe.brand_matters_garnish_matters(no_brand_recipes,users_cabinets)
+        @recipes = Kaminari.paginate_array(recipes).page params[:page]
 
       else
-        recipes = Recipe.all
+        @recipes = Recipe.all.page params[:page]
 
       end
     else
-      recipes = Recipe.all
+      @recipes = Recipe.all.page params[:page]
     end
-
-    @recipes = Kaminari.paginate_array(recipes).page(params[:page])
 
   end
 
@@ -68,13 +56,15 @@ class RecipesController < ApplicationController
 
   def search
     if params[:search]
-      @recipes = Recipe.search(params[:search])
+      recipes = Recipe.search(params[:search])
+      @recipes = Kaminari.paginate_array(recipes).page params[:page]
       render :index
     elsif params[:ingredient_search]
-      @recipes = Recipe.ingredient_search(params[:ingredient_search])
+      recipes = Recipe.ingredient_search(params[:ingredient_search])
+      @recipes = Kaminari.paginate_array(recipes).page params[:page]
       render :index
     else
-      @recipes = Recipe.all
+      @recipes = Recipe.all.page params[:page]
     end
   end
 

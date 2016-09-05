@@ -31,6 +31,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'nested_form'
 gem 'cocoon'
 gem 'kaminari'
+gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
 
-  paginates_per 10
+  paginates_per 6
 
   validates :name, presence: true
   validates :name, uniqueness: true
@@ -31,7 +31,7 @@ class Recipe < ApplicationRecord
       if recipe.average_rating > 3
         popular_recipes << recipe
       end
-      if popular_recipes.length == 10
+      if popular_recipes.length == 6
         return popular_recipes
       end
     end
