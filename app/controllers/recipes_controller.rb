@@ -1,6 +1,10 @@
 class RecipesController < ApplicationController
 
   def index
+    @gold_star = '#FFCC00'
+    @grey_star = '#CCCCCC'
+    @red_star = '#ED1C3B'
+
     if current_user
       users_ingredients = current_user.ingredients
       recipes_all = Recipe.all
@@ -20,11 +24,11 @@ class RecipesController < ApplicationController
         @recipes = Recipe.brand_matters_garnish_matters(no_brand_recipes,users_cabinets)
 
       else
-        @recipes = Recipe.all
+        @recipes = Recipe.all.page params[:page]
 
       end
     else
-      @recipes = Recipe.all
+      @recipes = Recipe.all.page params[:page]
     end
 
   end

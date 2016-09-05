@@ -30,7 +30,7 @@ gem 'font-awesome-rails'
 gem 'bcrypt', '~> 3.1.7'
 gem 'nested_form'
 gem 'cocoon'
-gem 'ratyrate'
+gem 'kaminari'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   
-  protect_from_forgery
+  protect_from_forgery with: :exception
   helper_method :current_user
 
   def current_user
@@ -12,11 +12,14 @@ class ApplicationController < ActionController::Base
   def set_csrf_cookie_for_ng
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
+  
+  rescue_from ActionController::InvalidAuthenticityToken do |exception|
+    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  end
 
   protected
-
     def verified_request?
-      super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
+      super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
     end
-  
+
 end
