@@ -25,25 +25,27 @@ class RecipesController < ApplicationController
       users_cabinets = current_user.cabinets
 
       if params[:personal_index]&&params[:ignore_brand]
-        @recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)
+        recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)
 
       elsif params[:personal_index]&&params[:ignore_garnish]
-        @recipes = Recipe.ignore_brand_ignore_garnish(recipes_all,users_cabinets)
+        recipes = Recipe.ignore_brand_ignore_garnish(recipes_all,users_cabinets)
 
       elsif params[:require_brand_ignore_garnish]
-        @recipes = Recipe.brand_matters_ignore_garnish(recipes_all,users_cabinets)
+        recipes = Recipe.brand_matters_ignore_garnish(recipes_all,users_cabinets)
 
       elsif params[:require_brand]
         no_brand_recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)
-        @recipes = Recipe.brand_matters_garnish_matters(no_brand_recipes,users_cabinets)
+        recipes = Recipe.brand_matters_garnish_matters(no_brand_recipes,users_cabinets)
 
       else
-        @recipes = Recipe.all.page params[:page]
+        recipes = Recipe.all
 
       end
     else
-      @recipes = Recipe.all.page params[:page]
+      recipes = Recipe.all
     end
+
+    @recipes = Kaminari.paginate_array(recipes).page(params[:page])
 
   end
 

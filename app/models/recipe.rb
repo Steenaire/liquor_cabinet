@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
 
-  paginates_per 2
+  paginates_per 10
 
   validates :name, presence: true
   validates :name, uniqueness: true
