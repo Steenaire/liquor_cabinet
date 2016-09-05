@@ -27,43 +27,43 @@
                   <!-- This is all for handling ratings -->
                     <% if current_user&&current_user.ratings.find_by(recipe_id: recipe.id) %>
                           <% if current_user.ratings.find_by(recipe_id: recipe.id).score == 5 %>
-                            <%= render partial: "rated_stars", locals: {color1: @gold_star, color2: @gold_star, color3: @gold_star, color4: @gold_star, color5: @gold_star} %>
+                            <%= render partial: "rated_stars", locals: {colors: @five_gold_stars} %>
                           <% elsif current_user.ratings.find_by(recipe_id: recipe.id).score == 4 %>
-                            <%= render partial: "rated_stars", locals: {color1: @gold_star, color2: @gold_star, color3: @gold_star, color4: @gold_star, color5: @grey_star} %>
+                            <%= render partial: "rated_stars", locals: {colors: @four_gold_stars} %>
                           <% elsif current_user.ratings.find_by(recipe_id: recipe.id).score == 3 %>
-                            <%= render partial: "rated_stars", locals: {color1: @gold_star, color2: @gold_star, color3: @gold_star, color4: @grey_star, color5: @grey_star} %>
+                            <%= render partial: "rated_stars", locals: {colors: @three_gold_stars} %>
                           <% elsif current_user.ratings.find_by(recipe_id: recipe.id).score == 2 %>
-                            <%= render partial: "rated_stars", locals: {color1: @gold_star, color2: @gold_star, color3: @grey_star, color4: @grey_star, color5: @grey_star} %>
+                            <%= render partial: "rated_stars", locals: {colors: @two_gold_stars} %>
                           <% elsif current_user.ratings.find_by(recipe_id: recipe.id).score == 1 %>
-                            <%= render partial: "rated_stars", locals: {color1: @gold_star, color2: @grey_star, color3: @grey_star, color4: @grey_star, color5: @grey_star} %>
+                            <%= render partial: "rated_stars", locals: {colors: @one_gold_star} %>
                           <% end %>
                     <% elsif current_user %>
                       <% if recipe.average_rating.round == 5 %>
-                        <%= render partial: "unrated_user_stars", locals: {color1: @gold_star, color2: @gold_star, color3: @gold_star, color4: @gold_star, color5: @gold_star, current_user: current_user, recipe: recipe} %>
+                        <%= render partial: "unrated_user_stars", locals: {colors: @five_red_stars, current_user: current_user, recipe: recipe} %>
                       <% elsif recipe.average_rating.round == 4 %>
-                        <%= render partial: "unrated_user_stars", locals: {color1: @gold_star, color2: @gold_star, color3: @gold_star, color4: @gold_star, color5: @grey_star, current_user: current_user, recipe: recipe} %>
+                        <%= render partial: "unrated_user_stars", locals: {colors: @four_red_stars, current_user: current_user, recipe: recipe} %>
                       <% elsif recipe.average_rating.round == 3 %>
-                        <%= render partial: "unrated_user_stars", locals: {color1: @gold_star, color2: @gold_star, color3: @gold_star, color4: @grey_star, color5: @grey_star, current_user: current_user, recipe: recipe} %>
+                        <%= render partial: "unrated_user_stars", locals: {colors: @three_red_stars, current_user: current_user, recipe: recipe} %>
                       <% elsif recipe.average_rating.round == 2 %>
-                        <%= render partial: "unrated_user_stars", locals: {color1: @gold_star, color2: @gold_star, color3: @grey_star, color4: @grey_star, color5: @grey_star, current_user: current_user, recipe: recipe} %>
+                        <%= render partial: "unrated_user_stars", locals: {colors: @two_red_stars, current_user: current_user, recipe: recipe} %>
                       <% elsif recipe.average_rating.round == 1 %>
-                        <%= render partial: "unrated_user_stars", locals: {color1: @gold_star, color2: @grey_star, color3: @grey_star, color4: @grey_star, color5: @grey_star, current_user: current_user, recipe: recipe} %>
+                        <%= render partial: "unrated_user_stars", locals: {colors: @one_red_star, current_user: current_user, recipe: recipe} %>
                       <% else %>
-                        <%= render partial: "unrated_user_stars", locals: {color1: @grey_star, color2: @grey_star, color3: @grey_star, color4: @grey_star, color5: @grey_star, current_user: current_user, recipe: recipe} %>
+                        <%= render partial: "unrated_user_stars", locals: {colors: @five_grey_stars, current_user: current_user, recipe: recipe} %>
                       <% end %>
                     <% else %>
                       <% if recipe.average_rating == 5 %>
-                        <%= render partial: "rated_stars", locals: {color1: @red_star, color2: @red_star, color3: @red_star, color4: @red_star, color5: @red_star} %>
+                        <%= render partial: "rated_stars", locals: {colors: @five_red_stars} %>
                       <% elsif recipe.average_rating == 4 %>
-                        <%= render partial: "rated_stars", locals: {color1: @red_star, color2: @red_star, color3: @red_star, color4: @red_star, color5: @grey_star} %>
+                        <%= render partial: "rated_stars", locals: {colors: @four_red_stars} %>
                       <% elsif recipe.average_rating == 3 %>
-                        <%= render partial: "rated_stars", locals: {color1: @red_star, color2: @red_star, color3: @red_star, color4: @grey_star, color5: @grey_star} %>
+                        <%= render partial: "rated_stars", locals: {colors: @three_red_stars} %>
                       <% elsif recipe.average_rating == 2 %>
-                        <%= render partial: "rated_stars", locals: {color1: @red_star, color2: @red_star, color3: @grey_star, color4: @grey_star, color5: @grey_star} %>
+                        <%= render partial: "rated_stars", locals: {color1: @two_red_stars} %>
                       <% elsif recipe.average_rating == 1 %>
-                        <%= render partial: "rated_stars", locals: {color1: @red_star, color2: @grey_star, color3: @grey_star, color4: @grey_star, color5: @grey_star} %>
+                        <%= render partial: "rated_stars", locals: {color1: @one_red_star} %>
                       <% else %>
-                        <%= render partial: "rated_stars", locals: {color1: @grey_star, color2: @grey_star, color3: @grey_star, color4: @grey_star, color5: @grey_star} %>
+                        <%= render partial: "rated_stars", locals: {color1: @five_grey_stars} %>
                       <% end %>
                     <% end %>
 

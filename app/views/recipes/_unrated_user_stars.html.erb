@@ -1,7 +1,5 @@
 <span>
-  <span id="1" onmouseover="ratingStarHover(this,1)" onclick="ratingStarRate(this,1,<%= current_user.id %>,<%= recipe.id %>)" style="color: <%= color1 %>;"><i class="fa fa-star 1" ></i></span>
-  <span id="2" onmouseover="ratingStarHover(this,2)" onclick="ratingStarRate(this,2,<%= current_user.id %>,<%= recipe.id %>)" style="color: <%= color2 %>;"><i class="fa fa-star 2" ></i></span>
-  <span id="3" onmouseover="ratingStarHover(this,3)" onclick="ratingStarRate(this,3,<%= current_user.id %>,<%= recipe.id %>)" style="color: <%= color3 %>;"><i class="fa fa-star 3" ></i></span>
-  <span id="4" onmouseover="ratingStarHover(this,4)" onclick="ratingStarRate(this,4,<%= current_user.id %>,<%= recipe.id %>)" style="color: <%= color4 %>;"><i class="fa fa-star 4" ></i></span>
-  <span id="5" onmouseover="ratingStarHover(this,5)" onclick="ratingStarRate(this,5,<%= current_user.id %>,<%= recipe.id %>)" style="color: <%= color5 %>;"><i class="fa fa-star 5" ></i></span>
+  <% colors.each_with_index do |color,index| %>
+    <span id="<%= index+1 %>" onmouseover="ratingStarHover(this,<%= index+1 %>)" onclick="ratingStarRate(this,<%= index+1 %>,<%= current_user.id %>,<%= recipe.id %>)" style="color: <%= color %>;"><i class="fa fa-star <%= index+1 %>" ></i></span>
+  <% end %>
 </span>

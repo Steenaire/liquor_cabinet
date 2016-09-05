@@ -5,6 +5,20 @@ class RecipesController < ApplicationController
     @grey_star = '#CCCCCC'
     @red_star = '#ED1C3B'
 
+    @five_gold_stars = [@gold_star,@gold_star,@gold_star,@gold_star,@gold_star]
+    @four_gold_stars = [@gold_star,@gold_star,@gold_star,@gold_star,@grey_star]
+    @three_gold_stars = [@gold_star,@gold_star,@gold_star,@grey_star,@grey_star]
+    @two_gold_stars = [@gold_star,@gold_star,@grey_star,@grey_star,@grey_star]
+    @one_gold_star = [@gold_star,@grey_star,@grey_star,@grey_star,@grey_star]
+
+    @five_red_stars = [@red_star,@red_star,@red_star,@red_star,@red_star]
+    @four_red_stars = [@red_star,@red_star,@red_star,@red_star,@grey_star]
+    @three_red_stars = [@red_star,@red_star,@red_star,@grey_star,@grey_star]
+    @two_red_stars = [@red_star,@red_star,@grey_star,@grey_star,@grey_star]
+    @one_red_star = [@red_star,@grey_star,@grey_star,@grey_star,@grey_star]
+
+    @five_grey_stars = [@grey_star,@grey_star,@grey_star,@grey_star,@grey_star]
+
     if current_user
       users_ingredients = current_user.ingredients
       recipes_all = Recipe.all

@@ -1,5 +1,3 @@
-<span style='color: <%= color1 %>;'><i class='fa fa-star 1' ></i> </span>
-<span style='color: <%= color2 %>;'><i class='fa fa-star 2' ></i> </span>
-<span style='color: <%= color3 %>;'><i class='fa fa-star 3' ></i> </span>
-<span style='color: <%= color4 %>;'><i class='fa fa-star 4' ></i> </span>
-<span style='color: <%= color5 %>;'><i class='fa fa-star 5' ></i> </span>
+<% colors.each do |color| %>
+  <span style='color: <%= color %>;'><i class='fa fa-star 1' ></i> </span>
+<% end %>
