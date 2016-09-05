@@ -1,9 +1,6 @@
 class RecipesController < ApplicationController
 
   def index
-    @gold_star = '#FFCC00'
-    @grey_star = '#CCCCCC'
-    @red_star = '#ED1C3B'
 
     if current_user
       users_ingredients = current_user.ingredients
