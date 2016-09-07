@@ -161,7 +161,7 @@
                             </div>
                           </header>
                           <div class="item-body">
-                            <p><%= human_time(drink.created_at) %></p>
+                            <p>Made on <%= human_time(drink.created_at.in_time_zone(@user.timezone)) %></p>
                             <p><%= drink.recipe.description %></p>
                           </div>
 

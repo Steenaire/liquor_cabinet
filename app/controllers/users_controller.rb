@@ -18,6 +18,13 @@ class UsersController < ApplicationController
       city = Geocoder.search(address)
       user.latitude = city[0].latitude
       user.longitude = city[0].longitude
+
+      Timezone::Lookup.config(:google) do |c|
+        c.api_key = ENV['timezone_key']
+      end
+
+      user.timezone = Timezone.lookup(user.latitude, user.longitude)
+
     end
 
     if user.save
