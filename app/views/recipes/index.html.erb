@@ -139,7 +139,7 @@
           <!-- Drink detail -->
           <!-- Job item -->
           <%= paginate @recipes %>
-          <%= render partial: "recipe_cards" %>
+          <%= render partial: "recipe_cards", locals: {recipes: @recipes} %>
         </div>
 
       </div>

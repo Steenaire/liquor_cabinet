@@ -9,7 +9,7 @@ class Recipe < ApplicationRecord
 
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
-
+  has_many :timeline_drinks
   has_many :ratings
 
   belongs_to :user

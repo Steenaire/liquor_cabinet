@@ -27,4 +27,7 @@ Rails.application.routes.draw do
   get '/ingredients/new', to: 'ingredients#new'
   post '/ingredients', to: 'ingredients#create'
   get '/ingredients', to: 'ingredients#index'
+
+  post '/timeline_drinks', to: 'timeline_drinks#create'
+  delete '/timeline_drinks/:id', to: 'timeline_drinks#destroy'
 end

@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :ingredients, through: :cabinets
 
   has_many :recipes
-
+  has_many :timeline_drinks
   has_many :ratings
   
 end

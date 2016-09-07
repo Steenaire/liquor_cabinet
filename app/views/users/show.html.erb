@@ -111,7 +111,6 @@
                 </div>
 
             </div>
-            <hr>
             <h2>My Recipes</h2>
               <% @recipes.each do |recipe| %>
                 <p>
@@ -128,6 +127,65 @@
             <a href ="/recipes/new">
               <p>Create a new recipe!</p>
             </a>
+          </div>
+          <div class="contact-details myaccount-contact">
+            <div class="row">
+              <div class="address-form">
+
+                <div class="form-group">
+                  <h2>My Drink Timeline</h2>
+                  <!-- .................................................... -->
+
+                  <% if @timeline_drinks && @timeline_drinks.any? %>
+                    <%= paginate @timeline_drinks %>
+                    <% @timeline_drinks.each do |drink| %>
+
+
+                      <div class="col-xs-12">
+                        <div class="item-block">
+                          <header>
+                            <% if drink.recipe.card_image %>
+                              <img src="img/Bayleaf.jpg" alt="">
+                            <% else %>
+                              <i class="fa fa-glass" aria-hidden="true"></i>
+                            <% end %>
+
+                            <div class="hgroup">
+                              <h4><a href="/recipes/<%= drink.recipe.id %>"><%= drink.recipe.name %></a></h4>
+                              <% if drink.recipe.average_rating > 3 %>
+                                <h5><span class="label label-warning">Popular</span></h5>
+                              <% end %>
+                            </div>
+                            <div class="header-meta">
+                              <span><a href="/users/<%= drink.recipe.user.id %>">Submitted by <%= drink.recipe.user.username %></a></span>
+                            </div>
+                          </header>
+                          <div class="item-body">
+                            <p><%= drink.recipe.description %></p>
+                          </div>
+
+                          <footer>
+                            <span>
+
+                            </span>
+                          </p>
+                            <p class="status"><strong></strong></p>
+                            <p class="status"><strong></strong></p>
+
+                          </footer>
+                        </div>
+                      </div>
+
+
+                    <% end %>
+                  <% end %>
+
+
+
+                  <!-- .................................................... -->
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- END OF DELIVERY ADDRESS SECTION -->
@@ -155,4 +213,4 @@
   <!-- Main container end -->
 </main>
 
-<!-- Content End
+<!-- Content End -->
