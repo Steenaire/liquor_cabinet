@@ -138,14 +138,15 @@
 
                   <% if @timeline_drinks && @timeline_drinks.any? %>
                     <%= paginate @timeline_drinks %>
+                    <br>
                     <% @timeline_drinks.each do |drink| %>
 
 
-                      <div class="col-xs-12">
+                      <div class="col-xs-9">
                         <div class="item-block">
                           <header>
                             <% if drink.recipe.card_image %>
-                              <img src="img/Bayleaf.jpg" alt="">
+                              <img src=<%= drink.recipe.card_image %> alt="">
                             <% else %>
                               <i class="fa fa-glass" aria-hidden="true"></i>
                             <% end %>
@@ -155,6 +156,7 @@
                               <% if drink.recipe.average_rating > 3 %>
                                 <h5><span class="label label-warning">Popular</span></h5>
                               <% end %>
+                              <%= drink.recipe.description %>
                             </div>
                             <div class="header-meta">
                               <span><a href="/users/<%= drink.recipe.user.id %>">Submitted by <%= drink.recipe.user.username %></a></span>
@@ -162,7 +164,9 @@
                           </header>
                           <div class="item-body">
                             <p>Made on <%= human_time(drink.created_at.in_time_zone(@user.timezone)) %></p>
-                            <p><%= drink.recipe.description %></p>
+                            <% if drink.comment %>
+                              <p><%= @user.username %> Says: <span class="comment">"<%= drink.comment %>"</span></p>
+                            <% end %>
                           </div>
 
                           <footer>

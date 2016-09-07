@@ -66,7 +66,15 @@
 
                         </ul>
                         <div class="action-btn">
-                          <%= link_to "I Made This!", "/timeline_drinks?user_id=#{current_user.id}&recipe_id=#{@recipe.id}", class: "btn btn-xs btn-danger", method: :post %>
+                          <%= form_tag '/timeline_drinks', method: :post do %>
+                            <%= label_tag :comment %>
+                            <%= text_field_tag :comment %>
+                            <%= hidden_field_tag :user_id, current_user.id %>
+                            <%= hidden_field_tag :recipe_id, @recipe.id %>
+                            <%= submit_tag "I Made This!", class: "btn btn-xs btn-danger" %>
+                          <% end %>
+
+                          
                         </div>
                       </div>
                 
