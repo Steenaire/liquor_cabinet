@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   
   protect_from_forgery
-  helper_method :current_user, :star_array
+  helper_method :current_user, :star_array, :human_time
 
   def current_user
     User.find_by(id: session[:user_id]) if session[:user_id]
@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
       stars << color2
     end
     return stars
+  end
+
+  def human_time(timestamp)
+    timestamp.strftime("%A, %d %b %Y %l:%M %p")
   end
 
   after_filter :set_csrf_cookie_for_ng

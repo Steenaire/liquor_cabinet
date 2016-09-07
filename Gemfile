@@ -33,6 +33,7 @@ gem 'cocoon'
 gem 'kaminari'
 gem 'figaro'
 gem 'geocoder'
+gem 'timezone'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
