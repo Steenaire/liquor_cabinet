@@ -1,4 +1,4 @@
-<h1>Sign Up for Liquor Cabinet!</h1>
+<!-- <h1>Sign Up for Liquor Cabinet!</h1>
 
 <%= form_tag '/users', method: :post do %>
 
@@ -20,4 +20,123 @@
   </div>
   <%= submit_tag "Create Account" %>
 
-<% end %>
+<% end %> -->
+
+
+<!-- Content Start -->
+
+<!-- Start Pages Title  -->
+
+<section id="page-title" class="page-title-style2">
+  <div class="color-overlay"></div>
+  <div class="container inner-img">
+    <div class="row">
+      <div class="Page-title">
+        <div class="col-md-12 text-center">
+          <div class="title-text">
+            <h6>Great Service</h6>
+            <h2 class="page-title">Login Page</h2>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <div class="breadcrumb-trail breadcrumbs">
+            <span class="trail-begin"><a href="#">Home</a></span>
+            <span class="sep">/</span> <span class="trail-end">Login</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End Pages Title  -->
+
+<!-- Content Start -->
+<main class="main-content">
+
+  <div class="login-block">
+    <img src="img/logo_gray.png" alt="">
+    <h1>Sign Up for Liquor Cabinet Inventory</h1>
+
+    <%= form_tag '/users', method: :post do %>
+
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <%= label_tag :username %>
+            <%= text_field_tag :username %>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <%= label_tag :email %>
+            <%= text_field_tag :email, "", type: "email" %>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <p>Optional - enter your address for location-specific information</p>
+            <%= label_tag :address %>
+            <%= text_field_tag :address %>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <%= label_tag :city %>
+            <%= text_field_tag :city %>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <%= label_tag :zip_code %>
+            <%= text_field_tag :zip_code %>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <%= label_tag :password %>
+            <%= text_field_tag :password, "", type: "password" %>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <%= label_tag :password_confirmation %>
+            <%= text_field_tag :password_confirmation, "", type: "password" %>
+          </span>
+        </div>
+      </div>
+      <%= submit_tag "Create Account" %>
+
+    <% end %>
+
+    <!-- ............................... -->
+
+  </div>
+
+  <div class="login-links">
+    <a class="pull-left" href="user-forget-pass.html">Forget Password?</a>
+    <a class="pull-right" href="/signup">Register an account</a>
+  </div>
+
+</main>
+
+
+
+<!-- Main container end -->
+
+
+
+
+<!-- Content End -->
