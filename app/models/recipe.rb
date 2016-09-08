@@ -141,4 +141,16 @@ class Recipe < ApplicationRecord
     return self.ratings.length
   end
 
+  def return_comments
+    if self.timeline_drinks.any?
+      all_comments = []
+      self.timeline_drinks.each do |drink|
+        if drink.comment
+          all_comments << drink
+        end
+      end
+    end
+    return all_comments
+  end
+
 end
