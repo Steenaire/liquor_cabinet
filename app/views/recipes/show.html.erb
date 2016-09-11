@@ -76,6 +76,54 @@
 
                           
                         </div>
+
+                        <div ng-app="app">
+                          <div ng-controller="recipesCtrl" ng-init="setup()">
+
+                            <div ng-click="recipe.visibility = !recipe.visibility">
+                              <a>Click to show Comments (<%= @recipe.return_comments.length %>)</a>
+                              <div ng-show="recipe.visibility">
+                                
+                                <% @recipe.return_comments.each do |drink| %>
+
+                                    <div class="col-xs-9">
+                                      <div class="item-block">
+                                        <header>
+        
+                                          <div class="header-meta">
+                                            <span><a href="/users/<%= drink.recipe.user.id %>">Submitted by <%= drink.recipe.user.username %></a></span>
+                                          </div>
+                                        </header>
+                                        <div class="item-body">
+                                          <p>Made on <%= human_time(drink.created_at.in_time_zone(drink.recipe.user.timezone)) %></p>
+                                          <% if drink.comment %>
+                                            <p><%= drink.recipe.user.username %> Says: <span class="comment">"<%= drink.comment %>"</span></p>
+                                          <% end %>
+                                        </div>
+
+                                      <footer>
+                                        <span>
+
+                                        </span>
+                                      </p>
+                                        <p class="status"><strong></strong></p>
+                                        <p class="status"><strong></strong></p>
+
+                                      </footer>
+                                    </div>
+                                  </div>
+
+                                <% end %>
+
+
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+
+                        </div>
+
                       </div>
                 
 

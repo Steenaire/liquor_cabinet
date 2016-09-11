@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require turbolinks
+//= require angular.min
 //= require_tree .
 //= require smoothscroll
 //= require wow.min
