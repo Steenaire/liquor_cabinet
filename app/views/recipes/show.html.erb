@@ -88,16 +88,10 @@
 
                                     <div class="col-xs-9">
                                       <div class="item-block">
-                                        <header>
-        
-                                          <div class="header-meta">
-                                            <span><a href="/users/<%= drink.recipe.user.id %>">Submitted by <%= drink.recipe.user.username %></a></span>
-                                          </div>
-                                        </header>
                                         <div class="item-body">
-                                          <p>Made on <%= human_time(drink.created_at.in_time_zone(drink.recipe.user.timezone)) %></p>
+                                          <p>Made on <%= human_time(drink.created_at.in_time_zone(drink.user.timezone)) %></p>
                                           <% if drink.comment %>
-                                            <p><%= drink.recipe.user.username %> Says: <span class="comment">"<%= drink.comment %>"</span></p>
+                                            <p><%= drink.user.username %> Says: <span class="comment">"<%= drink.comment %>"</span></p>
                                           <% end %>
                                         </div>
 
