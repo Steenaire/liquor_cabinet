@@ -39,6 +39,9 @@
         <div class="container">
                     <div class="inner">
                         <header class="section-header text-left">
+                            <% if @recipe.card_image.file %>
+                              <%= image_tag @recipe.card_image, class:"show-card-image" %>
+                            <% end %>
                             <h2><%= @recipe.name %></h2>
                             <span><%= @recipe.description %></span>
                         </header>
@@ -67,7 +70,7 @@
                         </ul>
                         <div class="action-btn">
                           <%= form_tag '/timeline_drinks', method: :post do %>
-                            <%= label_tag :comment %>
+                            <%= label_tag :comment, "Comment (optional)" %>
                             <%= text_field_tag :comment %>
                             <%= hidden_field_tag :user_id, current_user.id %>
                             <%= hidden_field_tag :recipe_id, @recipe.id %>

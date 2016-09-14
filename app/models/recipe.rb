@@ -16,6 +16,8 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
 
+  mount_uploader :card_image, ImageUploader
+
   def self.search(search)
     where("lower(name) LIKE ?", "%#{search.downcase}%") 
   end
@@ -142,8 +144,8 @@ class Recipe < ApplicationRecord
   end
 
   def return_comments
+    all_comments = []
     if self.timeline_drinks.any?
-      all_comments = []
       self.timeline_drinks.each do |drink|
         if drink.comment
           all_comments << drink
