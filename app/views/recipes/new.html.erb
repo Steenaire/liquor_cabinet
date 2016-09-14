@@ -48,6 +48,12 @@
 <% end %>
 
 <%= nested_form_for @recipe do |f| %>
+      
+      <div class="form-group">
+        <%= f.label :card_image %><br>
+        <%= f.file_field :card_image %>
+      </div>
+
       <div class="form-group">
         <%= f.label "Recipe Name" %>:
         <%= f.text_field :name, class: "form-control" %><br />

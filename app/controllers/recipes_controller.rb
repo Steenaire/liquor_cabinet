@@ -76,6 +76,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.name.gsub(/\b('?[a-z])/) { $1.capitalize }
     if @recipe.save
       redirect_to "/recipes/#{@recipe.id}"
     else
@@ -100,6 +101,7 @@ class RecipesController < ApplicationController
         :instructions,
         :description,
         :user_id,
+        :card_image,
         recipe_ingredients_attributes: [:id, :quantity, :volume, :garnish, :weight, :count, :dash, :recipe_id, :ingredient_id, :brand_id, :_destroy]
         )
     end

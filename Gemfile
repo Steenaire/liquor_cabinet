@@ -32,6 +32,8 @@ gem 'nested_form'
 gem 'cocoon'
 gem 'kaminari'
 gem 'carrierwave'
+gem 'image_magick'
+gem "mini_magick"
 gem 'fog'
 gem 'figaro'
 gem 'geocoder'

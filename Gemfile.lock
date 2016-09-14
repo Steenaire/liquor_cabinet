@@ -213,6 +213,7 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
+    image_magick (0.1.9)
     inflecto (0.0.2)
     ipaddress (0.8.3)
     jbuilder (2.6.0)
@@ -238,6 +239,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
+    mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
@@ -364,10 +366,12 @@ DEPENDENCIES
   fog
   font-awesome-rails
   geocoder
+  image_magick
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
   listen (~> 3.0.5)
+  mini_magick
   nested_form
   pg (~> 0.18)
   pry

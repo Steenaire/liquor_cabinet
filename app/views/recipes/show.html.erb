@@ -39,6 +39,9 @@
         <div class="container">
                     <div class="inner">
                         <header class="section-header text-left">
+                            <% if @recipe.card_image.file %>
+                              <%= image_tag @recipe.card_image, class:"show-card-image" %>
+                            <% end %>
                             <h2><%= @recipe.name %></h2>
                             <span><%= @recipe.description %></span>
                         </header>

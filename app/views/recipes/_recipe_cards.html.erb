@@ -2,8 +2,8 @@
             <div class="col-xs-12">
               <div class="item-block">
                 <header>
-                  <% if recipe.card_image %>
-                    <img src="img/Bayleaf.jpg" alt="">
+                  <% if recipe.card_image.file %>
+                    <%= image_tag recipe.card_image, class:"index-card-image" %>
                   <% else %>
                     <i class="fa fa-glass" aria-hidden="true"></i>
                   <% end %>
