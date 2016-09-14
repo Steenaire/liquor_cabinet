@@ -81,7 +81,12 @@
                           <div ng-controller="recipesCtrl" ng-init="setup()">
 
                             <div ng-click="recipe.visibility = !recipe.visibility">
-                              <a>Click to show Comments (<%= @recipe.return_comments.length %>)</a>
+                              <a ng-show="!recipe.visibility">
+                                Click to show comments (<%= @recipe.return_comments.length %>)
+                              </a>
+                              <a ng-show="recipe.visibility">
+                                Click to hide comments (<%= @recipe.return_comments.length %>)
+                              </a>
                               <div ng-show="recipe.visibility">
                                 
                                 <% @recipe.return_comments.each do |drink| %>
