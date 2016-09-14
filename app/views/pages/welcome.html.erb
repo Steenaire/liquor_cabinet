@@ -107,7 +107,11 @@
         <div class="col-md-6 col-xs-12">
           <div class="item-block">
             <header>
-              <a href="#"><img src="img/Bayleaf.jpg" alt=""></a>
+              <% if recipe.card_image.file %>
+                <%= image_tag recipe.card_image, class:"index-card-image" %>
+              <% else %>
+                <i class="fa fa-glass" aria-hidden="true"></i>
+              <% end %>
               <div class="hgroup">
                 <h4><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></h4>
                 <h5><span class="label label-warning">Popular</span></h5>
