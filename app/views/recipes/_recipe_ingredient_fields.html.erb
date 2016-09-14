@@ -7,15 +7,8 @@
     <%= f.select :garnish, [[true], [false]], selected: false %>
     <%= f.label :quantity %>
     <%= f.text_field :quantity %>
-    Measurement (select one):
-    <%= f.label "Volume (oz)" %>
-    <%= f.select :volume, [[true], [false]], selected: true%>
-    <%= f.label "Weight (oz)" %>
-    <%= f.select :weight, [[true], [false]], selected: false %>
-    <%= f.label :count %>
-    <%= f.select :count, [[true], [false]], selected: false %>
-    <%= f.label :dash %>
-    <%= f.select :dash, [[true], [false]], selected: false %>
+    <%= f.label :measurement %>
+    <%= f.select :measurement, [["volume (oz)"], ["mass (oz)"], ["count"], ["dash"]], selected: ["volume (oz)"]%>
     <br>
     <%= link_to_remove_association 'Remove Ingredient', f %>
     <hr>

@@ -102,7 +102,7 @@ class RecipesController < ApplicationController
         :description,
         :user_id,
         :card_image,
-        recipe_ingredients_attributes: [:id, :quantity, :volume, :garnish, :weight, :count, :dash, :recipe_id, :ingredient_id, :brand_id, :_destroy]
+        recipe_ingredients_attributes: [:id, :quantity, :measurement, :garnish, :recipe_id, :ingredient_id, :brand_id, :_destroy]
         )
     end
 
