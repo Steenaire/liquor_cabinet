@@ -3,7 +3,7 @@
               <div class="item-block">
                 <header>
                   <% if recipe.card_image.file %>
-                    <%= image_tag recipe.card_image, class:"index-card-image" %>
+                    # <%= image_tag recipe.card_image.preview %>
                   <% else %>
                     <i class="fa fa-glass" aria-hidden="true"></i>
                   <% end %>
