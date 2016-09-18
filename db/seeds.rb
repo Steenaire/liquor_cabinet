@@ -66,18 +66,18 @@ Rating.create!([
   {user_id: 1, recipe_id: 2, score: 4},
   {user_id: 1, recipe_id: 4, score: 5},
   {user_id: 1, recipe_id: 3, score: 4},
-  {user_id: 1, recipe_id: 52, score: 5},
-  {user_id: 1, recipe_id: 53, score: 3},
+  {user_id: 1, recipe_id: 10, score: 5},
+  {user_id: 1, recipe_id: 8, score: 3},
   {user_id: 2, recipe_id: 3, score: 5},
-  {user_id: 2, recipe_id: 52, score: 1},
-  {user_id: 2, recipe_id: 53, score: 4},
+  {user_id: 2, recipe_id: 9, score: 1},
+  {user_id: 2, recipe_id: 6, score: 4},
   {user_id: 2, recipe_id: 1, score: 5},
   {user_id: 2, recipe_id: 2, score: 4},
   {user_id: 2, recipe_id: 4, score: 5},
-  {user_id: 2, recipe_id: 57, score: 5},
-  {user_id: 1, recipe_id: 54, score: 3},
+  {user_id: 2, recipe_id: 5, score: 5},
+  {user_id: 1, recipe_id: 5, score: 3},
   {user_id: 7, recipe_id: 4, score: 5},
-  {user_id: 1, recipe_id: 64, score: 3}
+  {user_id: 1, recipe_id: 6, score: 3}
 ])
 
 RecipeIngredient.create!([
