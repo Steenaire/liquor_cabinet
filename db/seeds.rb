@@ -33,19 +33,6 @@ Brand.create!([
   {name: "Hendricks"},
   {name: nil}
 ])
-Cabinet.create!([
-  {user_id: 1, ingredient_id: 2, brand_id: 2},
-  {user_id: 1, ingredient_id: 5, brand_id: 2},
-  {user_id: 1, ingredient_id: 7, brand_id: 2},
-  {user_id: 1, ingredient_id: 1, brand_id: 2},
-  {user_id: 1, ingredient_id: 4, brand_id: 2},
-  {user_id: 1, ingredient_id: 3, brand_id: 2},
-  {user_id: 2, ingredient_id: 1, brand_id: 2},
-  {user_id: 2, ingredient_id: 2, brand_id: 2},
-  {user_id: 2, ingredient_id: 4, brand_id: 2},
-  {user_id: 1, ingredient_id: 8, brand_id: 2},
-  {user_id: 1, ingredient_id: 11, brand_id: 2}
-])
 
 Recipe.create!([
   {name: "Classic Martini", instructions: "Combine the gin and vermouth in a shaker, fill it halfway with ice, and stir vigorously until well chilled, about 20 seconds. Strain into the chilled glass. Garnish with olives or a twist of lemon.", description: "The classic gin martini. No Vodka allowed!", user_id: 1, card_image: nil},
@@ -58,6 +45,20 @@ Recipe.create!([
   {name: "Bourboney Gin", instructions: "Mix ingredients together on ice, dash on the bitters, strain and serve in a chilled highball", description: "A weird drink make of bourbon and gin mixed together", user_id: 1, card_image: nil},
   {name: "Bourbon and Vernouth", instructions: "Mix ingredients together on ice, dash on the bitters, strain and serve in a chilled highball", description: "Bourbon mixed with vermouth in a cup", user_id: 1, card_image: nil},
   {name: "Sidecar", instructions: "Mix ingredients together on ice, strain and serve in a chilled highball", description: "A tasty libation inspired by a great alcoholic, Earnest Hemingway.", user_id: 1, card_image: nil}
+])
+
+Cabinet.create!([
+  {user_id: 1, ingredient_id: 2, brand_id: 2},
+  {user_id: 1, ingredient_id: 5, brand_id: 2},
+  {user_id: 1, ingredient_id: 7, brand_id: 2},
+  {user_id: 1, ingredient_id: 1, brand_id: 2},
+  {user_id: 1, ingredient_id: 4, brand_id: 2},
+  {user_id: 1, ingredient_id: 3, brand_id: 2},
+  {user_id: 2, ingredient_id: 1, brand_id: 2},
+  {user_id: 2, ingredient_id: 2, brand_id: 2},
+  {user_id: 2, ingredient_id: 4, brand_id: 2},
+  {user_id: 1, ingredient_id: 8, brand_id: 2},
+  {user_id: 1, ingredient_id: 11, brand_id: 2}
 ])
 
 Rating.create!([
