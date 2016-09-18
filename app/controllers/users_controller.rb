@@ -28,6 +28,7 @@ class UsersController < ApplicationController
     end
 
     if user.save
+      UserMailer.welcome_email(user).deliver_later
       session[:user_id] = user.id
       flash[:success] = "Successfully created account! Welcome, #{params[:username]}!"
       redirect_to "/"
