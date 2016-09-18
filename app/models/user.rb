@@ -16,7 +16,9 @@ class User < ApplicationRecord
 
   def my_area_drinks
     nearby_drinks = {}
+    nearby_drinks_top_ten = []
     nearby_users = User.near("#{self.latitude}, #{self.longitude}")
+
     nearby_users.each do |user|
       if user.timeline_drinks.any?
         user.timeline_drinks.each do |drink|
@@ -29,7 +31,15 @@ class User < ApplicationRecord
       end
     end
     
-    return nearby_drinks.sort_by {|_key, value| value}.reverse
+    sorted_nearby_drinks = nearby_drinks.sort_by {|_key, value| value}.reverse
+
+    sorted_nearby_drinks.each_with_index do |drink,index|
+      nearby_drinks_top_ten<<drink[0]
+      return nearby_drinks_top_ten if index == 9
+    end
+
+    return nearby_drinks_top_ten
+
   end
   
 end
