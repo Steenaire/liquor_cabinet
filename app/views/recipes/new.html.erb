@@ -37,47 +37,57 @@
       <section class="light-wrapper">
 
         <div class="container">
-                    <div class="inner">
+          <div class="inner">
 
-<% if @recipe && @recipe.errors.any? %>
-  <ul class = "error">
-    <% @recipe.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+            <% if @recipe && @recipe.errors.any? %>
+              <ul class = "error">
+                <% @recipe.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            <% end %>
 
-<%= nested_form_for @recipe do |f| %>
-      
-      <div class="form-group">
-        <%= f.label "Drink Image (optional)" %><br>
-        <%= f.file_field :card_image %>
-      </div>
+            <%= nested_form_for @recipe do |f| %>
+                  
+                  <div class="form-group">
+                    <%= f.label "Drink Image (optional)" %><br>
+                    <%= f.file_field :card_image %>
+                  </div>
 
-      <div class="form-group">
-        <%= f.label "Drink Name" %>:
-        <%= f.text_field :name, class: "form-control" %><br />
-      </div>
+                  <div ng-app="app">
+                    <div ng-controller="recipesCtrl" ng-init="setup()">
 
-      <div class="form-group">
-        <%= f.label :instructions %>:
-        <%= f.text_field :instructions, class: "form-control" %><br />
-      </div>
+                      <datalist id="recipe_names">
+                        <option ng-repeat="recipe in recipes">{{recipe.name}}</option>
+                      </datalist>
 
-      <div class="form-group">
-        <%= f.label :description %>:
-        <%= f.text_field :description, class: "form-control" %><br />
-      </div>
-        <%= f.hidden_field :user_id, value: current_user.id%>
+                      <div class="form-group">
+                        <%= f.label "Drink Name" %>:
+                        <%= f.text_field :name, class: "form-control", list: "recipe_names" %><br />
+                      </div>
 
-        <p>Ingredients:</p>
-        <hr>
+                    </div>
+                  </div>
 
-      <div class="form-group nested-fields">
-        
-        <%= link_to_add_association('Click to add ingredient', f, :recipe_ingredients) %>
-      </div>
+                  <div class="form-group">
+                    <%= f.label :instructions %>:
+                    <%= f.text_field :instructions, class: "form-control" %><br />
+                  </div>
 
-      <%= f.submit %>
-<% end %>
-<a href = "/recipes/new?add_ingredient=true">Add Ingredient</a>
+                  <div class="form-group">
+                    <%= f.label :description %>:
+                    <%= f.text_field :description, class: "form-control" %><br />
+                  </div>
+                    <%= f.hidden_field :user_id, value: current_user.id%>
+
+                    <p>Ingredients:</p>
+                    <hr>
+
+                  <div class="form-group nested-fields">
+                    
+                    <%= link_to_add_association('Click to add ingredient', f, :recipe_ingredients) %>
+                  </div>
+
+                  <%= f.submit %>
+            <% end %>
+            <a href = "/recipes/new?add_ingredient=true">Add Ingredient</a>
