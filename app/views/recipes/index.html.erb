@@ -49,10 +49,19 @@
                     <%= submit_tag "Search" %>
                   <% end %>
                 </div>
+
                 <div class="form-group navbar-form navbar-left">
                   <p>Search recipes by ingredient</p>
                   <%= form_tag('/recipes/search') do %>
                     <%= text_field_tag :ingredient_search %>
+                    <%= submit_tag "Search" %>
+                  <% end %>
+                </div>
+
+                <div class="form-group navbar-form navbar-left">
+                  <p>Search most popular drinks by city</p>
+                  <%= form_tag('/recipes/search') do %>
+                    <%= text_field_tag :city %>
                     <%= submit_tag "Search" %>
                   <% end %>
                 </div>
@@ -141,6 +150,7 @@
           <%= paginate @recipes %>
           <%= render partial: "recipe_cards", locals: {recipes: @recipes} %>
         </div>
+        <%= paginate @recipes %>
 
       </div>
 

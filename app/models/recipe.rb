@@ -147,7 +147,7 @@ class Recipe < ApplicationRecord
     all_comments = []
     if self.timeline_drinks.any?
       self.timeline_drinks.each do |drink|
-        if drink.comment
+        unless drink.comment == "" || !drink.comment
           all_comments << drink
         end
       end

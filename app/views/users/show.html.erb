@@ -164,8 +164,12 @@
                           </header>
                           <div class="item-body">
                             <p>Made on <%= human_time(drink.created_at.in_time_zone(@user.timezone)) %></p>
-                            <% if drink.comment %>
-                              <p><%= @user.username %> Says: <span class="comment">"<%= drink.comment %>"</span></p>
+                            <% unless drink.comment == "" %>
+                              <% if current_user.id == @user.id %>
+                                <p>You said: <span class="comment">"<%= drink.comment %>"</span></p>
+                              <% else %>
+                                <p><%= @user.username %> Says: <span class="comment">"<%= drink.comment %>"</span></p>
+                              <% end %>
                             <% end %>
                           </div>
 
