@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    angular.module("app").controller("recipesCtrl", function($scope, $http) {
+    angular.module("app").controller("recipesCtrl", ['$scope', function($scope, $http) {
         $scope.setup = function() {
             $http.get("/api/v1/recipes.json").then(function(response) {
                 $scope.recipes = response.data;
@@ -15,5 +15,5 @@
             });
         }
 
-    });
+    }]);
 })();
