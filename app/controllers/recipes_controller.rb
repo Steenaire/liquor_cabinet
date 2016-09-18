@@ -24,6 +24,9 @@ class RecipesController < ApplicationController
         recipes = Recipe.brand_matters_garnish_matters(no_brand_recipes,users_cabinets)
         @recipes = Kaminari.paginate_array(recipes).page params[:page]
 
+      elsif params[:city]
+        @recipes = Recipe.by_city(:city)
+
       else
         @recipes = Recipe.all.page params[:page]
 

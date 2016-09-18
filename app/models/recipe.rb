@@ -155,4 +155,31 @@ class Recipe < ApplicationRecord
     return all_comments
   end
 
+  def self.by_city(city)
+    city_drinks = {}
+    city_drinks_top_ten = []
+    city_users = User.near("#{city}")
+
+    city_users.each do |user|
+      if user.timeline_drinks.any?
+        user.timeline_drinks.each do |drink|
+          if city_drinks[drink.recipe]
+            city_drinks[drink.recipe] += 1
+          else
+            city_drinks[drink.recipe] = 1
+          end
+        end
+      end
+    end
+    
+    sorted_city_drinks = city_drinks.sort_by {|_key, value| value}.reverse
+
+    sorted_city_drinks.each_with_index do |drink,index|
+      city_drinks_top_ten<<drink[0]
+      return city_drinks_top_ten if index == 9
+    end
+
+    return city_drinks_top_ten
+  end
+
 end
