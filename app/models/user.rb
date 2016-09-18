@@ -20,7 +20,7 @@ class User < ApplicationRecord
     nearby_users.each do |user|
       if user.timeline_drinks.any?
         user.timeline_drinks.each do |drink|
-          if nearby_drinks[drink]
+          if nearby_drinks[drink.recipe]
             nearby_drinks[drink.recipe] += 1
           else
             nearby_drinks[drink.recipe] = 1
@@ -29,7 +29,7 @@ class User < ApplicationRecord
       end
     end
     
-    return nearby_drinks
+    return nearby_drinks.sort_by {|_key, value| value}.reverse
   end
   
 end
