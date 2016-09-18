@@ -79,9 +79,9 @@
 
                 <%= form_tag '/cabinets', class: "search-form-select", method: :post do %>
                     <%= label_tag :ingredient_id %>
-                    <%= collection_select :ingredient, :ingredient_id, Ingredient.all, :id, :name %>
+                    <%= collection_select :ingredient, :ingredient_id, Ingredient.all.order(:name), :id, :name %>
                     <%= label_tag :brand_id %>(Optional)
-                    <%= collection_select :brand, :brand_id, Brand.all, :id, :name, selected: 2 %>
+                    <%= collection_select :brand, :brand_id, Brand.all.order(:name), :id, :name, selected: 2 %>
                     <%= hidden_field_tag :user_id, current_user.id %>
                   <%= submit_tag "Add Ingredient" %>
                   </p>
