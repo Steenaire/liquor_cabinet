@@ -60,6 +60,10 @@ class RecipesController < ApplicationController
       recipes = Recipe.ingredient_search(params[:ingredient_search])
       @recipes = Kaminari.paginate_array(recipes).page params[:page]
       render :index
+    elsif params[:city]
+      recipes = Recipe.by_city(params[:city])
+      @recipes = Kaminari.paginate_array(recipes).page params[:page]
+      render :index
     else
       @recipes = Recipe.all.page params[:page]
     end
