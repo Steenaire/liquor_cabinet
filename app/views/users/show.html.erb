@@ -145,11 +145,11 @@
                       <div class="col-xs-9">
                         <div class="item-block">
                           <header>
-                            <% if drink.recipe.card_image %>
-                              <img src=<%= drink.recipe.card_image %> alt="">
-                            <% else %>
-                              <i class="fa fa-glass" aria-hidden="true"></i>
-                            <% end %>
+                            <% if drink.recipe.card_image.file %>
+                             <%= image_tag drink.recipe.card_image.preview %>
+                          <% else %>
+                            <i class="fa fa-glass" aria-hidden="true"></i>
+                          <% end %>
 
                             <div class="hgroup">
                               <h4><a href="/recipes/<%= drink.recipe.id %>"><%= drink.recipe.name %></a></h4>
