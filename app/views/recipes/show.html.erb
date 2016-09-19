@@ -68,17 +68,18 @@
 
 
                         </ul>
-                        <div class="action-btn">
-                          <%= form_tag '/timeline_drinks', method: :post do %>
-                            <%= label_tag :comment, "Comment (optional)" %>
-                            <%= text_field_tag :comment %>
-                            <%= hidden_field_tag :user_id, current_user.id %>
-                            <%= hidden_field_tag :recipe_id, @recipe.id %>
-                            <%= submit_tag "I Made This!", class: "btn btn-xs btn-danger" %>
-                          <% end %>
-
-                          
-                        </div>
+                        <% if current_user %>
+                          <div class="action-btn">
+                            <%= form_tag '/timeline_drinks', method: :post do %>
+                              <%= label_tag :comment, "Comment (optional)" %>
+                              <%= text_field_tag :comment %>
+                              <%= hidden_field_tag :user_id, current_user.id %>
+                              <%= hidden_field_tag :recipe_id, @recipe.id %>
+                              <%= submit_tag "I Made This!", class: "btn btn-xs btn-danger" %>
+                            <% end %>
+                            
+                          </div>
+                        <% end %>
 
                         <div ng-app="app">
                           <div ng-controller="recipesCtrl" ng-init="setup()">
