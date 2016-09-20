@@ -22,19 +22,19 @@ class ApplicationController < ActionController::Base
     timestamp.strftime("%A, %d %b %Y %l:%M %p")
   end
 
-  after_filter :set_csrf_cookie_for_ng
+  # after_filter :set_csrf_cookie_for_ng
 
-  def set_csrf_cookie_for_ng
-    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
-  end
+  # def set_csrf_cookie_for_ng
+  #   cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  # end
   
-  rescue_from ActionController::InvalidAuthenticityToken do |exception|
-    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
-  end
+  # rescue_from ActionController::InvalidAuthenticityToken do |exception|
+  #   cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  # end
 
-  protected
-    def verified_request?
-      super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
-    end
+  # protected
+  #   def verified_request?
+  #     super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
+  #   end
 
 end
