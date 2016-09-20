@@ -1940,6 +1940,7 @@ a.down-app-btn:hover, .down-app-btn:hover {
 .nav-menu {
 	display: block;
 	text-align: center;
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .nav-menu>li {
