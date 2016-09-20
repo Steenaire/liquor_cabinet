@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   
-  protect_from_forgery
+  protect_from_forgery with: :exception
   helper_method :current_user, :star_array, :human_time
 
   def current_user

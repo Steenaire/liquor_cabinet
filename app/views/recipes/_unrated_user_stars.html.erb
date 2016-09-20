@@ -1,5 +1,7 @@
 <span>
   <% colors.each_with_index do |color,index| %>
-    <span id="<%= index+1 %>" onmouseover="ratingStarHover(this,<%= index+1 %>)" onclick="ratingStarRate(this,<%= index+1 %>,<%= current_user.id %>,<%= recipe.id %>)" style="color: <%= color %>;"><i class="fa fa-star <%= index+1 %>" ></i></span>
+    <%= link_to "/ratings?user_id=#{current_user.id}&recipe_id=#{recipe.id}&score=#{index+1}", method: :post do %>
+      <span id="<%= index+1 %>" onmouseover="ratingStarHover(this,<%= index+1 %>)" onclick="ratingStarRate(this,<%= index+1 %>)" style="color: <%= color %>;"><i class="fa fa-star <%= index+1 %>" ></i></span>
+    <% end %>
   <% end %>
 </span>
