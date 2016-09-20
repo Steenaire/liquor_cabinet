@@ -2,7 +2,8 @@
   <p class="rating-info">Rate this Drink:</p>
   <% colors.each_with_index do |color,index| %>
     <%= link_to "/ratings?user_id=#{current_user.id}&recipe_id=#{recipe.id}&score=#{index+1}", method: :post do %>
-      <span id="<%= index+1 %>" onmouseover="ratingStarHover(this,<%= index+1 %>)" onclick="ratingStarRate(this,<%= index+1 %>)" style="color: <%= color %>;"><i class="fa fa-star <%= index+1 %>" ></i></span>
+      <span id="<%= index+1 %>" onmouseover="ratingStarHover(this,<%= index+1 %>)" onclick="ratingStarRate(this,<%= index+1 %>,<%= recipe.total_ratings %>)" style="color: <%= color %>;"><i class="fa fa-star <%= index+1 %>" ></i></span>
     <% end %>
   <% end %>
+  <span class="review">(<%= recipe.total_ratings %>)</span>
 </span>

@@ -62,7 +62,7 @@ function ratingStarHover(element,starNum) {
     }
 }
 
-function ratingStarRate(element,score) {
+function ratingStarRate(element,score,oldTotal) {
     
     // $.ajax({
     //   type: 'POST',
@@ -73,17 +73,18 @@ function ratingStarRate(element,score) {
     // });
 
     // $.post( "/ratings", { score: score, user_id: userId, recipe_id: recipeId } );;
+    var newTotal = oldTotal+1;
 
     if (score == 1) {
-        element.parentElement.parentElement.innerHTML = "<span style='color: #FFCC00;'><p>Thank you for rating!</p><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span>";
+        element.parentElement.parentElement.innerHTML = "<span style='color: #FFCC00;'><p>Thank you for rating!</p><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span class='review'>("+newTotal+")</span>";
     } else if (score == 2) {
-        element.parentElement.parentElement.innerHTML = "<span style='color: #FFCC00;'><p>Thank you for rating!</p><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span>";
+        element.parentElement.parentElement.innerHTML = "<span style='color: #FFCC00;'><p>Thank you for rating!</p><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span class='review'>("+newTotal+")</span>";
     } else if (score == 3) {
-        element.parentElement.parentElement.innerHTML = "<span style='color: #FFCC00;'><p>Thank you for rating!</p><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span>";
+        element.parentElement.parentElement.innerHTML = "<span style='color: #FFCC00;'><p>Thank you for rating!</p><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span class='review'>("+newTotal+")</span>";
     } else if (score == 4) {
-        element.parentElement.parentElement.innerHTML = "<span style='color: #FFCC00;'><p>Thank you for rating!</p><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span>";
+        element.parentElement.parentElement.innerHTML = "<span style='color: #FFCC00;'><p>Thank you for rating!</p><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #CCCCCC;'><i class='fa fa-star' ></i> </span><span class='review'>("+newTotal+")</span>";
     } else if (score == 5) {
-        element.parentElement.parentElement.innerHTML = "<span style='color: #FFCC00;'><p>Thank you for rating!</p><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span>";
+        element.parentElement.parentElement.innerHTML = "<span style='color: #FFCC00;'><p>Thank you for rating!</p><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span style='color: #FFCC00;'><i class='fa fa-star' ></i> </span><span class='review'>("+newTotal+")</span>";
     }
 }
 
