@@ -8,9 +8,11 @@ class TimelineDrinksController < ApplicationController
     # )
     timeline_drink = TimelineDrink.new(timeline_drink_params)
     if timeline_drink.save
+      flash[:success] = "Drink added to your timeline!"
       redirect_to "/users/#{current_user.id}"
     else
-      # flash[:warning] = "Drink not saved to timeline"
+      flash[:warning] = "Drink not saved to timeline"
+      redirect_to timeline_drink_params[:recipe_id]
     end
   end
 

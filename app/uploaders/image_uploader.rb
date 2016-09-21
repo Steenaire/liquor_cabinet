@@ -10,7 +10,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    process :resize_to_fit => [32, 32]
+    process :resize_to_fit => [150, 150]
   end
 
   version :preview do

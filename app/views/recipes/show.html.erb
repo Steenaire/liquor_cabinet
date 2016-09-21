@@ -1,4 +1,4 @@
-Content Start -->
+<!-- Content Start -->
 
 
 
@@ -121,6 +121,9 @@ Content Start -->
                                     <div class="col-xs-9">
                                       <div class="item-block">
                                         <div class="item-body">
+                                        <% if drink.image.file %>
+                                            <%= image_tag drink.image.preview %>
+                                        <% end %>
                                           <p>Made on <%= human_time(drink.created_at.in_time_zone(drink.user.timezone)) %></p>
                                           <% if drink.comment %>
                                             <p><%= drink.user.username %> Says: <span class="comment">"<%= drink.comment %>"</span></p>
