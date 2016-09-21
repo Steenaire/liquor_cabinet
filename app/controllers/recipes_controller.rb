@@ -35,6 +35,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @timeline_drink = TimelineDrink.new
     @recipe = Recipe.find_by(id: params[:id])
     @convert_to = "metric"
     @unit = "oz"

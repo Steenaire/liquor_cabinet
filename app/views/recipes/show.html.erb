@@ -1,4 +1,4 @@
-<!-- Content Start -->
+Content Start -->
 
 
 
@@ -81,6 +81,29 @@
                           </div>
                         <% end %>
 
+
+                        <!-- ........................ -->
+                        <%= form_for @timeline_drink do |f| %>
+                  
+                          <div class="form-group">
+                            <%= f.label :image %><br>
+                            <%= f.file_field :image %>
+                          </div>
+
+                          <div class="form-group">
+                            <%= f.label :comment %>:
+                            <%= f.text_field :comment, class: "form-control" %><br />
+                          </div>
+
+                          <%= f.hidden_field :user_id, value: current_user.id %>
+                          <%= f.hidden_field :recipe_id, value: @recipe.id %>
+
+                          <%= f.submit "I Made This!", class: "btn btn-xs btn-danger" %>
+                        <% end %>
+                        <!-- ........................ -->
+
+
+
                         <div ng-app="app">
                           <div ng-controller="recipesCtrl" ng-init="setup()">
 
@@ -144,4 +167,4 @@
 
 
 
-<!-- Content End -->
+<!-- Content End
