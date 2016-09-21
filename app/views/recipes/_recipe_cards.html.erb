@@ -3,9 +3,9 @@
               <div class="item-block">
                 <header>
                   <% if recipe.card_image.file %>
-                    # <%= image_tag recipe.card_image.preview %>
+                    <%= image_tag recipe.card_image.preview %>
                   <% else %>
-                    <i class="fa fa-glass" aria-hidden="true"></i>
+                    <i class="fa fa-5x fa-glass" aria-hidden="true"></i>
                   <% end %>
 
                   <div class="hgroup">
@@ -20,6 +20,12 @@
                 </header>
                 <div class="item-body">
                   <p><%= recipe.description %></p>
+                  <% if recipe.photo_credit_url && recipe.photo_credit %>
+                      <p>
+                        Photo by 
+                        <%= link_to "#{recipe.photo_credit}", "#{recipe.photo_credit_url}", method: :delete %>
+                      </p>
+                    <% end %>
                 </div>
 
                 <footer>
