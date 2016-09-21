@@ -33,7 +33,11 @@ class User < ApplicationRecord
 
       if user.ratings.any?
         user.ratings.each do |rating|
-          
+          if nearby_drinks[rating.recipe]
+            nearby_drinks[rating.recipe] += 1
+          else
+            nearby_drinks[rating.recipe] = 1
+          end
         end
       end
 
