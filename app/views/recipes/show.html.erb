@@ -95,7 +95,11 @@
                             var bounds = new google.maps.LatLngBounds();
                             var locations = <%= raw @locations.to_json %>;
 
-                            map = new google.maps.Map(document.getElementById('map'), {mapTypeId: 'satellite'});
+                            map = new google.maps.Map(document.getElementById('map'), {
+                              mapTypeId: 'satellite',
+                              maxZoom: 12,
+                              minZoom: 1
+                            });
 
                             for (i = 0; i < locations.length; i++) { //Iterate over all the locations
                                 var location = locations[i];
