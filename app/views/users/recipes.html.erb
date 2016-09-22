@@ -8,7 +8,7 @@
         <div class="col-md-12 text-center">
           <div class="title-text">
             <h6>Great Service</h6>
-            <h2 class="page-title"><%= @user.username %>'s Liquor Cabinet</h2>
+            <h2 class="page-title"><%= @user.username %>'s Recipes</h2>
           </div>
         </div>
         <div class="col-md-12 text-center">
@@ -28,19 +28,21 @@
   <section class="cfo-area">
     <div class="container">
       <div class="row">
-          <div class="contact-details myaccount-contact">
+        <div class="contact-details myaccount-contact">
             
-            <h2>My Recipes</h2>
-              <%= paginate @recipes %>
-              <%= render partial: "/recipes/recipe_cards", locals: {recipes: @recipes} %>
+          <a href="/users/<%= @user.id %>/cabinet"><button>Liquor Cabinet</button></a>
+          <a href="/users/<%= @user.id %>/recipes"><button>Recipes</button></a>
+          <a href="/users/<%= @user.id %>/timeline"><button>Drink Timeline</button></a>
+          <%= paginate @recipes %>
+          <%= render partial: "/recipes/recipe_cards", locals: {recipes: @recipes} %>
 
-            <a href ="/recipes/new">
-              <h2>Create a new recipe!</h2>
-            </a>
+          <a href ="/recipes/new">
+            <h2>Create a new recipe!</h2>
+          </a>
 
 
 
-          </div>
+        </div>
 
           <!-- END OF DELIVERY ADDRESS SECTION -->
 

@@ -8,7 +8,7 @@
         <div class="col-md-12 text-center">
           <div class="title-text">
             <h6>Great Service</h6>
-            <h2 class="page-title"><%= @user.username %>'s Liquor Cabinet</h2>
+            <h2 class="page-title"><%= @user.username %>'s Drink Timeline</h2>
           </div>
         </div>
         <div class="col-md-12 text-center">
@@ -33,7 +33,9 @@
               <div class="address-form">
 
                 <div class="form-group">
-                  <h2>My Drink Timeline</h2>
+                  <a href="/users/<%= @user.id %>/cabinet"><button>Liquor Cabinet</button></a>
+                  <a href="/users/<%= @user.id %>/recipes"><button>Recipes</button></a>
+                  <a href="/users/<%= @user.id %>/timeline"><button>Drink Timeline</button></a>
                   <!-- .................................................... -->
 
                   <% if @timeline_drinks && @timeline_drinks.any? %>
