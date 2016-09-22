@@ -1,0 +1,134 @@
+<!-- Start Pages Title  -->
+
+<section id="page-title" class="page-title-style2">
+  <div class="color-overlay"></div>
+  <div class="container inner-img">
+    <div class="row">
+      <div class="Page-title">
+        <div class="col-md-12 text-center">
+          <div class="title-text">
+            <h6>Great Service</h6>
+            <h2 class="page-title"><%= @user.username %>'s Liquor Cabinet</h2>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <div class="breadcrumb-trail breadcrumbs">
+            <span class="trail-begin"><a href="/">Home</a></span>
+            <span class="sep">/</span> <span class="trail-end">My Account</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End Pages Title  -->
+<main class="main-content">
+  <!-- Content Start -->
+  <section class="cfo-area">
+    <div class="container">
+      <div class="row">
+
+          <div class="contact-details myaccount-contact">
+            <% if current_user.id == @user.id %>
+              <h2>My Cabinet Inventory</h2>
+            <% else %>
+              <h2><%= @user.username %>'s Cabinet Inventory</h2>
+            <% end %>
+            <div>
+              <% if current_user && current_user.id == @user.id %>
+                <h3>See What Drinks You Can Make!</h3>
+
+                <%= form_tag '/recipes', class: "search-form-select", method: :get do %>
+                  <%= label_tag :require_brand %>
+                  <%= check_box_tag :require_brand %>
+
+                  <%= label_tag :require_garnish %>
+                  <%= check_box_tag :require_garnish %>
+                  <%= submit_tag "See what you can make" %>
+                <% end %>
+              <% end %>
+            </div>
+            <hr>
+              <% if current_user && current_user.id == @user.id %>
+                <p>Add a new ingredient to your cabinet:
+
+                <%= form_tag '/cabinets', class: "search-form-select", method: :post do %>
+                    <%= label_tag :ingredient_id %>
+                    <%= collection_select :ingredient, :ingredient_id, Ingredient.all.order(:name), :id, :name %>
+                    <%= label_tag :brand_id %>(Optional)
+                    <%= collection_select :brand, :brand_id, Brand.all.order(:name), :id, :name, selected: 2 %>
+                    <%= hidden_field_tag :user_id, current_user.id %>
+                  <%= submit_tag "Add Ingredient" %>
+                  </p>
+                <% end %>
+                <% if @ingredient && @ingredient.errors.any? %>
+                  <ul class = "error">
+                    <% @ingredient.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+                <p>Don't see the ingredient you're looking for? Add a new ingredient to the database:</p>
+                <%= form_tag '/ingredients/', method: :post do %>
+                  <div>
+                    <%= label_tag :name %>
+                    <%= text_field_tag :name %>
+                  </div>
+                  <%= submit_tag "Create Ingredient" %>
+                <% end %>
+              <% end %>
+
+            <div class="row">
+                <div class="address-form">
+
+                  <div class="form-group">
+
+                      <% @user.cabinets.each do |cabinet| %>
+                        <div class="col-xs-9">
+                          <div class="item-block">
+                            <div class="item-body">
+                              <%= cabinet.brand.name %> <%= cabinet.ingredient.name %></td>
+                              <% if current_user && current_user.id == @user.id %>
+                                <%= link_to "/cabinets/#{cabinet.id}", method: :delete do %>
+                                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                <% end %>
+                              <% end %>
+                            </div>
+
+                          <footer>
+                            <span>
+
+                            </span>
+                            </p>
+                            <p class="status"><strong></strong></p>
+                            <p class="status"><strong></strong></p>
+
+                          </footer>
+                        </div>
+                      </div>
+                    <% end %>
+
+                  </div>
+
+                </div>
+
+            </div>
+
+            </div>
+          </div>
+
+
+          </div>
+
+          <!-- END OF DELIVERY ADDRESS SECTION -->
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main container end -->
+</main>
+
+<!-- Content End -->

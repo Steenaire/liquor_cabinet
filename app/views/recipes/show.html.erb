@@ -43,10 +43,10 @@
                               <%= image_tag @recipe.card_image, class:"show-card-image" %>
                               <% if @recipe.photo_credit_url && @recipe.photo_credit %>
                                 <center>
-                                  <h2>
+                                  <p>
                                     Photo by 
                                     <%= link_to "#{@recipe.photo_credit}", "#{@recipe.photo_credit_url}", method: :delete %>
-                                  </h2>
+                                  </p>
                                 </center>
                               <% end %>
                             <% end %>

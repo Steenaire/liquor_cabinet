@@ -1,0 +1,121 @@
+<!-- Start Pages Title  -->
+
+<section id="page-title" class="page-title-style2">
+  <div class="color-overlay"></div>
+  <div class="container inner-img">
+    <div class="row">
+      <div class="Page-title">
+        <div class="col-md-12 text-center">
+          <div class="title-text">
+            <h6>Great Service</h6>
+            <h2 class="page-title"><%= @user.username %>'s Liquor Cabinet</h2>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <div class="breadcrumb-trail breadcrumbs">
+            <span class="trail-begin"><a href="/">Home</a></span>
+            <span class="sep">/</span> <span class="trail-end">My Account</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End Pages Title  -->
+<main class="main-content">
+  <!-- Content Start -->
+  <section class="cfo-area">
+    <div class="container">
+      <div class="row">
+          <div class="contact-details myaccount-contact">
+            <div class="row">
+              <div class="address-form">
+
+                <div class="form-group">
+                  <h2>My Drink Timeline</h2>
+                  <!-- .................................................... -->
+
+                  <% if @timeline_drinks && @timeline_drinks.any? %>
+                    <%= paginate @timeline_drinks %>
+                    <br>
+                    <% @timeline_drinks.each do |drink| %>
+
+
+                      <div class="col-xs-9">
+                        <div class="item-block">
+                          <header>
+                            <% if drink.image.file %>
+                              <%= image_tag drink.image.preview %>
+                            <% elsif drink.recipe.card_image.file %>
+                              <%= image_tag drink.recipe.card_image.preview %>
+                              <% if drink.recipe.photo_credit_url && drink.recipe.photo_credit %>
+                                <p>
+                                  Photo by 
+                                  <%= link_to "#{drink.recipe.photo_credit}", "#{drink.recipe.photo_credit_url}", method: :delete %>
+                                </p>
+                              <% end %>
+                            <% else %>
+                              <i class="fa fa-5x fa-glass" aria-hidden="true"></i>
+                            <% end %>
+
+                            <div class="hgroup">
+                              <h4><a href="/recipes/<%= drink.recipe.id %>"><%= drink.recipe.name %></a></h4>
+                              <% if drink.recipe.average_rating > 3 %>
+                                <h5><span class="label label-warning">Popular</span></h5>
+                              <% end %>
+                              <%= drink.recipe.description %>
+                            </div>
+                            <div class="header-meta">
+                              <span><a href="/users/<%= drink.recipe.user.id %>">Recipe by <%= drink.recipe.user.username %></a></span>
+                            </div>
+                          </header>
+                          <div class="item-body">
+                            <p>Made on <%= human_time(drink.created_at.in_time_zone(@user.timezone)) %></p>
+                            <% unless drink.comment == "" %>
+                              <% if current_user.id == @user.id %>
+                                <p>You said: <span class="comment">"<%= drink.comment %>"</span></p>
+                              <% else %>
+                                <p><%= @user.username %> Says: <span class="comment">"<%= drink.comment %>"</span></p>
+                              <% end %>
+                            <% end %>
+                          </div>
+
+                          <footer>
+                            <span>
+
+                            </span>
+                          </p>
+                            <p class="status"><strong></strong></p>
+                            <p class="status"><strong></strong></p>
+
+                          </footer>
+                        </div>
+                      </div>
+
+
+                    <% end %>
+                  <% end %>
+
+
+
+                  <!-- .................................................... -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          </div>
+
+          <!-- END OF DELIVERY ADDRESS SECTION -->
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main container end -->
+</main>
+
+<!-- Content End -->

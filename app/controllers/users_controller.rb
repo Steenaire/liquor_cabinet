@@ -49,4 +49,38 @@ class UsersController < ApplicationController
       redirect_to '/login'
     end
   end
+
+  def timeline
+    if current_user
+      @user = User.find(params[:id])
+      @recipes = Recipe.where(user_id: @user.id)
+      @timeline_drinks = @user.timeline_drinks.order({ created_at: :desc }).page params[:page]
+    else
+      flash[:warning] = "Please sign in to see user cabinets"
+      redirect_to '/login'
+    end
+  end
+
+  def cabinet
+    if current_user
+      @user = User.find(params[:id])
+      @recipes = Recipe.where(user_id: @user.id)
+      @timeline_drinks = @user.timeline_drinks.order({ created_at: :desc }).page params[:page]
+    else
+      flash[:warning] = "Please sign in to see user cabinets"
+      redirect_to '/login'
+    end
+  end
+
+  def recipes
+    if current_user
+      @user = User.find(params[:id])
+      @recipes = Recipe.where(user_id: @user.id).page params[:page]
+      @timeline_drinks = @user.timeline_drinks.order({ created_at: :desc }).page params[:page]
+    else
+      flash[:warning] = "Please sign in to see user cabinets"
+      redirect_to '/login'
+    end
+  end
+
 end
