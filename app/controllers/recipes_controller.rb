@@ -39,6 +39,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find_by(id: params[:id])
     @convert_to = "metric"
     @unit = "oz"
+    @locations = @recipe.locations_made
     if params[:metric]
       @recipe.recipe_ingredients.each do |recipe_ingredient|
         recipe_ingredient.quantity = recipe_ingredient.oz_to_ml

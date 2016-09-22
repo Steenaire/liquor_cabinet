@@ -182,4 +182,23 @@ class Recipe < ApplicationRecord
     return city_drinks_top_ten
   end
 
+  def locations_made
+    locations = []
+    if self.timeline_drinks.any?
+      self.timeline_drinks.each do |drink|
+        if drink.user.latitude && drink.user.longitude
+          locations << {latitude: drink.user.latitude, longitude: drink.user.longitude}
+        end
+      end
+    end
+    if self.ratings.any?
+      self.ratings.each do |rating|
+        if rating.user.latitude && rating.user.longitude
+          locations << {latitude: rating.user.latitude, longitude: rating.user.longitude}
+        end
+      end
+    end
+    return locations
+  end
+
 end
