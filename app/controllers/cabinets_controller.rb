@@ -17,10 +17,10 @@ class CabinetsController < ApplicationController
 
     if @cabinet.save
       flash[:success] = "Ingredient Added!"
-      redirect_to "/users/#{current_user.id}"
+      redirect_to "/users/#{current_user.id}/cabinet"
     else
       flash[:warning] = "Ingredient Not Added"
-      redirect_to "/users/#{current_user.id}"
+      redirect_to "/users/#{current_user.id}/cabinet"
     end
   end
 

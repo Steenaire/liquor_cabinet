@@ -117,6 +117,15 @@
                                         <% if drink.image.file %>
                                             <%= image_tag drink.image.preview %>
                                         <% end %>
+
+                                        <% if current_user.ratings.any? %>
+                                          <% current_user.ratings.each do |rating| %>
+                                            <% if rating.recipe == @recipe %>
+                                              <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['gold_star'],ENV['grey_star'],rating.score,5)} %>
+                                            <% end %>
+                                          <% end %>
+                                        <% end %>
+
                                           <p>Made on <%= human_time(drink.created_at.in_time_zone(drink.user.timezone)) %></p>
                                           <% if drink.comment %>
                                             <p><%= drink.user.username %> Says: <span class="comment">"<%= drink.comment %>"</span></p>

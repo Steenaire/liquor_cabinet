@@ -1,4 +1,4 @@
-<!-- Start Pages Title  -->
+Start Pages Title  -->
 
 <section id="page-title" class="page-title-style2">
   <div class="color-overlay"></div>
@@ -28,210 +28,15 @@
   <section class="cfo-area">
     <div class="container">
       <div class="row">
-<!--         <% if current_user.id == @user.id %>
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 account-cfoinfo clearfix">
-        
-          <div class="cfoaccount">
-            <ul class="list-unstyled">
-              <li><a href="myaccount.html"><i class="fa fa-home" aria-hidden="true"></i> My Account</a></li>
-              <li><a href="myaccount.html"><i class="fa fa-user" aria-hidden="true"></i> My Cabinet</a></li>
-              <li><a href="orderhistory.html"><i class="fa fa-history" aria-hidden="true"></i> My Drinks</a></li>
-            </ul>
-          </div>
-          <!-- END OF Myaccount menu  -->
-
-          <!-- End of account cfoInfo -->
-        <!--</div> -->
-        
-<!--           <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-            <div class="contact-details myaccount-contact">
-              <h2>Account access</h2>
-              <div class="account-table">
-                <table class="table">
-                  <tbody>
-                  <tr>
-                    <td class="commonname-td">
-                      Login Info
-                    </td>
-                    <td class="nameshow-td">
-                      <%= current_user.username %>
-                    </td>
-                    <td class="nameshow-td">
-                      <%= current_user.email %>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="clearfix"></div> -->
-        <!--   <% end %> -->
-          <!-- END OF CONTACT DETAILS SECTION -->
 
           <div class="contact-details myaccount-contact">
-            <% if current_user.id == @user.id %>
-              <h2>My Cabinet Inventory</h2>
-            <% else %>
-              <h2><%= @user.username %>'s Cabinet Inventory</h2>
-            <% end %>
-              <% if current_user && current_user.id == @user.id %>
-                <p>Add a new ingredient to your cabinet:
-
-                <%= form_tag '/cabinets', class: "search-form-select", method: :post do %>
-                    <%= label_tag :ingredient_id %>
-                    <%= collection_select :ingredient, :ingredient_id, Ingredient.all.order(:name), :id, :name %>
-                    <%= label_tag :brand_id %>(Optional)
-                    <%= collection_select :brand, :brand_id, Brand.all.order(:name), :id, :name, selected: 2 %>
-                    <%= hidden_field_tag :user_id, current_user.id %>
-                  <%= submit_tag "Add Ingredient" %>
-                  </p>
-                <% end %>
-                <p>Don't see an ingredient? <a href="/ingredients/new">Add New Ingredient to Database</p></a>
-              <% end %>
-
-            <div class="row">
-                <div class="address-form">
-
-                  <div class="form-group">
-
-                      <% @user.cabinets.each do |cabinet| %>
-                        <div class="col-md-2">
-                          <%= cabinet.brand.name %> <%= cabinet.ingredient.name %></td>
-                          <% if current_user && current_user.id == @user.id %>
-                            <%= link_to "/cabinets/#{cabinet.id}", method: :delete do %>
-                              <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            <% end %>
-                          <% end %>
-                        </div>
-                      <% end %>
-                      <hr>
-
-                  </div>
-
-                </div>
-
-            </div>
-            <h2>My Recipes</h2>
-              <% @recipes.each do |recipe| %>
-                <p>
-                  <a href="/recipes/<%= recipe.id %>">
-                    <%= recipe.name %>
-                  </a>
-                  <% if current_user && current_user.id == @user.id %>
-                    <%= link_to "/recipes/#{recipe.id}", method: :delete do %>
-                      <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    <% end %>
-                  <% end %>  
-                </p>
-              <% end %>
-
-              <% if current_user && current_user.id == @user.id %>
-                <h2>See What Drinks You Can Make!</h2>
-                <!-- <a href="/recipes/?personal_index=true&ignore_brand=true">
-                <p>Garnish required/Ignore Brand</p>
-                </a>
-                <a href="/recipes/?personal_index=true&ignore_garnish=true">
-                <p>Ignore Garnish/Ignore Brand</p>
-                </a>
-                <a href="/recipes/?personal_index=true&require_brand=true">
-                <p>Garnish required/Brand required</p>
-                </a>
-                <a href="/recipes/?personal_index=true&require_brand_ignore_garnish=true">
-                <p>Ignore Garnish/Brand required</p>
-                </a> -->
-
-                <%= form_tag '/recipes', class: "search-form-select", method: :get do %>
-                  <%= label_tag :require_brand %>
-                  <%= check_box_tag :require_brand %>
-
-                  <%= label_tag :require_garnish %>
-                  <%= check_box_tag :require_garnish %>
-                  <%= submit_tag "See what you can make" %>
-                <% end %>
-
-
-
-              <% end %>
-            <a href ="/recipes/new">
-              <h2>Create a new recipe!</h2>
-            </a>
-
-
-          <div class="contact-details myaccount-contact">
-            <div class="row">
-              <div class="address-form">
-
-                <div class="form-group">
-                  <h2>My Drink Timeline</h2>
-                  <!-- .................................................... -->
-
-                  <% if @timeline_drinks && @timeline_drinks.any? %>
-                    <%= paginate @timeline_drinks %>
-                    <br>
-                    <% @timeline_drinks.each do |drink| %>
-
-
-                      <div class="col-xs-9">
-                        <div class="item-block">
-                          <header>
-                            <% if drink.image.file %>
-                              <%= image_tag drink.image.preview %>
-                            <% else %>
-                              <i class="fa fa-5x fa-glass" aria-hidden="true"></i>
-                            <% end %>
-
-                            <div class="hgroup">
-                              <h4><a href="/recipes/<%= drink.recipe.id %>"><%= drink.recipe.name %></a></h4>
-                              <% if drink.recipe.average_rating > 3 %>
-                                <h5><span class="label label-warning">Popular</span></h5>
-                              <% end %>
-                              <%= drink.recipe.description %>
-                            </div>
-                            <div class="header-meta">
-                              <span><a href="/users/<%= drink.recipe.user.id %>">Recipe by <%= drink.recipe.user.username %></a></span>
-                            </div>
-                          </header>
-                          <div class="item-body">
-                            <p>Made on <%= human_time(drink.created_at.in_time_zone(@user.timezone)) %></p>
-                            <% unless drink.comment == "" %>
-                              <% if current_user.id == @user.id %>
-                                <p>You said: <span class="comment">"<%= drink.comment %>"</span></p>
-                              <% else %>
-                                <p><%= @user.username %> Says: <span class="comment">"<%= drink.comment %>"</span></p>
-                              <% end %>
-                            <% end %>
-                          </div>
-
-                          <footer>
-                            <span>
-
-                            </span>
-                          </p>
-                            <p class="status"><strong></strong></p>
-                            <p class="status"><strong></strong></p>
-
-                          </footer>
-                        </div>
-                      </div>
-
-
-                    <% end %>
-                  <% end %>
-
-
-
-                  <!-- .................................................... -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-
+            <a href="/users/<%= @user.id %>/cabinet"><button>Liquor Cabinet</button></a>
+            <a href="/users/<%= @user.id %>/recipes"><button>Recipes</button></a>
+            <a href="/users/<%= @user.id %>/timeline"><button>Drink Timeline</button></a>
           </div>
 
           <!-- END OF DELIVERY ADDRESS SECTION -->
 
-        </div>
       </div>
     </div>
   </section>
@@ -239,4 +44,4 @@
   <!-- Main container end -->
 </main>
 
-<!-- Content End -->
+<!-- Content End

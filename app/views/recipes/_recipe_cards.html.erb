@@ -31,55 +31,11 @@
                 <footer>
                 <!-- This is all for handling ratings -->
                   <span>
-                  <!-- If the current user has rated the drink -->
-                    <% if current_user&&current_user.ratings.find_by(recipe_id: recipe.id) %>
-                      <% if current_user.ratings.find_by(recipe_id: recipe.id).score == 5 %>
-                        <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['gold_star'],ENV['grey_star'],5,5), recipe: recipe} %>
-                      <% elsif current_user.ratings.find_by(recipe_id: recipe.id).score == 4 %>
-                        <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['gold_star'],ENV['grey_star'],4,5), recipe: recipe} %>
-                      <% elsif current_user.ratings.find_by(recipe_id: recipe.id).score == 3 %>
-                        <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['gold_star'],ENV['grey_star'],3,5), recipe: recipe} %>
-                      <% elsif current_user.ratings.find_by(recipe_id: recipe.id).score == 2 %>
-                        <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['gold_star'],ENV['grey_star'],2,5), recipe: recipe} %>
-                      <% elsif current_user.ratings.find_by(recipe_id: recipe.id).score == 1 %>
-                        <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['gold_star'],ENV['grey_star'],1,5), recipe: recipe} %>
-                      <% end %>
-                  <!-- If the current user has not rated the drink -->
-                    <% elsif current_user %>
-                      <% if recipe.average_rating.round == 5 %>
-                        <%= render partial: "/recipes/unrated_user_stars", locals: {colors: star_array(ENV['red_star'],ENV['grey_star'],5,5), current_user: current_user, recipe: recipe} %>
-                      <% elsif recipe.average_rating.round == 4 %>
-                        <%= render partial: "/recipes/unrated_user_stars", locals: {colors: star_array(ENV['red_star'],ENV['grey_star'],4,5), current_user: current_user, recipe: recipe} %>
-                      <% elsif recipe.average_rating.round == 3 %>
-                        <%= render partial: "/recipes/unrated_user_stars", locals: {colors: star_array(ENV['red_star'],ENV['grey_star'],3,5), current_user: current_user, recipe: recipe} %>
-                      <% elsif recipe.average_rating.round == 2 %>
-                        <%= render partial: "/recipes/unrated_user_stars", locals: {colors: star_array(ENV['red_star'],ENV['grey_star'],2,5), current_user: current_user, recipe: recipe} %>
-                      <% elsif recipe.average_rating.round == 1 %>
-                        <%= render partial: "/recipes/unrated_user_stars", locals: {colors: star_array(ENV['red_star'],ENV['grey_star'],1,5), current_user: current_user, recipe: recipe} %>
-                      <% else %>
-                        <%= render partial: "/recipes/unrated_user_stars", locals: {colors: star_array(ENV['grey_star'],ENV['grey_star'],5,5), current_user: current_user, recipe: recipe} %>
-                      <% end %>
-                  <!-- If the user is not logged in, and therefore unable to rate -->
-                    <% else %>
-                      <% if recipe.average_rating == 5 %>
-                        <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['red_star'],ENV['grey_star'],5,5), recipe: recipe} %>
-                      <% elsif recipe.average_rating == 4 %>
-                        <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['red_star'],ENV['grey_star'],4,5), recipe: recipe} %>
-                      <% elsif recipe.average_rating == 3 %>
-                        <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['red_star'],ENV['grey_star'],3,5), recipe: recipe} %>
-                      <% elsif recipe.average_rating == 2 %>
-                        <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['red_star'],ENV['grey_star'],2,5), recipe: recipe} %>
-                      <% elsif recipe.average_rating == 1 %>
-                        <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['red_star'],ENV['grey_star'],1,5), recipe: recipe} %>
-                      <% else %>
-                        <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['grey_star'],ENV['grey_star'],5,5), recipe: recipe} %>
-                      <% end %>
-                    <% end %>
+                  
 
-                    
-                    <!-- <span class="review">
-                      (<span><%= recipe.total_ratings %></span>)
-                    </span> -->
+                  <%= render partial: "/recipes/ratings_star_layout", locals: {recipe: recipe} %>
+
+
                   </span>
                 </p>
                   <p class="status"><strong></strong></p>
