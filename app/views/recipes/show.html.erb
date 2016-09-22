@@ -51,6 +51,7 @@
                               <% end %>
                             <% end %>
                             <h2><%= @recipe.name %></h2>
+                            <div><%= render partial: "/recipes/ratings_star_layout", locals: {recipe: @recipe} %></div>
                             <span><%= @recipe.description %></span>
                         </header>
 
