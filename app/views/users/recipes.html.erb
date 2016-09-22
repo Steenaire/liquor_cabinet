@@ -1,0 +1,57 @@
+<!-- Start Pages Title  -->
+
+<section id="page-title" class="page-title-style2">
+  <div class="color-overlay"></div>
+  <div class="container inner-img">
+    <div class="row">
+      <div class="Page-title">
+        <div class="col-md-12 text-center">
+          <div class="title-text">
+            <h6>Great Service</h6>
+            <h2 class="page-title"><%= @user.username %>'s Recipes</h2>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <div class="breadcrumb-trail breadcrumbs">
+            <span class="trail-begin"><a href="/">Home</a></span>
+            <span class="sep">/</span> <span class="trail-end">My Account</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End Pages Title  -->
+<main class="main-content">
+  <!-- Content Start -->
+  <section class="cfo-area">
+    <div class="container">
+      <div class="row">
+        <div class="contact-details myaccount-contact">
+            
+          <a href="/users/<%= @user.id %>/cabinet"><button>Liquor Cabinet</button></a>
+          <a href="/users/<%= @user.id %>/recipes"><button>Recipes</button></a>
+          <a href="/users/<%= @user.id %>/timeline"><button>Drink Timeline</button></a>
+          <%= paginate @recipes %>
+          <%= render partial: "/recipes/recipe_cards", locals: {recipes: @recipes} %>
+
+          <a href ="/recipes/new">
+            <h2>Create a new recipe!</h2>
+          </a>
+
+
+
+        </div>
+
+          <!-- END OF DELIVERY ADDRESS SECTION -->
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main container end -->
+</main>
+
+<!-- Content End -->

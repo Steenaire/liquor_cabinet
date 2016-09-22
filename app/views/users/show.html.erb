@@ -124,10 +124,39 @@
                   <% end %>  
                 </p>
               <% end %>
+
+              <% if current_user && current_user.id == @user.id %>
+                <h2>See What Drinks You Can Make!</h2>
+                <!-- <a href="/recipes/?personal_index=true&ignore_brand=true">
+                <p>Garnish required/Ignore Brand</p>
+                </a>
+                <a href="/recipes/?personal_index=true&ignore_garnish=true">
+                <p>Ignore Garnish/Ignore Brand</p>
+                </a>
+                <a href="/recipes/?personal_index=true&require_brand=true">
+                <p>Garnish required/Brand required</p>
+                </a>
+                <a href="/recipes/?personal_index=true&require_brand_ignore_garnish=true">
+                <p>Ignore Garnish/Brand required</p>
+                </a> -->
+
+                <%= form_tag '/recipes', class: "search-form-select", method: :get do %>
+                  <%= label_tag :require_brand %>
+                  <%= check_box_tag :require_brand %>
+
+                  <%= label_tag :require_garnish %>
+                  <%= check_box_tag :require_garnish %>
+                  <%= submit_tag "See what you can make" %>
+                <% end %>
+
+
+
+              <% end %>
             <a href ="/recipes/new">
-              <p>Create a new recipe!</p>
+              <h2>Create a new recipe!</h2>
             </a>
-          </div>
+
+
           <div class="contact-details myaccount-contact">
             <div class="row">
               <div class="address-form">
@@ -145,11 +174,11 @@
                       <div class="col-xs-9">
                         <div class="item-block">
                           <header>
-                            <% if drink.recipe.card_image.file %>
-                             <%= image_tag drink.recipe.card_image.preview %>
-                          <% else %>
-                            <i class="fa fa-glass" aria-hidden="true"></i>
-                          <% end %>
+                            <% if drink.image.file %>
+                              <%= image_tag drink.image.preview %>
+                            <% else %>
+                              <i class="fa fa-5x fa-glass" aria-hidden="true"></i>
+                            <% end %>
 
                             <div class="hgroup">
                               <h4><a href="/recipes/<%= drink.recipe.id %>"><%= drink.recipe.name %></a></h4>
@@ -197,22 +226,10 @@
             </div>
           </div>
 
+
+          </div>
+
           <!-- END OF DELIVERY ADDRESS SECTION -->
-          <% if current_user.id == @user.id %>
-            <p>See what drinks you can make!</p>
-            <a href="/recipes/?personal_index=true&ignore_brand=true">
-            <p>Garnish required/Ignore Brand</p>
-            </a>
-            <a href="/recipes/?personal_index=true&ignore_garnish=true">
-            <p>Ignore Garnish/Ignore Brand</p>
-            </a>
-            <a href="/recipes/?personal_index=true&require_brand=true">
-            <p>Garnish required/Brand required</p>
-            </a>
-            <a href="/recipes/?personal_index=true&require_brand_ignore_garnish=true">
-            <p>Ignore Garnish/Brand required</p>
-            </a>
-          <% end %>
 
         </div>
       </div>

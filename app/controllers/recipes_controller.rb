@@ -7,21 +7,21 @@ class RecipesController < ApplicationController
       recipes_all = Recipe.all
       users_cabinets = current_user.cabinets
 
-      if params[:personal_index]&&params[:ignore_brand]
+      if params[:commit]&&params[:require_garnish]&&params[:require_brand]
+        no_brand_recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)
+        recipes = Recipe.brand_matters_garnish_matters(no_brand_recipes,users_cabinets)
+        @recipes = Kaminari.paginate_array(recipes).page params[:page]
+
+      elsif params[:commit]&&params[:require_garnish]
         recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)
         @recipes = Kaminari.paginate_array(recipes).page params[:page]
 
-      elsif params[:personal_index]&&params[:ignore_garnish]
-        recipes = Recipe.ignore_brand_ignore_garnish(recipes_all,users_cabinets)
-        @recipes = Kaminari.paginate_array(recipes).page params[:page]
-
-      elsif params[:require_brand_ignore_garnish]
+      elsif params[:commit]&&params[:require_brand]
         recipes = Recipe.brand_matters_ignore_garnish(recipes_all,users_cabinets)
         @recipes = Kaminari.paginate_array(recipes).page params[:page]
 
-      elsif params[:require_brand]
-        no_brand_recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)
-        recipes = Recipe.brand_matters_garnish_matters(no_brand_recipes,users_cabinets)
+      elsif params[:commit]
+        recipes = Recipe.ignore_brand_ignore_garnish(recipes_all,users_cabinets)
         @recipes = Kaminari.paginate_array(recipes).page params[:page]
 
       else
@@ -35,6 +35,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @timeline_drink = TimelineDrink.new
     @recipe = Recipe.find_by(id: params[:id])
     @convert_to = "metric"
     @unit = "oz"

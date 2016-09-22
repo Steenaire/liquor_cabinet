@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   get '/users/:id', to: 'users#show', as: 'user'
+  get '/users/:id/cabinet', to: 'users#cabinet'
+  get '/users/:id/recipes', to: 'users#recipes'
+  get '/users/:id/timeline', to: 'users#timeline'
 
   get '/recipes', to: 'recipes#index'
   get '/recipes/new', to: 'recipes#new', as: 'new_recipe'
