@@ -3047,6 +3047,7 @@ section.bg-repeat {
 
 .section-header .show-card-image {
   height: 200px;
+  width: auto;
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -3054,6 +3055,12 @@ section.bg-repeat {
 
 .section-header .index-card-image {
   height: 100px;
+  width: auto;
+}
+
+.item-block .index-card-image {
+  height: 75px;
+  width: auto;
 }
 
 .bg-blue,.bg-blue h1,.bg-blue h2,.bg-blue h3,.bg-blue h4,.bg-blue h5,.bg-blue h6,.bg-dark,.bg-dark-light,.bg-dark-lighter,.bg-dark-lighter h1,.bg-dark-lighter h2,.bg-dark-lighter h3,.bg-dark-lighter h4,.bg-dark-lighter h5,.bg-dark-lighter h6,.bg-dark-lightest,.bg-dark-lightest h1,.bg-dark-lightest h2,.bg-dark-lightest h3,.bg-dark-lightest h4,.bg-dark-lightest h5,.bg-dark-lightest h6,.bg-dark-light h1,.bg-dark-light h2,.bg-dark-light h3,.bg-dark-light h4,.bg-dark-light h5,.bg-dark-light h6,.bg-dark h1,.bg-dark h2,.bg-dark h3,.bg-dark h4,.bg-dark h5,.bg-dark h6,.bg-green,.bg-green h1,.bg-green h2,.bg-green h3,.bg-green h4,.bg-green h5,.bg-green h6,.bg-orange,.bg-orange h1,.bg-orange h2,.bg-orange h3,.bg-orange h4,.bg-orange h5,.bg-orange h6,.bg-purple,.bg-purple h1,.bg-purple h2,.bg-purple h3,.bg-purple h4,.bg-purple h5,.bg-purple h6,.bg-red,.bg-red h1,.bg-red h2,.bg-red h3,.bg-red h4,.bg-red h5,.bg-red h6 {

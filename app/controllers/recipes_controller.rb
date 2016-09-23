@@ -101,7 +101,7 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find_by(id: params[:id])
-    # @recipe.ingredients.length.times { @recipe.recipe_ingredients.build }
+    #@recipe.ingredients.length.times { @recipe.recipe_ingredients.build }
     unless current_user && current_user.id == @recipe.user.id
       flash[:danger] = "You do not have permission to edit this recipe"
       redirect_to '/recipes'
@@ -111,6 +111,7 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find_by(id: params[:id])
     Recipe.update(@recipe.id, recipe_params)
+    beans+1
     if @recipe.save
       flash[:success] = "Recipe Updated!"
       redirect_to "/recipes/#{@recipe.id}"
