@@ -39,6 +39,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find_by(id: params[:id])
     @convert_to = "metric"
     @unit = "oz"
+    @locations = @recipe.locations_made
     if params[:metric]
       @recipe.recipe_ingredients.each do |recipe_ingredient|
         recipe_ingredient.quantity = recipe_ingredient.oz_to_ml
@@ -96,6 +97,15 @@ class RecipesController < ApplicationController
     end
     recipe.destroy
     redirect_to "/users/#{current_user.id}"
+  end
+
+  def edit
+    @recipe = Recipe.find_by(id: params[:id])
+    # @recipe.ingredients.length.times { @recipe.recipe_ingredients.build }
+    unless current_user && current_user.id == @recipe.user.id
+      flash[:danger] = "You do not have permission to edit this recipe"
+      redirect_to '/recipes'
+    end
   end
 
   private

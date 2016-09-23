@@ -60,6 +60,9 @@
                             <% else %>
                               <i class="fa fa-5x fa-glass" aria-hidden="true"></i>
                             <% end %>
+                            <div>
+                            <%= render partial: "/recipes/ratings_star_layout", locals: {recipe: drink.recipe} %>
+                            </div>
 
                             <div class="hgroup">
                               <h4><a href="/recipes/<%= drink.recipe.id %>"><%= drink.recipe.name %></a></h4>
@@ -74,7 +77,7 @@
                           </header>
                           <div class="item-body">
                             <p>Made on <%= human_time(drink.created_at.in_time_zone(@user.timezone)) %></p>
-                            <% unless drink.comment == "" %>
+                            <% unless !drink.comment || drink.comment == "" %>
                               <% if current_user.id == @user.id %>
                                 <p>You said: <span class="comment">"<%= drink.comment %>"</span></p>
                               <% else %>

@@ -51,6 +51,7 @@
                               <% end %>
                             <% end %>
                             <h2><%= @recipe.name %></h2>
+                            <div><%= render partial: "/recipes/ratings_star_layout", locals: {recipe: @recipe} %></div>
                             <span><%= @recipe.description %></span>
                         </header>
 
@@ -76,6 +77,98 @@
 
 
                         </ul>
+
+
+                        <h2>Where is this drink being made?</h2>
+                        <div id="floating-panel">
+                          <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+                          <button onclick="changeGradient()">Change gradient</button>
+                          <button onclick="changeRadius()">Change radius</button>
+                          <button onclick="changeOpacity()">Change opacity</button>
+                        </div>
+                        <div id="map" style="width: 100%; height: 400px"></div>
+                        <script>
+
+                          var map, heatmap;
+
+                          function initMap() {
+                            var bounds = new google.maps.LatLngBounds();
+                            var locations = <%= raw @locations.to_json %>;
+
+                            map = new google.maps.Map(document.getElementById('map'), {
+                              mapTypeId: 'satellite',
+                              maxZoom: 12,
+                              minZoom: 1
+                            });
+
+                            for (i = 0; i < locations.length; i++) { //Iterate over all the locations
+                                var location = locations[i];
+                                bounds.extend({lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)}); //will extend your bounds each time a location is added
+                              } 
+                               
+                              //refit the map to the bounds as defined in your each loop
+                              map.fitBounds(bounds);
+
+                            heatmap = new google.maps.visualization.HeatmapLayer({
+                              data: getPoints(),
+                              map: map
+                            });
+
+                          }
+
+                          function toggleHeatmap() {
+                            heatmap.setMap(heatmap.getMap() ? null : map);
+                          }
+
+                          function changeGradient() {
+                            var gradient = [
+                              'rgba(0, 255, 255, 0)',
+                              'rgba(0, 255, 255, 1)',
+                              'rgba(0, 191, 255, 1)',
+                              'rgba(0, 127, 255, 1)',
+                              'rgba(0, 63, 255, 1)',
+                              'rgba(0, 0, 255, 1)',
+                              'rgba(0, 0, 223, 1)',
+                              'rgba(0, 0, 191, 1)',
+                              'rgba(0, 0, 159, 1)',
+                              'rgba(0, 0, 127, 1)',
+                              'rgba(63, 0, 91, 1)',
+                              'rgba(127, 0, 63, 1)',
+                              'rgba(191, 0, 31, 1)',
+                              'rgba(255, 0, 0, 1)'
+                            ]
+                            heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+                          }
+
+                          function changeRadius() {
+                            heatmap.set('radius', heatmap.get('radius') ? null : 20);
+                          }
+
+                          function changeOpacity() {
+                            heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+                          }
+
+                          // Heatmap data: 500 Points
+                          function getPoints() {
+                            var locations = <%= raw @locations.to_json %>;
+                            var mapPositions = [];
+
+                            for (i = 0; i < locations.length; i++) { //Iterate over all the locations
+                                var location = locations[i];
+
+                                mapPositions.push(new google.maps.LatLng(parseFloat(location.latitude), parseFloat(location.longitude)));
+                              } 
+
+                            return mapPositions;
+                            
+                          }
+                        </script>
+                        <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["google_key"] %>&libraries=visualization&callback=initMap">
+                        </script>
+
+
+
 
                         <% if current_user %>
                           <h2>Have you made this drink?</h2>
@@ -117,6 +210,15 @@
                                         <% if drink.image.file %>
                                             <%= image_tag drink.image.preview %>
                                         <% end %>
+
+                                        <% if current_user.ratings.any? %>
+                                          <% current_user.ratings.each do |rating| %>
+                                            <% if rating.recipe == @recipe %>
+                                              <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['gold_star'],ENV['grey_star'],rating.score,5)} %>
+                                            <% end %>
+                                          <% end %>
+                                        <% end %>
+
                                           <p>Made on <%= human_time(drink.created_at.in_time_zone(drink.user.timezone)) %></p>
                                           <% if drink.comment %>
                                             <p><%= drink.user.username %> Says: <span class="comment">"<%= drink.comment %>"</span></p>
