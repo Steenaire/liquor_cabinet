@@ -99,6 +99,15 @@ class RecipesController < ApplicationController
     redirect_to "/users/#{current_user.id}"
   end
 
+  def edit
+    @recipe = Recipe.find_by(id: params[:id])
+    # @recipe.ingredients.length.times { @recipe.recipe_ingredients.build }
+    unless current_user && current_user.id == @recipe.user.id
+      flash[:danger] = "You do not have permission to edit this recipe"
+      redirect_to '/recipes'
+    end
+  end
+
   private
 
     def recipe_params

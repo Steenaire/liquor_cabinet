@@ -1,0 +1,110 @@
+<!-- Content Start -->
+
+
+
+<!-- Start Pages Title  -->
+
+<section id="page-title" class="page-title-style2">
+  <div class="color-overlay"></div>
+  <div class="container inner-img">
+    <div class="row">
+      <div class="Page-title">
+        <div class="col-md-12 text-center">
+          <div class="title-text">
+            <h6>Great Service</h6>
+            <h2 class="page-title">Editing <%= @recipe.name %></h2>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <div class="breadcrumb-trail breadcrumbs">
+            <span class="trail-begin"><a href="#">Home</a></span>
+            <span class="sep">/</span> <span class="trail-end">Faq</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End Pages Title  -->
+
+<!-- Main container -->
+<main class="main-content">
+  <!-- Start Faq Page -->
+
+  <section id="faq-result">
+    <div class="faq-all-content">
+      <section class="light-wrapper">
+
+        <div class="container">
+          <div class="inner">
+
+            <% if @recipe && @recipe.errors.any? %>
+              <ul class = "error">
+                <% @recipe.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            <% end %>
+
+            <%= nested_form_for @recipe do |f| %>
+                  
+                  <div class="form-group">
+                    <%= f.label "Drink Image (optional)" %><br>
+                    <%= f.file_field :card_image %>
+                  </div>
+
+                  <div ng-app="app">
+                    <div ng-controller="recipesCtrl" ng-init="setup()">
+
+                      <datalist id="recipe_names">
+                        <option ng-repeat="recipe in recipes">{{recipe.name}}</option>
+                      </datalist>
+
+                      <div class="form-group">
+                        <%= f.label "Drink Name" %>:
+                        <%= f.text_field :name, class: "form-control", list: "recipe_names" %><br />
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :instructions %>:
+                    <%= f.text_field :instructions, class: "form-control" %><br />
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :description %>:
+                    <%= f.text_field :description, class: "form-control" %><br />
+                  </div>
+                    <%= f.hidden_field :user_id, value: current_user.id%>
+
+                    <p>Ingredients:</p>
+                    <hr>
+
+                  <% @recipe.recipe_ingredients.each do |old_ingredient| %>
+                    <div class="nested-fields">
+                      <%= f.fields_for :recipe_ingredient do |recipe_ingredient| %>
+                        <%= recipe_ingredient.label :ingredient %>
+                        <%= recipe_ingredient.collection_select :ingredient_id, Ingredient.all, :id, :name, selected: old_ingredient.ingredient_id %>
+                        <%= recipe_ingredient.label "Brand (Optional)" %>
+                        <%= recipe_ingredient.collection_select :brand_id, Brand.all, :id, :name, selected: old_ingredient.brand_id %>
+                        <%= recipe_ingredient.label "Is garnish?" %>
+                        <%= recipe_ingredient.select :garnish, [[true], [false]], selected: old_ingredient.garnish %>
+                        <%= recipe_ingredient.label :quantity %>
+                        <%= recipe_ingredient.text_field :quantity, value: old_ingredient.quantity %>
+                        <%= recipe_ingredient.label :measurement %>
+                        <%= recipe_ingredient.select :measurement, [["volume (oz)"], ["mass (oz)"], ["count"], ["dash"]], selected: old_ingredient.measurement%>
+                        <br>
+                        <%= link_to_remove_association 'Remove Ingredient', f %>
+                        <hr>
+                      <% end %>
+                    </div>
+                  <% end %>
+                    
+                    <%= link_to_add_association('Click to add ingredient', f, :recipe_ingredients) %>
+                  </div>
+
+                  <%= f.submit %>
+            <% end %>
