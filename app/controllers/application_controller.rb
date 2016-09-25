@@ -1,10 +1,18 @@
 class ApplicationController < ActionController::Base
   
   protect_from_forgery with: :exception
-  helper_method :current_user, :star_array, :human_time
+  helper_method :current_user, :star_array, :human_time, :visits
 
   def current_user
     User.find_by(id: session[:user_id]) if session[:user_id]
+  end
+
+  def visits
+    if current_user
+      return Visit.where(user_id: current_user.id)
+    else
+      return []
+    end
   end
 
   def star_array(color1,color2,rating,max_rating)

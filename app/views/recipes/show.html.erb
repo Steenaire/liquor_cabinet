@@ -3,261 +3,281 @@
 
 
 <!-- Start Pages Title  -->
-
-<section id="page-title" class="page-title-style2">
-  <div class="color-overlay"></div>
-  <div class="container inner-img">
-    <div class="row">
-      <div class="Page-title">
-        <div class="col-md-12 text-center">
-          <div class="title-text">
-            <h6>Great Service</h6>
-            <h2 class="page-title"><%= @recipe.name %></h2>
-          </div>
-        </div>
-        <div class="col-md-12 text-center">
-          <div class="breadcrumb-trail breadcrumbs">
-            <span class="trail-begin"><a href="#">Home</a></span>
-            <span class="sep">/</span> <span class="trail-end">Faq</span>
+<div ng-app="app">
+  <div ng-controller="recipesCtrl" ng-init="setup()">
+    <section id="page-title" class="page-title-style2">
+      <div class="color-overlay"></div>
+      <div class="container inner-img">
+        <div class="row">
+          <div class="Page-title">
+            <div class="col-md-12 text-center">
+              <div class="title-text">
+                <h2 class="page-title"><%= @recipe.name %></h2>
+              </div>
+            </div>
+            <div class="col-md-12 text-center">
+              <div class="breadcrumb-trail breadcrumbs">
+                <span class="trail-begin"></span>
+                <span class="sep">/</span> <span class="trail-end"></span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- End Pages Title  -->
+    <!-- End Pages Title  -->
 
-<!-- Main container -->
-<main class="main-content">
-  <!-- Start Faq Page -->
+    <!-- Main container -->
+    <main class="main-content">
+      <!-- Start Faq Page -->
 
-  <section id="faq-result">
-    <div class="faq-all-content">
-      <section class="light-wrapper">
+      <section id="faq-result">
+        <div class="faq-all-content">
+          <section class="light-wrapper">
 
-        <div class="container">
-                    <div class="inner">
-                        <header class="section-header text-left">
-                            <% if @recipe.card_image.file %>
-                              <%= image_tag @recipe.card_image, class:"show-card-image" %>
-                              <% if @recipe.photo_credit_url && @recipe.photo_credit %>
-                                <center>
-                                  <p>
-                                    Photo by 
-                                    <%= link_to "#{@recipe.photo_credit}", "#{@recipe.photo_credit_url}", method: :delete %>
-                                  </p>
-                                </center>
+            <main class="main-content">
+
+
+
+              <div class="container internal-body-container">
+                <!-- Main container -->
+
+                <div class="row">
+                  <!-- Main row -->
+
+                  <div class="col-md-9">
+                        <div class="inner">
+                            <header class="section-header text-left">
+                                <% if @recipe.card_image.file %>
+                                  <%= image_tag @recipe.card_image %>
+                                  <% if @recipe.photo_credit_url && @recipe.photo_credit %>
+                                    <center>
+                                      <p>
+                                        Photo by 
+                                        <%= link_to "#{@recipe.photo_credit}", "#{@recipe.photo_credit_url}", method: :delete %>
+                                      </p>
+                                    </center>
+                                  <% end %>
+                                <% end %>
+                                <h2><%= @recipe.name %></h2>
+                                <div><%= render partial: "/recipes/ratings_star_layout", locals: {recipe: @recipe} %></div>
+                                <span><%= @recipe.description %></span>
+                            </header>
+
+                            <ul class="faq-items">
+                                <li>
+                                    <h5>Ingredients:</h5>
+                                      <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+                                        <p><%= recipe_ingredient.measure_unit(@unit) %>
+                                        <%= recipe_ingredient.brand.name %>
+                                        <%= recipe_ingredient.ingredient.name %></p>
+                                      <% end %>
+                                </li>
+
+                                <li>
+                                    <h5>Directions:</h5>
+                                    <p><%= @recipe.instructions %></p>
+                                </li>
+
+                                <li>
+                                    <h5>Convert to:</h5>
+                                    <a href="/recipes/<%= @recipe.id %>?<%= @convert_to %>=true"><p><%= @convert_to %></p></a>
+                                </li>
+
+
+                            </ul>
+
+
+                            <h2>Where is this drink being made?</h2>
+                            <div id="floating-panel">
+                              <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+                              <button onclick="changeGradient()">Change gradient</button>
+                              <button onclick="changeRadius()">Change radius</button>
+                              <button onclick="changeOpacity()">Change opacity</button>
+                            </div>
+                            <div id="map" style="width: 100%; height: 400px"></div>
+                            <script>
+
+                              var map, heatmap;
+
+                              function initMap() {
+                                var bounds = new google.maps.LatLngBounds();
+                                var locations = <%= raw @locations.to_json %>;
+
+                                map = new google.maps.Map(document.getElementById('map'), {
+                                  mapTypeId: 'satellite',
+                                  maxZoom: 12,
+                                  minZoom: 1
+                                });
+
+                                for (i = 0; i < locations.length; i++) { //Iterate over all the locations
+                                    var location = locations[i];
+                                    bounds.extend({lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)}); //will extend your bounds each time a location is added
+                                  } 
+                                   
+                                  //refit the map to the bounds as defined in your each loop
+                                  map.fitBounds(bounds);
+
+                                heatmap = new google.maps.visualization.HeatmapLayer({
+                                  data: getPoints(),
+                                  map: map
+                                });
+
+                              }
+
+                              function toggleHeatmap() {
+                                heatmap.setMap(heatmap.getMap() ? null : map);
+                              }
+
+                              function changeGradient() {
+                                var gradient = [
+                                  'rgba(0, 255, 255, 0)',
+                                  'rgba(0, 255, 255, 1)',
+                                  'rgba(0, 191, 255, 1)',
+                                  'rgba(0, 127, 255, 1)',
+                                  'rgba(0, 63, 255, 1)',
+                                  'rgba(0, 0, 255, 1)',
+                                  'rgba(0, 0, 223, 1)',
+                                  'rgba(0, 0, 191, 1)',
+                                  'rgba(0, 0, 159, 1)',
+                                  'rgba(0, 0, 127, 1)',
+                                  'rgba(63, 0, 91, 1)',
+                                  'rgba(127, 0, 63, 1)',
+                                  'rgba(191, 0, 31, 1)',
+                                  'rgba(255, 0, 0, 1)'
+                                ]
+                                heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+                              }
+
+                              function changeRadius() {
+                                heatmap.set('radius', heatmap.get('radius') ? null : 20);
+                              }
+
+                              function changeOpacity() {
+                                heatmap.set('opacity', heatmap.get('opacity') ? null : 0.9);
+                                heatmap.opacity = 0.9;
+                              }
+
+                              // Heatmap data: 500 Points
+                              function getPoints() {
+                                var locations = <%= raw @locations.to_json %>;
+                                var mapPositions = [];
+
+                                for (i = 0; i < locations.length; i++) { //Iterate over all the locations
+                                    var location = locations[i];
+
+                                    mapPositions.push(new google.maps.LatLng(parseFloat(location.latitude), parseFloat(location.longitude)));
+                                  } 
+
+                                return mapPositions;
+                                
+                              }
+                            </script>
+                            <script async defer
+                                src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["google_key"] %>&libraries=visualization&callback=initMap">
+                            </script>
+
+
+
+
+                            <% if current_user %>
+                              <h2>Have you made this drink?</h2>
+                              <!-- ........................ -->
+                              <%= form_for @timeline_drink do |f| %>
+                        
+                                  <%= f.label :image %>
+                                  <%= f.file_field :image %>
+                                  <%= f.label :comment %>:
+                                  <%= f.text_field :comment %>
+
+                                <%= f.hidden_field :user_id, value: current_user.id %>
+                                <%= f.hidden_field :recipe_id, value: @recipe.id %>
+
+                                <%= f.submit "I Made This!", class: "btn btn-xs btn-danger" %>
                               <% end %>
                             <% end %>
-                            <h2><%= @recipe.name %></h2>
-                            <div><%= render partial: "/recipes/ratings_star_layout", locals: {recipe: @recipe} %></div>
-                            <span><%= @recipe.description %></span>
-                        </header>
-
-                        <ul class="faq-items">
-                            <li>
-                                <h5>Ingredients:</h5>
-                                  <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
-                                    <p><%= recipe_ingredient.measure_unit(@unit) %>
-                                    <%= recipe_ingredient.brand.name %>
-                                    <%= recipe_ingredient.ingredient.name %></p>
-                                  <% end %>
-                            </li>
-
-                            <li>
-                                <h5>Directions:</h5>
-                                <p><%= @recipe.instructions %></p>
-                            </li>
-
-                            <li>
-                                <h5>Convert to:</h5>
-                                <a href="/recipes/<%= @recipe.id %>?<%= @convert_to %>=true"><p><%= @convert_to %></p></a>
-                            </li>
+                            <!-- ........................ -->
 
 
-                        </ul>
 
-
-                        <h2>Where is this drink being made?</h2>
-                        <div id="floating-panel">
-                          <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-                          <button onclick="changeGradient()">Change gradient</button>
-                          <button onclick="changeRadius()">Change radius</button>
-                          <button onclick="changeOpacity()">Change opacity</button>
-                        </div>
-                        <div id="map" style="width: 100%; height: 400px"></div>
-                        <script>
-
-                          var map, heatmap;
-
-                          function initMap() {
-                            var bounds = new google.maps.LatLngBounds();
-                            var locations = <%= raw @locations.to_json %>;
-
-                            map = new google.maps.Map(document.getElementById('map'), {
-                              mapTypeId: 'satellite',
-                              maxZoom: 12,
-                              minZoom: 1
-                            });
-
-                            for (i = 0; i < locations.length; i++) { //Iterate over all the locations
-                                var location = locations[i];
-                                bounds.extend({lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)}); //will extend your bounds each time a location is added
-                              } 
-                               
-                              //refit the map to the bounds as defined in your each loop
-                              map.fitBounds(bounds);
-
-                            heatmap = new google.maps.visualization.HeatmapLayer({
-                              data: getPoints(),
-                              map: map
-                            });
-
-                          }
-
-                          function toggleHeatmap() {
-                            heatmap.setMap(heatmap.getMap() ? null : map);
-                          }
-
-                          function changeGradient() {
-                            var gradient = [
-                              'rgba(0, 255, 255, 0)',
-                              'rgba(0, 255, 255, 1)',
-                              'rgba(0, 191, 255, 1)',
-                              'rgba(0, 127, 255, 1)',
-                              'rgba(0, 63, 255, 1)',
-                              'rgba(0, 0, 255, 1)',
-                              'rgba(0, 0, 223, 1)',
-                              'rgba(0, 0, 191, 1)',
-                              'rgba(0, 0, 159, 1)',
-                              'rgba(0, 0, 127, 1)',
-                              'rgba(63, 0, 91, 1)',
-                              'rgba(127, 0, 63, 1)',
-                              'rgba(191, 0, 31, 1)',
-                              'rgba(255, 0, 0, 1)'
-                            ]
-                            heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
-                          }
-
-                          function changeRadius() {
-                            heatmap.set('radius', heatmap.get('radius') ? null : 20);
-                          }
-
-                          function changeOpacity() {
-                            heatmap.set('opacity', heatmap.get('opacity') ? null : 0.9);
-                            heatmap.opacity = 0.9;
-                          }
-
-                          // Heatmap data: 500 Points
-                          function getPoints() {
-                            var locations = <%= raw @locations.to_json %>;
-                            var mapPositions = [];
-
-                            for (i = 0; i < locations.length; i++) { //Iterate over all the locations
-                                var location = locations[i];
-
-                                mapPositions.push(new google.maps.LatLng(parseFloat(location.latitude), parseFloat(location.longitude)));
-                              } 
-
-                            return mapPositions;
                             
-                          }
-                        </script>
-                        <script async defer
-                            src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["google_key"] %>&libraries=visualization&callback=initMap">
-                        </script>
 
+                            <div>
+                              <div>
 
+                                <div ng-click="recipe.visibility = !recipe.visibility">
+                                  <a ng-show="!recipe.visibility">
+                                    Click to show comments (<%= @recipe.return_comments.length %>)
+                                  </a>
+                                  <a ng-show="recipe.visibility">
+                                    Click to hide comments (<%= @recipe.return_comments.length %>)
+                                  </a>
+                                  <div ng-show="recipe.visibility">
+                                    
+                                    <% @recipe.return_comments.each do |drink| %>
 
-
-                        <% if current_user %>
-                          <h2>Have you made this drink?</h2>
-                          <!-- ........................ -->
-                          <%= form_for @timeline_drink do |f| %>
-                    
-                              <%= f.label :image %>
-                              <%= f.file_field :image %>
-                              <%= f.label :comment %>:
-                              <%= f.text_field :comment %>
-
-                            <%= f.hidden_field :user_id, value: current_user.id %>
-                            <%= f.hidden_field :recipe_id, value: @recipe.id %>
-
-                            <%= f.submit "I Made This!", class: "btn btn-xs btn-danger" %>
-                          <% end %>
-                        <% end %>
-                        <!-- ........................ -->
-
-
-
-                        <div ng-app="app">
-                          <div ng-controller="recipesCtrl" ng-init="setup()">
-
-                            <div ng-click="recipe.visibility = !recipe.visibility">
-                              <a ng-show="!recipe.visibility">
-                                Click to show comments (<%= @recipe.return_comments.length %>)
-                              </a>
-                              <a ng-show="recipe.visibility">
-                                Click to hide comments (<%= @recipe.return_comments.length %>)
-                              </a>
-                              <div ng-show="recipe.visibility">
-                                
-                                <% @recipe.return_comments.each do |drink| %>
-
-                                    <div class="col-xs-9">
-                                      <div class="item-block">
-                                        <div class="item-body">
-                                        <% if drink.image.file %>
-                                            <%= image_tag drink.image.preview %>
-                                        <% end %>
-
-                                        <% if current_user.ratings.any? %>
-                                          <% current_user.ratings.each do |rating| %>
-                                            <% if rating.recipe == @recipe %>
-                                              <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['gold_star'],ENV['grey_star'],rating.score,5)} %>
+                                        <div class="col-xs-9">
+                                          <div class="item-block">
+                                            <div class="item-body">
+                                            <% if drink.image.file %>
+                                                <%= image_tag drink.image.preview %>
                                             <% end %>
-                                          <% end %>
-                                        <% end %>
 
-                                          <p>Made on <%= human_time(drink.created_at.in_time_zone(drink.user.timezone)) %></p>
-                                          <% if drink.comment %>
-                                            <p><%= drink.user.username %> Says: <span class="comment">"<%= drink.comment %>"</span></p>
-                                          <% end %>
+                                            <% if current_user && current_user.ratings.any? %>
+                                              <% current_user.ratings.each do |rating| %>
+                                                <% if rating.recipe == @recipe %>
+                                                  <%= render partial: "/recipes/rated_stars", locals: {colors: star_array(ENV['gold_star'],ENV['grey_star'],rating.score,5), text: ""} %>
+                                                <% end %>
+                                              <% end %>
+                                            <% end %>
+
+                                              <p>Made on <%= human_time(drink.created_at.in_time_zone(drink.user.timezone)) %></p>
+                                              <% if drink.comment %>
+                                                <p><%= drink.user.username %> Says: <span class="comment">"<%= drink.comment %>"</span></p>
+                                              <% end %>
+                                            </div>
+
+                                          <footer>
+                                            <span>
+
+                                            </span>
+                                          </p>
+                                            <p class="status"><strong></strong></p>
+                                            <p class="status"><strong></strong></p>
+
+                                          </footer>
                                         </div>
+                                      </div>
 
-                                      <footer>
-                                        <span>
+                                    <% end %>
 
-                                        </span>
-                                      </p>
-                                        <p class="status"><strong></strong></p>
-                                        <p class="status"><strong></strong></p>
 
-                                      </footer>
-                                    </div>
                                   </div>
-
-                                <% end %>
-
+                                </div>
 
                               </div>
                             </div>
 
+                            </div>
+
                           </div>
-                        </div>
 
-                        </div>
 
-                      </div>
-                
+
+                       <%= render partial: "sidebar" %>
+                    
+
+            </div>
+          </section>
+
 
         </div>
-      </section>
-
-
+      </div>
     </div>
   </section>
+
+
 
   <!-- End Faq Page -->
 

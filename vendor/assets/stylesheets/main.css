@@ -323,6 +323,10 @@ dl.icon-holder dd {
 	background-size: cover;
 }
 
+#page-title h2 {
+  padding-top: 50px;
+}
+
 .title-text h6 {
 	font-weight: 400;
 	color: #fff;
@@ -847,7 +851,8 @@ footer {
 }
 
 .item-block header img {
-	width: 200px;
+	height: 150px;
+  width: auto;
 	margin-right: 30px;
 	float: left;
 	border-radius: 3px;

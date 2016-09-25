@@ -62,10 +62,10 @@
       <div class="pull-right user-login">
         <% if current_user %>
           <a class="btn btn-sm btn-primary" href="/users/<%= current_user.id %>"><%= current_user.username %>'s Cabinet</a>
-          <%= link_to "Log Out", "/logout", method: :delete %>
+          <%= link_to "Log Out", "/logout", method: :delete, class: "btn btn-sm btn-primary" %>
         <% else %>
           <a class="btn btn-sm btn-primary" href="/login">Login</a> or &nbsp;
-          <a href="/signup">Register</a>
+          <a class="btn btn-sm btn-primary" href="/signup">Register</a>
         <% end %>
       </div>
       <!-- END User account -->

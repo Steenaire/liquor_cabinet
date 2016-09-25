@@ -1,8 +1,9 @@
 <% recipes.each do |recipe| %>
-            <div class="col-xs-12">
+  <% if recipe %>
+            <div class="col-xs-12 recipe-cards">
               <div class="item-block">
-                <header>
-                  <% if recipe.card_image.file %>
+                <header class="main-index">
+                  <% if recipe.card_image && recipe.card_image.file %>
                     <%= image_tag recipe.card_image.preview %>
                   <% else %>
                     <i class="fa fa-5x fa-glass" aria-hidden="true"></i>
@@ -48,5 +49,6 @@
               </div>
             </div>
           <% end %>
+        <% end %>
           <!-- END Job item -->
           <!-- END Restaurant detail -->

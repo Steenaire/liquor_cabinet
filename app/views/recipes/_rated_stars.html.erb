@@ -1,3 +1,7 @@
+<p class="rating-info"><%= text %></p>
 <% colors.each do |color| %>
   <span style='color: <%= color %>;'><i class='fa fa-star 1' ></i></span>
+<% end %>
+<% if text == "Average Rating:" %>
+  <span class="review">(<%= recipe.total_ratings %>)</span>
 <% end %>
