@@ -12,27 +12,32 @@
           <h4 class="white">BROWSE DELICIOUS DRINK RECIPES AND BEGIN YOUR JOURNEY IN MIXOLOGY</h4>
           <h2 class="white margin-bottom-30">TICKLE YOUR TASTEBUDS</h2>
         </div>
+
+        
+
         <div class="search-form-wrap2">
-          <form class="clearfix" action="#">
-            <div class="input-field-wrap pull-left">
-              <input class="search-form-input" name="key-word" placeholder="e.g. Martini, Manhattan, Greenpoint" type="text" />
+
+            <div class="input-field-wrap">
+              <div ng-app="app">
+                <div ng-controller="recipesCtrl" ng-init="setup()">
+
+                  <datalist id="recipe_names">
+                    <option ng-repeat="recipe in recipes">{{recipe.name}}</option>
+                  </datalist>
+
+                  <div id="landing-page-search">
+                    <%= form_tag('/recipes/search') do %>
+                      <%= text_field_tag :search, "", list: "recipe_names", class: "search-form-input", placeholder: "e.g. Martini, Manhattan, Greenpoint" %>
+                      <%= submit_tag "FIND A COCKTAIL", class: "search-form-submit bgred-1 white" %>
+                    <% end %>
+                  </div>
+
+                </div>
+              </div>
+
+
             </div>
-            <div class="select-field-wrap pull-left">
-              <select class="search-form-select" name="categories">
-                <option class="options" value="all-categories">FEEL LIKE HAVING</option>
-                <option class="options" value="whiskey">WHISKEY</option>
-                <option class="options" value="gin">GIN</option>
-                <option class="options" value="vodka">VODKA</option>
-                <option class="options" value="tequila ">TEQUILA</option>
-                <option class="options" value="rum">RUM</option>
-                <option class="options" value="cognac">COGNAC</option>
-                <option class="options" value="liqueur">LIQUEUR</option>
-              </select>
-            </div>
-            <div class="submit-field-wrap pull-left">
-              <input class="search-form-submit bgred-1 white" name="key-word" type="submit" value="FIND A COCKTAIL" />
-            </div>
-          </form>
+
         </div>
 
       </div>
