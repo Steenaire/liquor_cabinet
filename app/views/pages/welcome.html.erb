@@ -123,30 +123,7 @@
 
             <footer>
               <p class="status">
-                <% if recipe.average_rating == 5 %>
-                  <span style='color: #ED1C3B;'>
-                    <i class='fa fa-star' ></i> </span>
-                  <span style='color: #ED1C3B;'>
-                    <i class='fa fa-star' ></i> </span>
-                  <span style='color: #ED1C3B;'>
-                    <i class='fa fa-star' ></i> </span>
-                  <span style='color: #ED1C3B;'>
-                    <i class='fa fa-star' ></i> </span>
-                  <span style='color: #ED1C3B;'>
-                    <i class='fa fa-star' ></i> </span>
-                <% elsif recipe.average_rating == 4 %>
-                  <span style='color: #ED1C3B;'>
-                    <i class='fa fa-star' ></i> </span>
-                  <span style='color: #ED1C3B;'>
-                    <i class='fa fa-star' ></i> </span>
-                  <span style='color: #ED1C3B;'>
-                    <i class='fa fa-star' ></i> </span>
-                  <span style='color: #ED1C3B;'>
-                    <i class='fa fa-star' ></i> </span>
-                  <span style='color: #CCCCCC;'>
-                    <i class='fa fa-star' ></i> </span>
-                <% end %>
-                (<span><%= recipe.total_ratings %></span>)
+                <%= render partial: "/recipes/ratings_star_layout", locals: {recipe: recipe} %>
               </p>
               <p class="status"><strong></strong> </p>
               <p class="status"><strong></strong> </p>

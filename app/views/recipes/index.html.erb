@@ -7,14 +7,14 @@
       <div class="Page-title">
         <div class="col-md-12 text-center">
           <div class="title-text">
-            <h6>Great Service</h6>
+            <h6></h6>
             <h2 class="page-title">Find your perfect drink</h2>
           </div>
         </div>
         <div class="col-md-12 text-center">
           <div class="breadcrumb-trail breadcrumbs">
-            <span class="trail-begin"><a href="#">Home</a></span>
-            <span class="sep">/</span> <span class="trail-end">Restaurant List</span>
+            <span class="trail-begin"></span>
+            <span class="sep">/</span> <span class="trail-end"></span>
           </div>
         </div>
       </div>
@@ -34,6 +34,21 @@
 
     <div class="row">
       <!-- Main row -->
+
+      <div class="col-md-9">
+
+        <div class="row">
+          <!-- Drink detail -->
+          <!-- Job item -->
+          <%= paginate @recipes %>
+          <%= render partial: "recipe_cards", locals: {recipes: @recipes} %>
+        </div>
+        <%= paginate @recipes %>
+
+      </div>
+
+
+
 
       <div class="col-md-3">
         <aside>
@@ -82,6 +97,8 @@
               </div>
             </div>
 
+            <!-- BEGINNING OF SIDEBAR -->
+
             <div class="filter-mobileTop" id="filterMenuTop">
               Filter <span class="text-right"><i class="fa fa-angle-down"></i></span>
             </div>
@@ -90,16 +107,16 @@
               <div class="filter-option-content">
                 <div class="restaurant-status-section">
                   <div class="restaurant-status-title gray-deep-bg">
-                    <i class="fa fa-glass" aria-hidden="true"></i> Status
+                    <i class="fa fa-glass" aria-hidden="true"></i> Search Drinks
                   </div>
                   <div class="restaurant-status-filter">
-                    <ul class="list-unstyled">
-                      <li>
-
-                        <input type="checkbox" id="restaurantOpen">
-                        <label for="restaurantOpen"><i class="icon-check custom-check" aria-hidden="true"></i> Restaurants Now Open</label>
-                      </li>
-                    </ul>
+                    <div class="form-group navbar-form navbar-left">
+                      <p>Search most popular drinks by city</p>
+                      <%= form_tag('/recipes/search') do %>
+                        <%= text_field_tag :city %>
+                        
+                      <% end %>
+                    </div>
 
                   </div>
                 </div>
@@ -154,18 +171,9 @@
 
 
       </div>
+<!-- END OF SIDEBAR -->
 
-      <div class="col-md-9">
 
-        <div class="row">
-          <!-- Drink detail -->
-          <!-- Job item -->
-          <%= paginate @recipes %>
-          <%= render partial: "recipe_cards", locals: {recipes: @recipes} %>
-        </div>
-        <%= paginate @recipes %>
-
-      </div>
 
     </div>
     <!-- Main row end -->
