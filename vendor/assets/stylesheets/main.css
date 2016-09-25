@@ -1710,7 +1710,25 @@ a.down-app-btn:hover, .down-app-btn:hover {
 .search-form-wrap2 form .submit-field-wrap{}
 .search-form-wrap2 form .submit-field-wrap input.search-form-submit{}
 
+#landing-page-search form .search-form-input {
+  width: 80%;
+  height:56px;
+  line-height:56px;
+  font-size:14px;
+  text-transform:capitalize;
+  box-shadow:none;
+  border:none;
+}
 
+#landing-page-search form .search-form-submit {
+  width: 18%;
+  height:56px;
+  line-height:56px;
+  font-size:14px;
+  text-transform:capitalize;
+  box-shadow:none;
+  border:none;
+}
 
 
 /*---------------------- section tile ---------------------*/
@@ -6789,7 +6807,7 @@ ol.process li:active i {
     .order-summary {
         background-color: transparent;
         margin-bottom: 20px;
-		padding: 0;
+		    padding: 0;
     }
     .section-404 p {
         padding: 0 0;

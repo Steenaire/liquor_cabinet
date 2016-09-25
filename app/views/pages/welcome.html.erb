@@ -12,10 +12,25 @@
           <h4 class="white">BROWSE DELICIOUS DRINK RECIPES AND BEGIN YOUR JOURNEY IN MIXOLOGY</h4>
           <h2 class="white margin-bottom-30">TICKLE YOUR TASTEBUDS</h2>
         </div>
+
+        
+
         <div class="search-form-wrap2">
-          <form class="clearfix" action="#">
-            <div class="input-field-wrap pull-left">
-              <input class="search-form-input" name="key-word" placeholder="e.g. Martini, Manhattan, Greenpoint" type="text" />
+
+            <div class="input-field-wrap">
+
+              <datalist id="recipe_names">
+                <option ng-repeat="recipe in recipes">{{recipe.name}}</option>
+              </datalist>
+
+              <div id="landing-page-search">
+                <%= form_tag('/recipes/search') do %>
+                  <%= text_field_tag :search, "", list: "recipe_names", class: "search-form-input", placeholder: "e.g. Martini, Manhattan, Greenpoint" %>
+                  <%= submit_tag "FIND A COCKTAIL", class: "search-form-submit bgred-1 white" %>
+                <% end %>
+              </div>
+
+              <!-- <input class="search-form-input" name="key-word" placeholder="e.g. Martini, Manhattan, Greenpoint" type="text" />
             </div>
             <div class="select-field-wrap pull-left">
               <select class="search-form-select" name="categories">
@@ -30,9 +45,11 @@
               </select>
             </div>
             <div class="submit-field-wrap pull-left">
-              <input class="search-form-submit bgred-1 white" name="key-word" type="submit" value="FIND A COCKTAIL" />
+              <input class="search-form-submit bgred-1 white" name="key-word" type="submit" value="FIND A COCKTAIL" /> -->
+
+
             </div>
-          </form>
+
         </div>
 
       </div>
