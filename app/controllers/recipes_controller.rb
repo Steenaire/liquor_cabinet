@@ -57,6 +57,7 @@ class RecipesController < ApplicationController
     @convert_to = "metric"
     @unit = "oz"
     @locations = @recipe.locations_made
+
     if params[:metric]
       @recipe.recipe_ingredients.each do |recipe_ingredient|
         recipe_ingredient.quantity = recipe_ingredient.oz_to_ml
@@ -75,17 +76,21 @@ class RecipesController < ApplicationController
     if params[:search]
       recipes = Recipe.search(params[:search])
       @recipes = Kaminari.paginate_array(recipes).page params[:page]
+      @random_recipe = Recipe.all.sample
       render :index
     elsif params[:ingredient_search]
       recipes = Recipe.ingredient_search(params[:ingredient_search])
       @recipes = Kaminari.paginate_array(recipes).page params[:page]
+      @random_recipe = Recipe.all.sample
       render :index
     elsif params[:city]
       recipes = Recipe.by_city(params[:city])
       @recipes = Kaminari.paginate_array(recipes).page params[:page]
+      @random_recipe = Recipe.all.sample
       render :index
     else
       @recipes = Recipe.all.page params[:page]
+      @random_recipe = Recipe.all.sample
     end
   end
 
