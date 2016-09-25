@@ -32,9 +32,26 @@ class RecipesController < ApplicationController
       @recipes = Recipe.all.page params[:page]
     end
 
+    @random_recipe = Recipe.all.sample
+
   end
 
   def show
+    if current_user
+      counter = 0
+      current_user.visits.each do |visit|
+        if visit.recipe.id == params[:id].to_i
+          counter += 1
+        end
+      end
+      unless counter > 0
+        if current_user.visits.length == 5
+          current_user.visits.first.destroy
+        end
+        Visit.create!(user_id: current_user.id, recipe_id: params[:id])
+      end
+    end
+
     @timeline_drink = TimelineDrink.new
     @recipe = Recipe.find_by(id: params[:id])
     @convert_to = "metric"
@@ -50,6 +67,7 @@ class RecipesController < ApplicationController
       @recipe = Recipe.find_by(id: params[:id])
       @unit = "oz"
     end
+    @random_recipe = Recipe.all.sample
   
   end
 

@@ -27,39 +27,44 @@
 
 <main class="main-content">
 
+  <div ng-app="app">
+    <div ng-controller="recipesCtrl" ng-init="setup()">
 
 
-  <div class="container internal-body-container">
-    <!-- Main container -->
 
-    <div class="row">
-      <!-- Main row -->
-
-      <div class="col-md-9">
+      <div class="container internal-body-container">
+        <!-- Main container -->
 
         <div class="row">
-          <!-- Drink detail -->
-          <!-- Job item -->
-          <%= paginate @recipes %>
-          <%= render partial: "recipe_cards", locals: {recipes: @recipes} %>
+          <!-- Main row -->
+
+          <div class="col-md-9">
+
+            <div class="row">
+              <!-- Drink detail -->
+              <!-- Job item -->
+              <%= paginate @recipes %>
+              <%= render partial: "recipe_cards", locals: {recipes: @recipes} %>
+            </div>
+            <%= paginate @recipes %>
+
+          </div>
+
+
+
+    <!-- BEGINNING OF SIDEBAR -->
+          <%= render partial: "sidebar" %>
+    <!-- END OF SIDEBAR -->
+
+
+
         </div>
-        <%= paginate @recipes %>
+        <!-- Main row end -->
 
       </div>
-
-
-
-<!-- BEGINNING OF SIDEBAR -->
-      <%= render partial: "sidebar" %>
-<!-- END OF SIDEBAR -->
-
-
-
-    </div>
-    <!-- Main row end -->
-
-  </div>
   <!-- Main container end -->
+    </div>
+  </div>
 
 </main>
 

@@ -50,7 +50,7 @@
                         <div class="inner">
                             <header class="section-header text-left">
                                 <% if @recipe.card_image.file %>
-                                  <%= image_tag @recipe.card_image, class:"show-card-image" %>
+                                  <%= image_tag @recipe.card_image %>
                                   <% if @recipe.photo_credit_url && @recipe.photo_credit %>
                                     <center>
                                       <p>

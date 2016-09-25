@@ -11,6 +11,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
   has_many :timeline_drinks
   has_many :ratings
+  has_many :visits
 
   belongs_to :user
 

@@ -17,15 +17,15 @@
                     <div>
                       <div class="input-group col-md-12">
 
-                      
-                        <div ng-app="app">
-                          <div ng-controller="recipesCtrl" ng-init="setup()">
+
+                        <div>
+                          <div>
 
                             <datalist id="recipe_names">
                               <option ng-repeat="recipe in recipes">{{recipe.name}}</option>
                             </datalist>
                             <div class="form-group navbar-form navbar-left">
-                              <p>Search recipes by name</p>
+                              <p>by name</p>
                               <%= form_tag('/recipes/search') do %>
                                 <%= text_field_tag :search, "", list: "recipe_names" %>
                                 <br>
@@ -36,7 +36,7 @@
                               <option ng-repeat="ingredient in ingredients">{{ingredient.name}}</option>
                             </datalist>
                             <div class="form-group navbar-form navbar-left">
-                              <p>Search recipes by ingredient</p>
+                              <p>by ingredient</p>
                               <%= form_tag('/recipes/search') do %>
                                 <%= text_field_tag :ingredient_search, "", list: "ingredient_names" %>
                                 <br>
@@ -46,7 +46,7 @@
                           </div>
                         </div>
                         <div class="form-group navbar-form navbar-left">
-                          <p>Search most popular drinks by city</p>
+                          <p>by city</p>
                           <%= form_tag('/recipes/search') do %>
                             <%= text_field_tag :city %>
                             <br>
@@ -59,41 +59,40 @@
                 </div>
                 <div class="restaurant-service-section">
                   <div class="restaurant-service-title gray-deep-bg">
-                    <i class="fa fa-glass" aria-hidden="true"></i> Service
+                    <i class="fa fa-glass" aria-hidden="true"></i> Try Something New
                   </div>
                   <div class="restaurant-service-filter">
-                    <ul class="list-unstyled">
-                      <li>
-                        <input type="checkbox" name="services" id="serviceDelivery" value="Delivery" checked>
-                        <label for="serviceDelivery"><i class="icon-check custom-check" aria-hidden="true"></i> Delivery</label>
-                      </li>
-                      <li>
-                        <input type="checkbox" name="services" id="serviceCollection" value="Collection" checked>
-                        <label for="serviceCollection"><i class="icon-check custom-check" aria-hidden="true"></i> Collection</label>
-                      </li>
-                      <li>
-                        <input type="checkbox" name="services" id="serviceReservation" value="Reservation" checked>
-                        <label for="serviceReservation"><i class="icon-check custom-check" aria-hidden="true"></i> Reservation</label>
-                      </li>
-                    </ul>
+                    <a href ="/recipes/<%= @random_recipe.id %>">
+                      <ul class="list-unstyled">
+                        <li>
+                          <% if @random_recipe.card_image && @random_recipe.card_image.file %>
+                            <%= image_tag @random_recipe.card_image.thumb %>
+                          <% end %>
+                          <%= @random_recipe.name %>
+                        </li>
+                      </ul>
+                    </a>
                   </div>
 
                 </div>
 
                 <div class="restaurant-cuisines-section">
                   <div class="restaurant-cuisines-title gray-deep-bg">
-                    <i class="fa fa-glass" aria-hidden="true"></i> Cuisine
+                    <i class="fa fa-glass" aria-hidden="true"></i> Previously Viewed
                   </div>
                   <div class="restaurant-cuisines-filter">
                     <ul class="list-unstyled">
-                      <li>
-                        <input type="checkbox" value="" name="allcuisines" id="allCuisines" checked>
-                        <label for="allCuisines"><i class="icon-check custom-check" aria-hidden="true"></i> View All</label>
-                      </li>
-                      <li>
-                        <input type="checkbox" value="" name="allcuisines" id="SigleCuisine">
-                        <label for="SigleCuisine"><i class="icon-check custom-check" aria-hidden="true"></i> Indian</label>
-                      </li>
+                      <% visits.each do |visit| %>
+                        <a href = "/recipes/<%= visit.recipe.id %>">
+                          <li>
+                            <% if visit.recipe.card_image && visit.recipe.card_image.file %>
+                              <%= image_tag visit.recipe.card_image.thumb %>
+                            <% end %>
+                            <%= visit.recipe.name %>
+                          </li>
+                        </a>
+                      <% end %>
+                      
 
                     </ul>
                   </div>

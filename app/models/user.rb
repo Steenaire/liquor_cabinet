@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :recipes
   has_many :timeline_drinks
   has_many :ratings
+  has_many :visits
 
   geocoded_by :address   # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
