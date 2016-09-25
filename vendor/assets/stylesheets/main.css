@@ -1923,8 +1923,11 @@ a.down-app-btn:hover, .down-app-btn:hover {
     margin: 0 auto;*/
 }
 
-.navbar .logo,.navbar .logo-alt,.navbar .logo-wrapper {
+.navbar .logo,.navbar .logo-alt,.navbar .logo-wrapper img {
 	display: inline-block;
+  height: 70px;
+  border-radius: 100%;
+  padding-left: 10px;
 }
 
 .navbar .logo-alt img,.navbar .logo img {
