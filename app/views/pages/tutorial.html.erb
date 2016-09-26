@@ -49,13 +49,13 @@
                       <p>To get you started, let's check if you have some common ingredients in stock...</p>
                       <p>The power of Liquor Cabinet comes from being able to add and remove which ingredients you currently have, allowing you to return a list of drink recipes that only require the ingredients you have - instead of scrolling through endless drinks that you can't make!</p>
                   </li>
-                  <li>
+                  <li ng-show="!visibility">
                     <h5>Do you have any gin?</h5>
                       <p>
                         <%= link_to "/cabinets?user_id=#{current_user.id}&ingredient_id=1&brand_id=2", method: :post do %>
-                          <button>yes</button>
+                          <button ng-click="visibility = !visibility">yes</button>
                         <% end %>
-                          <button>no</button>
+                          <button ng-click="visibility = !visibility">no</button>
                       </p>
                   </li>
                   <li>
