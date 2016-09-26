@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   post '/cabinets', to: 'cabinets#create'
 
   get '/', to: 'pages#welcome'
+  get '/tutorial', to: 'pages#tutorial'
 
   post '/ratings', to: 'ratings#create'
 
