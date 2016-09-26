@@ -9,6 +9,7 @@ class PagesController < ApplicationController
       flash[:warning] = "Please sign in first"
       redirect_to '/login'
     end
+    @ingredients = Ingredient.first(10)
   end
 
 end
