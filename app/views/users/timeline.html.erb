@@ -36,7 +36,17 @@
                   <a href="/users/<%= @user.id %>/cabinet"><button>Liquor Cabinet</button></a>
                   <a href="/users/<%= @user.id %>/recipes"><button>Recipes</button></a>
                   <a href="/users/<%= @user.id %>/timeline"><button>Drink Timeline</button></a>
+                  <hr>
                   <!-- .................................................... -->
+
+                  <% unless @timeline_drinks.any? %>
+                    <% if current_user.id == @user.id %>
+                      <p>You haven't added any drinks to your timeline yet.</p>
+                      <a href="/recipes/">Go check out some drinks!</a>
+                    <% else %>
+                      <p><%= @user.username %> hasn't added any drinks to their timeline yet.</p>
+                    <% end %>
+                  <% end %>
 
                   <% if @timeline_drinks && @timeline_drinks.any? %>
                     <%= paginate @timeline_drinks %>

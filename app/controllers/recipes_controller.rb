@@ -11,18 +11,22 @@ class RecipesController < ApplicationController
         no_brand_recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)
         recipes = Recipe.brand_matters_garnish_matters(no_brand_recipes,users_cabinets)
         @recipes = Kaminari.paginate_array(recipes).page params[:page]
+        flash[:success] = "These are the drinks you can make (requiring garnish and brand)!"
 
       elsif params[:commit]&&params[:require_garnish]
         recipes = Recipe.ignore_brand_garnish_matters(recipes_all,users_ingredients)
         @recipes = Kaminari.paginate_array(recipes).page params[:page]
+        flash[:success] = "These are the drinks you can make (requiring garnish and ignoring brand)!"
 
       elsif params[:commit]&&params[:require_brand]
         recipes = Recipe.brand_matters_ignore_garnish(recipes_all,users_cabinets)
         @recipes = Kaminari.paginate_array(recipes).page params[:page]
+        flash[:success] = "These are the drinks you can make (requiring brand and ignoring garnish)!"
 
       elsif params[:commit]
         recipes = Recipe.ignore_brand_ignore_garnish(recipes_all,users_cabinets)
         @recipes = Kaminari.paginate_array(recipes).page params[:page]
+        flash[:success] = "These are the drinks you can make (ignoring garnish and brand)!"
 
       else
         @recipes = Recipe.all.page params[:page]

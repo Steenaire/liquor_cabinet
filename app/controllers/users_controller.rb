@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
       session[:user_id] = user.id
       flash[:success] = "Successfully created account! Welcome, #{params[:username]}!"
-      redirect_to "/"
+      redirect_to "/tutorial"
     else
       flash[:danger] = "Invalid email or password."
       redirect_to "/signup"
@@ -45,6 +45,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       @recipes = Recipe.where(user_id: @user.id)
       @timeline_drinks = @user.timeline_drinks.order({ created_at: :desc }).page params[:page]
+      @random_recipe = Recipe.all.sample
     else
       flash[:warning] = "Please sign in to see user cabinets"
       redirect_to '/login'
@@ -56,6 +57,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       @recipes = Recipe.where(user_id: @user.id)
       @timeline_drinks = @user.timeline_drinks.order({ created_at: :desc }).page params[:page]
+      @random_recipe = Recipe.all.sample
     else
       flash[:warning] = "Please sign in to see user cabinets"
       redirect_to '/login'
@@ -67,6 +69,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       @recipes = Recipe.where(user_id: @user.id)
       @timeline_drinks = @user.timeline_drinks.order({ created_at: :desc }).page params[:page]
+      @random_recipe = Recipe.all.sample
     else
       flash[:warning] = "Please sign in to see user cabinets"
       redirect_to '/login'
@@ -78,6 +81,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       @recipes = Recipe.where(user_id: @user.id).page params[:page]
       @timeline_drinks = @user.timeline_drinks.order({ created_at: :desc }).page params[:page]
+      @random_recipe = Recipe.all.sample
     else
       flash[:warning] = "Please sign in to see user cabinets"
       redirect_to '/login'
