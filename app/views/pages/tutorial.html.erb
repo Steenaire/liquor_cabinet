@@ -41,45 +41,54 @@
               <span>Tutorial</span>
               <h2>How to use you inventory</h2>
             </header>
+            <div ng-app="app">
+              <div ng-controller="recipesCtrl" ng-init="setup()">
+                <ul class="faq-items">
+                  <li>
+                    <h5>Thank you for joining Liquor Cabinet Inventory!</h5>
+                      <p>To get you started, let's check if you have some common ingredients in stock...</p>
+                      <p>The power of Liquor Cabinet comes from being able to add and remove which ingredients you currently have, allowing you to return a list of drink recipes that only require the ingredients you have - instead of scrolling through endless drinks that you can't make!</p>
+                  </li>
+                  <li>
+                    <h5>Do you have any gin?</h5>
+                      <p>
+                        <%= link_to "/cabinets?user_id=#{current_user.id}&ingredient_id=1&brand_id=2", method: :post do %>
+                          <button>yes</button>
+                        <% end %>
+                          <button>no</button>
+                      </p>
+                  </li>
+                  <li>
+                    <h5>Do you have any whiskey?</h5>
+                    <p></p>
+                  </li>
+                  <li>
+                    <h5>Do you have any dry vermouth?</h5>
+                    <p></p>
+                  </li>
+                  <li>
+                    <h5>Do you have any sweet vermouth?</h5>
+                    <p></p>
+                  </li>
+                  <li>
+                    <h5>Do you have any sweet vermouth?</h5>
+                    <p></p>
+                  </li>
+                  <li>
+                    <h5>Do you have any soda water?</h5>
+                    <p></p>
+                  </li>
+                  <li>
+                    <h5>Do you have any scotch?</h5>
+                    <p></p>
+                  </li>
+                </ul>
+                <p>Now it is time to see if there are any drinks you can make with these ingredients...</p>
+                <p>Click here to see!</p>
 
-            <ul class="faq-items">
-              <li>
-                <h5>Thank you for joining Liquor Cabinet Inventory!</h5>
-                  <p>To get you started, let's check if you have some common ingredients in stock...</p>
-                  <p>The power of Liquor Cabinet comes from being able to add and remove which ingredients you currently have, allowing you to return a list of drink recipes that only require the ingredients you have - instead of scrolling through endless drinks that you can't make!</p>
-              </li>
-              <li>
-                <h5>Do you have any gin?</h5>
-                <p></p>
-              </li>
-              <li>
-                <h5>Do you have any whiskey?</h5>
-                <p></p>
-              </li>
-              <li>
-                <h5>Do you have any dry vermouth?</h5>
-                <p></p>
-              </li>
-              <li>
-                <h5>Do you have any sweet vermouth?</h5>
-                <p></p>
-              </li>
-              <li>
-                <h5>Do you have any sweet vermouth?</h5>
-                <p></p>
-              </li>
-              <li>
-                <h5>Do you have any soda water?</h5>
-                <p></p>
-              </li>
-              <li>
-                <h5>Do you have any scotch?</h5>
-                <p></p>
-              </li>
-            </ul>
-            <p>Now it is time to see if there are any drinks you can make with these ingredients...</p>
+              </div>
+            </div>
           </div>
-
         </div>
       </section>
     </div>

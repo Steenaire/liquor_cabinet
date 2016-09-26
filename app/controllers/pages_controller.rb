@@ -5,6 +5,10 @@ class PagesController < ApplicationController
   end
 
   def tutorial
+    unless current_user
+      flash[:warning] = "Please sign in first"
+      redirect_to '/login'
+    end
   end
 
 end
