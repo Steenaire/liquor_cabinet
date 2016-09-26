@@ -39,10 +39,7 @@
           <div class="col-md-9">
 
             <div class="contact-details myaccount-contact">
-              <a href="/users/<%= @user.id %>/cabinet"><button><%= @user.username %>'s Liquor Cabinet</button></a>
-              <a href="/users/<%= @user.id %>/recipes"><button><%= @user.username %>'s Recipes</button></a>
-              <a href="/users/<%= @user.id %>/timeline"><button><%= @user.username %>'s Drink Timeline</button></a>
-              <hr>
+              <%= render partial: "/users/user_navigation" %>
               <div>
                 <% if current_user && current_user.id == @user.id %>
                   <h3>See What Drinks You Can Make:</h3>
@@ -55,9 +52,10 @@
                     <%= check_box_tag :require_garnish %>
                     <%= submit_tag "See what you can make" %>
                   <% end %>
+                  <hr>
                 <% end %>
               </div>
-              <hr>
+              
                 <% if current_user && current_user.id == @user.id %>
                   <p>Add a new ingredient to your cabinet:
 
@@ -131,7 +129,7 @@
           </div>
 
           <!-- END OF DELIVERY ADDRESS SECTION -->
-          
+
         </div>
       </div>
     </div>

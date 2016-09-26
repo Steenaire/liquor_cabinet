@@ -39,9 +39,7 @@
           <div class="col-md-9">
 
             <div class="contact-details myaccount-contact">
-              <a href="/users/<%= @user.id %>/cabinet"><button>Liquor Cabinet</button></a>
-              <a href="/users/<%= @user.id %>/recipes"><button>Recipes</button></a>
-              <a href="/users/<%= @user.id %>/timeline"><button>Drink Timeline</button></a>
+              <%= render partial: "/users/user_navigation" %>
             </div>
 
           <!-- END OF DELIVERY ADDRESS SECTION -->

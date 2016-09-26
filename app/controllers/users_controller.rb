@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   def timeline
     if current_user
       @user = User.find(params[:id])
-      @recipes = Recipe.where(user_id: @user.id)
+      @recipes = Recipe.where(user_id: @user.id).page params[:page]
       @timeline_drinks = @user.timeline_drinks.order({ created_at: :desc }).page params[:page]
       @random_recipe = Recipe.all.sample
     else
