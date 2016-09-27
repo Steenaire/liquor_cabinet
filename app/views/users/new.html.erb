@@ -33,49 +33,49 @@
     <img src="img/logo_gray.png" alt="">
     <h1>Sign Up for Liquor Cabinet Inventory</h1>
 
-    <%= form_tag '/users', method: :post do %>
+    <%= form_for @user do |f| %>
 
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon">
-            <%= label_tag :username %>
-            <%= text_field_tag :username %>
+            <%= f.label :username %>
+            <%= f.text_field :username %>
           </span>
         </div>
       </div>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon">
-            <%= label_tag :email %>
-            <%= text_field_tag :email, "", type: "email" %>
+            <%= f.label :email %>
+            <%= f.text_field :email, type: "email" %>
           </span>
         </div>
       </div>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon">
-            <%= label_tag :zip_code %>
-            <%= text_field_tag :zip_code %>
+            <%= f.label :zip_code %>
+            <%= f.text_field :zip_code %>
           </span>
         </div>
       </div>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon">
-            <%= label_tag :password %>
-            <%= text_field_tag :password, "", type: "password" %>
+            <%= f.label :password %>
+            <%= f.text_field :password, type: "password" %>
           </span>
         </div>
       </div>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon">
-            <%= label_tag :password_confirmation %>
-            <%= text_field_tag :password_confirmation, "", type: "password" %>
+            <%= f.label :password_confirmation %>
+            <%= f.text_field :password_confirmation, type: "password" %>
           </span>
         </div>
       </div>
-      <%= submit_tag "Create Account" %>
+      <%= f.submit "Create Account" %>
 
     <% end %>
 

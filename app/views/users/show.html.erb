@@ -40,6 +40,16 @@
 
             <div class="contact-details myaccount-contact">
               <%= render partial: "/users/user_navigation" %>
+
+              <% if @user.avatar && @user.avatar.file %>
+                <%= image_tag @user.avatar.preview, class: "user-avatar" %>
+              <% end %>
+
+              <%= form_for @user do |f| %>
+                <%= f.file_field :avatar %>
+                <%= f.submit "Upload/Change Avatar", class: "btn btn-xs btn-danger" %>
+              <% end %>
+
             </div>
 
           <!-- END OF DELIVERY ADDRESS SECTION -->
