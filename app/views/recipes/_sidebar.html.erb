@@ -10,50 +10,95 @@
             <div class="leftside-filter" id="mobileFilter">
               <div class="filter-option-content">
                 <div class="restaurant-status-section">
-                  <div class="restaurant-status-title gray-deep-bg">
-                    <i class="fa fa-glass" aria-hidden="true"></i> Search Drinks...
-                  </div>
-                  <div class="restaurant-status-filter">
-                    <div>
-                      <div class="input-group col-md-12">
+                  <a>
+                    <div class="restaurant-status-title gray-deep-bg" ng-click="search=!search">
+                      <i class="fa fa-glass" aria-hidden="true"></i>
+                      <span>Search Drinks...</span>
+                    </div>
+                  </a>
+                  <div class="panel" ng-show="search">
+                    <div class="restaurant-status-filter">
+                      <div>
+                        <div class="input-group col-md-12">
 
 
-                        <div>
                           <div>
+                            <div>
 
-                            <datalist id="recipe_names">
-                              <option ng-repeat="recipe in recipes">{{recipe.name}}</option>
-                            </datalist>
-                            <div class="form-group navbar-form navbar-left">
-                              <%= form_tag('/recipes/search') do %>
-                                <%= text_field_tag :search, "", list: "recipe_names", placeholder: "...by name" %>
-                                <br>
-                              <% end %>
+                              <datalist id="recipe_names">
+                                <option ng-repeat="recipe in recipes">{{recipe.name}}</option>
+                              </datalist>
+                              <div class="form-group navbar-form navbar-left">
+                                <%= form_tag('/recipes/search') do %>
+                                  <%= text_field_tag :search, "", list: "recipe_names", placeholder: "...by name" %>
+                                  <br>
+                                <% end %>
+                              </div>
+
+                              <datalist id="ingredient_names">
+                                <option ng-repeat="ingredient in ingredients">{{ingredient.name}}</option>
+                              </datalist>
+                              <div class="form-group navbar-form navbar-left">
+                                <%= form_tag('/recipes/search') do %>
+                                  <%= text_field_tag :ingredient_search, "", list: "ingredient_names", placeholder: "...by ingredient" %>
+                                  <br>
+                                <% end %>
+                              </div>
+
                             </div>
-
-                            <datalist id="ingredient_names">
-                              <option ng-repeat="ingredient in ingredients">{{ingredient.name}}</option>
-                            </datalist>
-                            <div class="form-group navbar-form navbar-left">
-                              <%= form_tag('/recipes/search') do %>
-                                <%= text_field_tag :ingredient_search, "", list: "ingredient_names", placeholder: "...by ingredient" %>
-                                <br>
-                              <% end %>
-                            </div>
-
+                          </div>
+                          <div class="form-group navbar-form navbar-left">
+                            <%= form_tag('/recipes/search') do %>
+                              <%= text_field_tag :city, "", placeholder: "...by city" %>
+                              <br>
+                            <% end %>
                           </div>
                         </div>
-                        <div class="form-group navbar-form navbar-left">
-                          <%= form_tag('/recipes/search') do %>
-                            <%= text_field_tag :city, "", placeholder: "...by city" %>
-                            <br>
-                          <% end %>
-                        </div>
                       </div>
-                    </div>
 
+                    </div>
                   </div>
                 </div>
+
+                <% if current_user %>
+                  <div class="restaurant-service-section">
+                    <a>
+                      <div class="restaurant-service-title gray-deep-bg" ng-click="user=!user">
+                        <i class="fa fa-glass" aria-hidden="true"></i> User Pages...
+                      </div>
+                    </a>
+                    <div class="panel" ng-show="user">
+                      <div class="restaurant-service-filter">
+                        <a href ="/recipes/<%= @random_recipe.id %>">
+                          <ul class="list-unstyled">
+                            <li>
+                              <a href="/users/<%= current_user.id %>">
+                                Your Profile
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/users/<%= current_user.id %>/cabinet">
+                                Your Cabinet Inventory
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/users/<%= current_user.id %>/recipes">
+                                Your Recipes
+                              </a>
+                            </li>
+                            <li>
+                              <a href="/users/<%= current_user.id %>/timeline">
+                                Your Drink Timeline
+                              </a>
+                            </li>
+                          </ul>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+
+
                 <div class="restaurant-service-section">
                   <div class="restaurant-service-title gray-deep-bg">
                     <i class="fa fa-glass" aria-hidden="true"></i> Try Something Random
