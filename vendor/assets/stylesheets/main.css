@@ -250,6 +250,11 @@ dl.icon-holder dd {
   height: 300px;
 }
 
+.blog {
+  width: 100%;
+  height: 600px;
+}
+
 .leftside-filter {
 	background-color: #fff;
 	border: 1px solid #f6f6f6;

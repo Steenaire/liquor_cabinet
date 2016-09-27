@@ -44,7 +44,7 @@
 
               <%= form_for @blog do |f| %>
                 <%= f.text_field :title %>
-                <%= f.cktext_area :content, rows: 10 %>
+                <%= f.cktext_area :content, rows: 10, class: "blog" %>
                 <%= f.hidden_field :user_id, value: current_user.id %>
                 <%= f.submit "Publish", class: "btn btn-xs btn-danger" %>
               <% end %>

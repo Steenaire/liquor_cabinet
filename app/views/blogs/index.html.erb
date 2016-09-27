@@ -40,7 +40,8 @@
             <div class="contact-details myaccount-contact">
               <%= paginate @blogs %>
                 <% @blogs.each do |blog| %>
-                  <h2><%= blog.title %> <a href="/users/<%= blog.user.id %>">by <%= blog.user.username %></a></h2>
+                  <h2><%= blog.title %> <%= human_time(blog.created_at) %>
+                  <a href="/users/<%= blog.user.id %>">by <%= blog.user.username %></a></h2>
                   <%= simple_format(blog.content) %>
                 <% end %>
               <%= paginate @blogs %>
