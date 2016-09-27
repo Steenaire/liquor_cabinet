@@ -39,6 +39,11 @@ Rails.application.routes.draw do
   post '/timeline_drinks', to: 'timeline_drinks#create'
   delete '/timeline_drinks/:id', to: 'timeline_drinks#destroy'
 
+  get '/blogs/index', to: 'blogs#index'
+  get '/blogs/', to: 'blogs#index'
+  get '/blogs/new', to: 'blogs#new', as: 'new_blog'
+  post '/blogs', to: 'blogs#create'
+  get 'blogs/:id', to: 'blogs#show', as: 'blog'
   get '/blogs/test', to: 'blogs#test'
 
   mount Ckeditor::Engine => '/ckeditor'
