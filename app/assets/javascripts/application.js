@@ -21,4 +21,5 @@
 //= require custom
 //= require jquery_nested_form
 //= require cocoon
+//= require ckeditor/init
 //= require jquery.raty.min

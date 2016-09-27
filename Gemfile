@@ -39,6 +39,7 @@ gem 'figaro'
 gem 'geocoder'
 gem 'timezone'
 gem 'faker'
+gem 'ckeditor'
 
 gem 'rails_12factor', group: :production
 

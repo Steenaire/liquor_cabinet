@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :ratings
   has_many :visits
 
+  has_many :blogs
+
   geocoded_by :address   # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
 
