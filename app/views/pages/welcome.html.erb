@@ -186,30 +186,15 @@
       <div class="col-md-12">
         <div class="new-restaurant text-center">
           <ul class="list-unstyled list-inline">
-            <li>
-              <a href="reservation.html"><img src="img/Bayleaf.jpg" alt="bayleaf"></a>
-            </li>
-            <li>
-              <a href="reservation.html"><img src="img/Bayleaf-Indiantakeaway-Ongar.jpg" alt="Bayleaf Indiantakeaway Ongar"></a>
-            </li>
-            <li>
-              <a href="reservation.html"><img src="img/Deea-Bangladeshi-Cuisine.png" alt="Deea Bangladeshi Cuisine"></a>
-            </li>
-            <li>
-              <a href="reservation.html"><img src="img/Zeera-Indian-Cuisine.png" alt="Zeera Indian Cuisine"></a>
-            </li>
-            <li>
-              <a href="reservation.html"><img src="img/Bayleaf.jpg" alt="Bayleaf"></a>
-            </li>
-            <li>
-              <a href="reservation.html"><img src="img/Bayleaf-Indiantakeaway-Ongar.jpg" alt=""></a>
-            </li>
-            <li>
-              <a href="reservation.html"><img src="img/Deea-Bangladeshi-Cuisine.png" alt=""></a>
-            </li>
-            <li>
-              <a href="reservation.html"><img src="img/Zeera-Indian-Cuisine.png" alt=""></a>
-            </li>
+            <% @first_recipes.each do |recipe| %>
+              <li>
+                <a href="/recipes/<%= recipe.id %>">
+                  <% if recipe.card_image && recipe.card_image.file %>
+                    <%= image_tag recipe.card_image.thumb %>
+                  <% end %>
+                </a>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -224,29 +209,29 @@
 <!-- Download App Start
 ====================================================== -->
 <section class="download-app-area">
-  <div class="download-app-sec" style="background:url(img/download-app.jpg) bottom center no-repeat fixed;
-        background-size:cover;">
+  <!-- <div class="download-app-sec" style="background:url(img/download-app.jpg) bottom center no-repeat fixed;
+        background-size:cover;"> -->
     <div class="mask">
       <div class="container">
         <div class="col-lg-7 col-md-7 col-sm-12 container-cell left-container col-md-push-1">
           <div class="app-content row">
             <div class="inner">
-              <h1 class="logo-content">Thefoody in your pocket!</h1>
-              <h3 class="logo-subtitle">Get our app, it's the fastest way to order food on the go.</h3>
+              <!-- <h1 class="logo-content">Thefoody in your pocket!</h1>
+              <h3 class="logo-subtitle">Get our app, it's the fastest way to order food on the go.</h3> -->
               <!--<p class="content">
                                 Keep an eye on Thefoody, it is already on your way. Come back here for checkout the latest updates.
                             </p>-->
-              <ul class="list-inline appstore-buttons">
+              <!-- <ul class="list-inline appstore-buttons">
                 <li><a href="#" class="btn-store btn-appstore">App Store</a></li>
                 <li><a href="#" class="btn-store btn-googleplay">Google Play</a></li>
-              </ul>
+              </ul> -->
             </div>
 
           </div>
         </div>
         <div class="col-md-4 right-align">
           <div class="left-area visible-lg">
-            <img src="img/mobilev2.png" alt="">
+            <!-- <img src="img/mobilev2.png" alt=""> -->
           </div>
         </div>
       </div>

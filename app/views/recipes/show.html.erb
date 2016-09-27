@@ -231,7 +231,7 @@
                                                 <% end %>
                                               <% end %>
                                             <% end %>
-
+                                            
                                               <p>Made on <%= human_time(drink.created_at.in_time_zone(drink.user.timezone)) %></p>
                                               <% if drink.comment %>
                                                 <p><%= drink.user.username %> Says: <span class="comment">"<%= drink.comment %>"</span></p>

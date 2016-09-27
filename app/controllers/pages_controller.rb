@@ -2,6 +2,7 @@ class PagesController < ApplicationController
 
   def welcome
     @recipes = Recipe.popular_ingredients
+    @first_recipes = Recipe.first(10)
   end
 
   def tutorial

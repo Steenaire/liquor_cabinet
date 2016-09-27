@@ -42,12 +42,33 @@
               <%= render partial: "/users/user_navigation" %>
 
               <% if @user.avatar && @user.avatar.file %>
-                <%= image_tag @user.avatar.preview, class: "user-avatar" %>
+                <center>
+                  <%= image_tag @user.avatar.preview, class: "user-avatar" %>
+                </center>
               <% end %>
 
-              <%= form_for @user do |f| %>
-                <%= f.file_field :avatar %>
-                <%= f.submit "Upload/Change Avatar", class: "btn btn-xs btn-danger" %>
+              <% if current_user && @user.id == current_user.id %>
+
+                <%= form_for @user do |f| %>
+                  <%= f.file_field :avatar %>
+                  <%= f.submit "Upload/Change Avatar", class: "btn btn-xs btn-danger" %>
+                <% end %>
+
+              <% end %>
+
+              <% unless current_user.id == @user.id %>
+                <% if @user.bio %>
+                  <h2><%= @user.username %>'s Bio:</h2>
+                  <p><%= simple_format(@user.bio) %></p>
+                <% end %>
+              <% end %>
+
+              <% if current_user && @user.id == current_user.id %>
+
+                <%= form_for @user do |f| %>
+                  <%= f.text_area :bio, class: "bio" %>
+                  <%= f.submit "Upload/Change Bio", class: "btn btn-xs btn-danger" %>
+                <% end %>
               <% end %>
 
             </div>

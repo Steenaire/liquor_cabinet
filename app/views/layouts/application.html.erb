@@ -60,7 +60,7 @@
       <!-- User account -->
       <div class="pull-right user-login">
         <% if current_user %>
-          <a class="btn btn-sm btn-primary" href="/users/<%= current_user.id %>"><%= current_user.username %>'s Cabinet</a>
+          <a class="btn btn-sm btn-primary" href="/users/<%= current_user.id %>/cabinet"><%= current_user.username %>'s Cabinet</a>
           <%= link_to "Log Out", "/logout", method: :delete, class: "btn btn-sm btn-primary" %>
         <% else %>
           <a class="btn btn-sm btn-primary" href="/login">Login</a> or &nbsp;
@@ -73,23 +73,23 @@
       <ul class="nav-menu user-login">
         <li>
           <a class="active" href="/">Home</a>
-          <ul>
+          <!-- <ul>
             <li><a class="active" href="index.html">Home 1</a></li>
             <li><a href="index2.html">Home 2</a></li>
             <li><a href="index3.html">Home 3</a></li>
             <li><a href="index4.html">Home 4</a></li>
-          </ul>
+          </ul> -->
         </li>
         <li>
           <a href="/recipes">All Recipes</a>
-          <ul>
+          <!-- <ul>
             <li><a href="restaurant-list.html">Restaurant Search List</a></li>
             <li><a href="restaurant-list2.html">Restaurant Search List2</a></li>
             <li><a href="restaurant-list3.html">Restaurant Search List3</a></li>
             <li><a href="restaurant-list4.html">Restaurant Search List4</a></li>
-          </ul>
+          </ul> -->
         </li>
-        <li>
+        <!-- <li>
           <a href="#">Order</a>
           <ul>
             <li><a href="reservation.html">Reservation</a></li>
@@ -103,7 +103,7 @@
             <li><a href="order-summary.html">Order Summary</a></li>
             <li><a href="order-success.html">Success Page</a></li>
           </ul>
-        </li>
+        </li> -->
         <li>
           <a href="#">Blog</a>
           <ul>
@@ -112,7 +112,7 @@
           </ul>
         </li>
 
-        <li>
+        <!-- <li>
           <a href="#">Pages</a>
           <ul>
             <li><a href="about-us.html">About Us</a></li>
@@ -127,8 +127,8 @@
             <li><a href="page-careers.html">Careers</a></li>
             <li><a href="page-privacy-policy.html">Privacy Policy</a></li>
           </ul>
-        </li>
-        <li>
+        </li> -->
+        <!-- <li>
           <a href="#">Extra</a>
           <ul>
             <li><a href="404.html">404 Page</a></li>
@@ -143,7 +143,7 @@
             <li><a href="page-gallery.html">Gallery</a></li>
             <li><a href="restaurant-list-transparent-header.html">Page Head Transparent</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
       <!-- END Navigation menu -->
 
