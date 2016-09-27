@@ -7,8 +7,8 @@
       <div class="Page-title">
         <div class="col-md-12 text-center">
           <div class="title-text">
-            <h6></h6>
-            <h2 class="page-title">Create a New Post</h2>
+
+            <h2 class="page-title"><%= @blog.title %></h2>
           </div>
         </div>
         <div class="col-md-12 text-center">
@@ -23,8 +23,6 @@
 </section>
 
 <!-- End Pages Title  -->
-<!-- Content Start -->
-
 <main class="main-content">
 
   <div ng-app="app">
@@ -39,28 +37,28 @@
           <!-- Main row -->
 
           <div class="col-md-9">
-
-            <div class="row">
+            <div class="contact-details myaccount-contact">
 
               <h2><%= @blog.title %></h2>
               <%= simple_format(@blog.content) %>
 
              <!-- BEGINNING OF SIDEBAR -->
-              <%= render partial: "/recipes/sidebar" %>
-    <!-- END OF SIDEBAR -->
-
-
-
             </div>
-        <!-- Main row end -->
-
           </div>
-  <!-- Main container end -->
+              <%= render partial: "/recipes/sidebar" %>
         </div>
+
       </div>
+
+          
     </div>
+
+          <!-- END OF DELIVERY ADDRESS SECTION -->
+
   </div>
 
+
+  <!-- Main container end -->
 </main>
 
-<!-- Content End
+<!-- Content End -->
