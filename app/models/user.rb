@@ -15,6 +15,8 @@ class User < ApplicationRecord
   geocoded_by :address   # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
 
+  mount_uploader :avatar, ImageUploader
+
   def my_area_drinks
     nearby_drinks = {}
     nearby_drinks_top_ten = []

@@ -1,0 +1,77 @@
+<!-- Content Start -->
+
+
+
+<!-- Start Pages Title  -->
+
+<section id="page-title" class="page-title-style2">
+  <div class="color-overlay"></div>
+  <div class="container inner-img">
+    <div class="row">
+      <div class="Page-title">
+        <div class="col-md-12 text-center">
+          <div class="title-text">
+
+            <h2 class="page-title">Welcome!</h2>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <div class="breadcrumb-trail breadcrumbs">
+            <span class="trail-begin"></span>
+            <span class="sep">/</span> <span class="trail-end"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Main container -->
+<main class="main-content">
+  <!-- Start Faq Page -->
+
+  <section id="faq-result">
+    <div class="faq-all-content">
+      <section class="light-wrapper">
+
+        <div class="container">
+          <div class="inner">
+            <header class="section-header text-left">
+              <span>Tutorial</span>
+              <h2>How to use you inventory</h2>
+            </header>
+            <div ng-app="app">
+              <div ng-controller="recipesCtrl" ng-init="setup()">
+                <ul class="faq-items">
+                  <li>
+                    <h5>Thank you for joining Liquor Cabinet Inventory!</h5>
+                      <p>To get you started, let's check if you have some ingredients in stock...</p>
+                      <p>The power of Liquor Cabinet comes from being able to add and remove which ingredients you currently have, allowing you to return a list of drink recipes that only require the ingredients you have - instead of scrolling through endless drinks that you can't make!</p>
+                      <p>Go through as many of the ingredients as you'd like, and then proceed to check which
+                      drinks you can make with your current inventory!</p>
+                  </li>
+                  <% @ingredients.each do |ingredient| %>
+                    <li ng-show="!visibility<%= ingredient.id %>">
+                      <h5>Do you have any <%= ingredient.name %>?</h5>
+                        <p>
+                          <%= link_to "/cabinets?user_id=#{current_user.id}&ingredient_id=#{ingredient.id}&brand_id=2", method: :post do %>
+                            <button ng-click="visibility<%= ingredient.id %> = !visibility<%= ingredient.id %>">yes</button>
+                          <% end %>
+                            <button ng-click="visibility<%= ingredient.id %> = !visibility<%= ingredient.id %>">no</button>
+                        </p>
+                    </li>
+                  <% end %>
+                </ul>
+                <p>Now it is time to see if there are any drinks you can make with these ingredients...</p>
+                <a href="/recipes?commit=true">
+                  <button>Click here to see!</button>
+                </a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
