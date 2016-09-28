@@ -76,6 +76,9 @@
                     <div class="panel" ng-show="user">
                       <div class="restaurant-service-filter">
                           <ul class="list-unstyled">
+                            <li>
+                              <a href="/recipes?commit=true">See Recipes You Can Make</a>
+                            </li>
                             <% if current_user.role && current_user.role == "author" %>
                               <li>
                                 <a href="/blogs/new">

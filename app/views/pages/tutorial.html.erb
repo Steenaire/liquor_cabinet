@@ -39,7 +39,7 @@
           <div class="inner">
             <header class="section-header text-left">
               <span>Tutorial</span>
-              <h2>How to use you inventory</h2>
+              <h2>How to use your inventory</h2>
             </header>
             <div ng-app="app">
               <div ng-controller="recipesCtrl" ng-init="setup()">
@@ -52,15 +52,17 @@
                       drinks you can make with your current inventory!</p>
                   </li>
                   <% @ingredients.each do |ingredient| %>
-                    <li ng-show="!visibility<%= ingredient.id %>">
-                      <h5>Do you have any <%= ingredient.name %>?</h5>
-                        <p>
-                          <%= link_to "/cabinets?user_id=#{current_user.id}&ingredient_id=#{ingredient.id}&brand_id=2", method: :post do %>
-                            <button ng-click="visibility<%= ingredient.id %> = !visibility<%= ingredient.id %>">yes</button>
-                          <% end %>
-                            <button ng-click="visibility<%= ingredient.id %> = !visibility<%= ingredient.id %>">no</button>
-                        </p>
-                    </li>
+                    <% unless ingredient.name == "Olive" || ingredient.name == "Cherry" %>
+                      <li ng-show="!visibility<%= ingredient.id %>">
+                        <h5>Do you have any <%= ingredient.name %>?</h5>
+                          <p>
+                            <%= link_to "/cabinets?user_id=#{current_user.id}&ingredient_id=#{ingredient.id}&brand_id=2", method: :post do %>
+                              <button ng-click="visibility<%= ingredient.id %> = !visibility<%= ingredient.id %>">yes</button>
+                            <% end %>
+                              <button ng-click="visibility<%= ingredient.id %> = !visibility<%= ingredient.id %>">no</button>
+                          </p>
+                      </li>
+                    <% end %>
                   <% end %>
                 </ul>
                 <p>Now it is time to see if there are any drinks you can make with these ingredients...</p>

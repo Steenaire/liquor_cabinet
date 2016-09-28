@@ -73,21 +73,24 @@
       <ul class="nav-menu user-login">
         <li>
           <a class="active" href="/">Home</a>
-          <!-- <ul>
-            <li><a class="active" href="index.html">Home 1</a></li>
-            <li><a href="index2.html">Home 2</a></li>
-            <li><a href="index3.html">Home 3</a></li>
-            <li><a href="index4.html">Home 4</a></li>
-          </ul> -->
+            <% if current_user %>
+              <ul>
+                <li><a href="/users/<%= current_user.id %>/">My Profile</a></li>
+                <li><a href="/users/<%= current_user.id %>/cabinet">My Liquor Cabinet Inventory</a></li>
+                <li><a href="/users/<%= current_user.id %>/timeline">My Drink Timeline</a></li>
+              </ul>
+            <% end %>
         </li>
         <li>
-          <a href="/recipes">All Recipes</a>
-          <!-- <ul>
-            <li><a href="restaurant-list.html">Restaurant Search List</a></li>
-            <li><a href="restaurant-list2.html">Restaurant Search List2</a></li>
-            <li><a href="restaurant-list3.html">Restaurant Search List3</a></li>
-            <li><a href="restaurant-list4.html">Restaurant Search List4</a></li>
-          </ul> -->
+          <a href="/recipes">Recipes</a>
+          <% if current_user %>
+            <ul>
+              <li><a href="/recipes/">Show All Recipes</a></li>
+              <li><a href="/recipes?commit=true">Only Show Recipes You Can Make</a></li>
+              <li><a href="/users/<%= current_user.id %>/recipes">Show Your Recipes</a></li>
+              <li><a href="/users/<%= current_user.id %>/nearby">Show Recipes Popular in Your Area</a></li>
+            </ul>
+          <% end %>
         </li>
         <!-- <li>
           <a href="#">Order</a>
@@ -105,7 +108,7 @@
           </ul>
         </li> -->
         <li>
-          <% latest_blogs = Blog.last(5) %>
+          <% latest_blogs = Blog.last(5).reverse %>
           <a href="/blogs/">Blog</a>
           <ul>
             <% latest_blogs.each do |blog| %>

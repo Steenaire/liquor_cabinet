@@ -78,7 +78,7 @@
 
           </li>
           <li class="col-md-3 col-sm-6"> <i class="fa fa-thumbs-o-up"></i>
-            <h4>Happy, Enjoy</h4>
+            <h4>Consume and Enjoy</h4>
 
           </li>
         </ol>
@@ -119,7 +119,11 @@
               <% end %>
               <div class="hgroup">
                 <h4><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></h4>
+                <% if recipe.photo_credit && recipe.photo_credit_url %>
+                  <p>Photo by <a href="<%= recipe.photo_credit_url %>"><%= recipe.photo_credit %></a></p>
+                <% end %>
                 <h5><span class="label label-warning">Popular</span></h5>
+
               </div>
               <div class="header-meta">
                 <span class><a href="/users/<%= recipe.user.id %>">Submitted by <%= recipe.user.username %></a></span>
@@ -191,6 +195,9 @@
                 <a href="/recipes/<%= recipe.id %>">
                   <% if recipe.card_image && recipe.card_image.file %>
                     <%= image_tag recipe.card_image.thumb %>
+                    <% if recipe.photo_credit && recipe.photo_credit_url %>
+                      <p>Photo by <a href="<%= recipe.photo_credit_url %>"><%= recipe.photo_credit %></a></p>
+                    <% end %>
                   <% end %>
                 </a>
               </li>
