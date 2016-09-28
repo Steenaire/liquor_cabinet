@@ -8,7 +8,7 @@
         <div class="col-md-12 text-center">
           <div class="title-text">
             <h6></h6>
-            <h2 class="page-title">Create a New Post</h2>
+            <h2 class="page-title">Create a New Blog Post</h2>
           </div>
         </div>
         <div class="col-md-12 text-center">
@@ -43,7 +43,7 @@
             <div class="row">
 
               <%= form_for @blog do |f| %>
-                <%= f.text_field :title %>
+                <%= f.text_field :title, placeholder: "Title" %>
                 <%= f.cktext_area :content, rows: 10, class: "blog" %>
                 <%= f.hidden_field :user_id, value: current_user.id %>
                 <%= f.submit "Publish", class: "btn btn-xs btn-danger" %>

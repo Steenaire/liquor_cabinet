@@ -75,8 +75,14 @@
                     </a>
                     <div class="panel" ng-show="user">
                       <div class="restaurant-service-filter">
-                        <a href ="/recipes/<%= @random_recipe.id %>">
                           <ul class="list-unstyled">
+                            <% if current_user.role && current_user.role == "author" %>
+                              <li>
+                                <a href="/blogs/new">
+                                  New Blog Post
+                                </a>
+                              </li>
+                            <% end %>
                             <li>
                               <a href="/users/<%= current_user.id %>">
                                 Your Profile
@@ -98,7 +104,6 @@
                               </a>
                             </li>
                           </ul>
-                        </a>
                       </div>
                     </div>
                   </div>

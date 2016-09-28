@@ -33,7 +33,7 @@
           <div class="col-md-9">
             <div class="ui-blog-left-side">
               <%= paginate @blogs %>
-              <% @blogs.each do |blog| %>
+              <% @blogs.reverse.each do |blog| %>
                 <article class="post">
 
                   
