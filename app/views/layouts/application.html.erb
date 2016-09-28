@@ -105,10 +105,12 @@
           </ul>
         </li> -->
         <li>
-          <a href="#">Blog</a>
+          <% latest_blogs = Blog.last(5) %>
+          <a href="/blogs/">Blog</a>
           <ul>
-            <li><a href="page-blog.html">Blog</a></li>
-            <li><a href="page-post.html">Single Post</a></li>
+            <% latest_blogs.each do |blog| %>
+              <li><a href="/blogs/<%= blog.id %>"><%= blog.title %></a></li>
+            <% end %>
           </ul>
         </li>
 

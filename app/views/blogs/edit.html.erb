@@ -1,0 +1,74 @@
+<!-- Start Pages Title  -->
+
+<section id="page-title" class="page-title-style2">
+  <div class="color-overlay"></div>
+  <div class="container inner-img">
+    <div class="row">
+      <div class="Page-title">
+        <div class="col-md-12 text-center">
+          <div class="title-text">
+            <h6></h6>
+            <h2 class="page-title">Editing a Blog Post</h2>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <div class="breadcrumb-trail breadcrumbs">
+            <span class="trail-begin"></span>
+            <span class="sep">/</span> <span class="trail-end"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End Pages Title  -->
+<!-- Content Start -->
+
+<main class="main-content">
+
+  <div ng-app="app">
+    <div ng-controller="recipesCtrl" ng-init="setup()">
+
+
+
+      <div class="container internal-body-container">
+        <!-- Main container -->
+
+        <div class="row">
+          <!-- Main row -->
+
+          <div class="col-md-9">
+
+            <div class="row">
+
+              <%= form_for @blog do |f| %>
+                <%= f.text_field :title %>
+                <%= f.cktext_area :content, rows: 10, class: "blog" %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.submit "Publish", class: "btn btn-xs btn-danger" %>
+              <% end %>
+
+            </div>
+
+          </div>
+
+
+
+    <!-- BEGINNING OF SIDEBAR -->
+          <%= render partial: "/recipes/sidebar" %>
+    <!-- END OF SIDEBAR -->
+
+
+
+        </div>
+        <!-- Main row end -->
+
+      </div>
+  <!-- Main container end -->
+    </div>
+  </div>
+
+</main>
+
+<!-- Content End

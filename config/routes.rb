@@ -39,6 +39,20 @@ Rails.application.routes.draw do
   post '/timeline_drinks', to: 'timeline_drinks#create'
   delete '/timeline_drinks/:id', to: 'timeline_drinks#destroy'
 
+  get '/blogs/index', to: 'blogs#index'
+  get '/blogs/', to: 'blogs#index'
+  get '/blogs/new', to: 'blogs#new', as: 'new_blog'
+  post '/blogs', to: 'blogs#create'
+  get 'blogs/:id', to: 'blogs#show', as: 'blog'
+  get '/blogs/:id/edit', to: 'blogs#edit', as: 'edit_blog'
+  patch '/blogs/:id', to: 'blogs#update'
+
+  get '/comments/new', to: 'comments#new', as: 'new_comment'
+  post '/comments', to: 'comments#create'
+  get '/comments/:id', to: 'comments#show', as: 'comment'
+
+  mount Ckeditor::Engine => '/ckeditor'
+
   namespace :api do
     namespace :v1 do
       get '/recipes', to: 'recipes#index'
