@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
 
   def index
-    @blogs = Blog.all.page params[:page]
+    @blogs = Blog.all.order({ created_at: :desc }).page params[:page]
     @random_recipe = Recipe.all.sample
   end
 

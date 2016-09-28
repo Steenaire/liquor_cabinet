@@ -1,0 +1,73 @@
+<!-- Start Pages Title  -->
+
+<section id="page-title" class="page-title-style2">
+  <div class="color-overlay"></div>
+  <div class="container inner-img">
+    <div class="row">
+      <div class="Page-title">
+        <div class="col-md-12 text-center">
+          <div class="title-text">
+
+            <h2 class="page-title">Drinks Popular Near You</h2>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <div class="breadcrumb-trail breadcrumbs">
+            <span class="trail-begin"></span>
+            <span class="sep">/</span> <span class="trail-end"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End Pages Title  -->
+<main class="main-content">
+
+  <div ng-app="app">
+    <div ng-controller="recipesCtrl" ng-init="setup()">
+
+
+
+      <div class="container internal-body-container">
+        <!-- Main container -->
+
+        <div class="row">
+          <!-- Main row -->
+
+          <div class="col-md-9">
+            <div class="contact-details myaccount-contact">
+                
+              <%= render partial: "/users/user_navigation" %>
+              <%= paginate @recipes %>
+              <%= render partial: "/recipes/recipe_cards", locals: {recipes: @recipes} %>
+
+              <% unless @recipes.any? %>
+                <% if current_user.id == @user.id %>
+                  <p>You haven't submitted any recipes yet</p>
+                <% else %>
+                  <p><%= @user.username %> hasn't submitted any recipes yet</p>
+                <% end %>
+              <% end %>
+
+              <a href ="/recipes/new">
+                <h2>Create a new recipe!</h2>
+              </a>
+
+
+
+            </div>
+          </div>
+
+          <!-- END OF DELIVERY ADDRESS SECTION -->
+          <%= render partial: "/recipes/sidebar" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main container end -->
+</main>
+
+<!-- Content End -->

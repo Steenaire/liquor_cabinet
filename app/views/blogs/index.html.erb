@@ -33,7 +33,7 @@
           <div class="col-md-9">
             <div class="ui-blog-left-side">
               <%= paginate @blogs %>
-              <% @blogs.reverse.each do |blog| %>
+              <% @blogs.each do |blog| %>
                 <article class="post">
 
                   
@@ -43,7 +43,7 @@
                         </h2>
                         <p>
                           <center>
-                            <p><%= human_time(blog.created_at) %>
+                            <p><%= human_time(blog.created_at.in_time_zone(blog.user.timezone)) %>
                               <a href="/users/<%= blog.user.id %>">by <%= blog.user.username %></a>
                             </p>
                           </center>

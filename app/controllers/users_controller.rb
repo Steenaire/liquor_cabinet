@@ -105,6 +105,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def nearby
+    @user = User.find(params[:id])
+    if current_user && current_user.id == @user.id
+      @recipes = @user.my_area_drinks
+      @timeline_drinks = @user.timeline_drinks.order({ created_at: :desc }).page params[:page]
+      @random_recipe = Recipe.all.sample
+    else
+      flash[:danger] = "You do not have permission to view this"
+      redirect_to '/login'
+    end
+  end
+
   private
 
     def user_params
