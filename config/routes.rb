@@ -46,6 +46,10 @@ Rails.application.routes.draw do
   get 'blogs/:id', to: 'blogs#show', as: 'blog'
   get '/blogs/test', to: 'blogs#test'
 
+  get '/comments/new', to: 'comments#new', as: 'new_comment'
+  post '/comments', to: 'comments#create'
+  get '/comments/:id', to: 'comments#show', as: 'comment'
+
   mount Ckeditor::Engine => '/ckeditor'
 
   namespace :api do

@@ -49,12 +49,57 @@
                         </p>
                       </header>
                       <%= simple_format(@blog.content) %>
-                      <hr>
+                      
+                      <div id="comments">
+                        <header>
+                          <h3>Comments <span class="txt-gray">(<%= @blog.comments.length %>)</span></h3>
+                        </header>
                       <% if @blog.comments.any? %>
                         <% @blog.comments.each do |comment| %>
-                          <%= comment.content %>
+                          
+
+                          
+
+                            <ul class="comments-list">
+                                <li class="comment">
+                                    <% if comment.user.avatar.file %>
+                                      <%= image_tag comment.user.avatar.preview, class: "avatar" %>
+                                    <% end %>
+                                    <div class="comment-body">
+                                        <!-- <a class="reply-link" href="#">Reply</a> -->
+                                        <h6><a href="#">
+                                        <%= comment.user.username %>
+                                        </a> <time>
+                                          <%= human_time(comment.created_at.in_time_zone(comment.user.timezone)) %>   
+                                        </time></h6>
+                                        <p>
+                                          <%= comment.content %>
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
                         <% end %>
-                      <% end %>
+                      <% end %>                      
+                    </div>
+
+
+                    <% if current_user %>
+                      <div id="respond">
+                        <h3>Leave a comment</h3>
+                          <%= form_for @comment, :html => {:class => "comment-form"} do |f| %>
+
+                              <div class="form-group">
+                                <%= f.text_area :content, class: "form-control", rows: "5", placeholder: "Message" %>
+                              </div>
+                              <%= f.hidden_field :user_id, value: current_user.id %>
+                              <%= f.hidden_field :blog_id, value: @blog.id %>
+
+                              <%= f.submit "Add comment", class: "btn btn-color" %>
+                          <% end %>
+
+                      </div>
+                    <% end %>
+
 
                  <!-- BEGINNING OF SIDEBAR -->
                 </div>

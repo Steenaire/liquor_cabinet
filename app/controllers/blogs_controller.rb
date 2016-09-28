@@ -24,6 +24,23 @@ class BlogsController < ApplicationController
   def show
     @blog = Blog.find_by(id: params[:id])
     @random_recipe = Recipe.all.sample
+    @comment = Comment.new
+  end
+
+  def edit
+    @blog = Blog.find_by(id: params[:id])
+  end
+
+  def update
+    @blog = Blog.find_by(id: params[:id])
+    Blog.update(@blog.id, blog_params)
+    if @blog.save
+      flash[:success] = "Successfully updated post!"
+      redirect_to "/blogs/#{@blog.id}"
+    else
+      flash[:warning] = "Changes not saved"
+      redirect_to "/blogs/#{@blog.id}"
+    end
   end
 
   private
@@ -33,7 +50,8 @@ class BlogsController < ApplicationController
         :id, 
         :title,
         :content,
-        :user_id
+        :user_id,
+        :draft
         )
     end
 
