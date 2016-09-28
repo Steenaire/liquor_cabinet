@@ -6,6 +6,10 @@ class BlogsController < ApplicationController
   end
 
   def new
+    unless current_user && current_user.role == "author"
+      flash[:danger] = "You do not have permission to post to this blog"
+      redirect_to "/blogs/"
+    end
     @blog = Blog.new
     @random_recipe = Recipe.all.sample
   end
@@ -29,6 +33,11 @@ class BlogsController < ApplicationController
 
   def edit
     @blog = Blog.find_by(id: params[:id])
+    @random_recipe = Recipe.all.sample
+    unless current_user && current_user.id == @blog.user.id
+      flash[:danger] = "You do not have permission to edit this post"
+      redirect_to "/blogs/#{@blog.id}"
+    end
   end
 
   def update

@@ -44,7 +44,8 @@ Rails.application.routes.draw do
   get '/blogs/new', to: 'blogs#new', as: 'new_blog'
   post '/blogs', to: 'blogs#create'
   get 'blogs/:id', to: 'blogs#show', as: 'blog'
-  get '/blogs/test', to: 'blogs#test'
+  get '/blogs/:id/edit', to: 'blogs#edit', as: 'edit_blog'
+  patch '/blogs/:id', to: 'blogs#update'
 
   get '/comments/new', to: 'comments#new', as: 'new_comment'
   post '/comments', to: 'comments#create'

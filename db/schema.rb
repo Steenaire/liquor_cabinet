@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928022429) do
+ActiveRecord::Schema.define(version: 20160928023449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20160928022429) do
     t.string   "timezone"
     t.string   "avatar"
     t.text     "bio"
-    t.string   "type"
+    t.string   "role"
   end
 
   create_table "visits", force: :cascade do |t|
