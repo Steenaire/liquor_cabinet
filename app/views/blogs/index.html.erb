@@ -24,42 +24,53 @@
 
 <!-- End Pages Title  -->
 <main class="main-content">
-
   <div ng-app="app">
     <div ng-controller="recipesCtrl" ng-init="setup()">
 
-
-
-      <div class="container internal-body-container">
-        <!-- Main container -->
-
+      <section class="container blog-page">
         <div class="row">
-          <!-- Main row -->
 
           <div class="col-md-9">
-            <div class="contact-details myaccount-contact">
+            <div class="ui-blog-left-side">
               <%= paginate @blogs %>
-                <% @blogs.each do |blog| %>
-                  <h2><%= blog.title %> <%= human_time(blog.created_at) %>
-                  <a href="/users/<%= blog.user.id %>">by <%= blog.user.username %></a></h2>
-                  <%= simple_format(blog.content) %>
-                <% end %>
-              <%= paginate @blogs %>
+              <% @blogs.each do |blog| %>
+                <article class="post">
 
-             <!-- BEGINNING OF SIDEBAR -->
+                  
+                      <header>
+                        <h2>
+                          <a href="/blogs/<%= blog.id %>"><%= blog.title %></a>
+                        </h2>
+                        <p>
+                          <center>
+                            <p><%= human_time(blog.created_at) %>
+                              <a href="/users/<%= blog.user.id %>">by <%= blog.user.username %></a>
+                            </p>
+                          </center>
+                        </p>
+                      </header>
+                      <%= simple_format(blog.content) %>
+                      <hr>
+                    <% end %>
+                  <%= paginate @blogs %>
+
+                 <!-- BEGINNING OF SIDEBAR -->
+                </div>
+              </div>
+                  <%= render partial: "/recipes/sidebar" %>
             </div>
+
           </div>
-              <%= render partial: "/recipes/sidebar" %>
+
+              
         </div>
 
+              <!-- END OF DELIVERY ADDRESS SECTION -->
+
       </div>
-
-          
-    </div>
-
-          <!-- END OF DELIVERY ADDRESS SECTION -->
-
+    </article>
   </div>
+</div>
 
 
   <!-- Main container end -->

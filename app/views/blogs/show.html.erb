@@ -8,7 +8,7 @@
         <div class="col-md-12 text-center">
           <div class="title-text">
 
-            <h2 class="page-title"><%= @blog.title %></h2>
+            <h2 class="page-title">Liquor Cabinet Blog</h2>
           </div>
         </div>
         <div class="col-md-12 text-center">
@@ -24,38 +24,55 @@
 
 <!-- End Pages Title  -->
 <main class="main-content">
-
   <div ng-app="app">
     <div ng-controller="recipesCtrl" ng-init="setup()">
 
-
-
-      <div class="container internal-body-container">
-        <!-- Main container -->
-
+      <section class="container blog-page">
         <div class="row">
-          <!-- Main row -->
 
           <div class="col-md-9">
-            <div class="contact-details myaccount-contact">
+            <div class="ui-blog-left-side">
 
-              <h2><%= @blog.title %></h2>
-              <%= simple_format(@blog.content) %>
+                <article class="post">
 
-             <!-- BEGINNING OF SIDEBAR -->
+                  
+                      <header>
+                        <h2>
+                          <%= @blog.title %>
+                        </h2>
+                        <p>
+                          <center>
+                            <p><%= human_time(@blog.created_at) %>
+                              <a href="/users/<%= @blog.user.id %>">by <%= @blog.user.username %></a>
+                            </p>
+                          </center>
+                        </p>
+                      </header>
+                      <%= simple_format(@blog.content) %>
+                      <hr>
+                      <% if @blog.comments.any? %>
+                        <% @blog.comments.each do |comment| %>
+                          <%= comment.content %>
+                        <% end %>
+                      <% end %>
+
+                 <!-- BEGINNING OF SIDEBAR -->
+                </div>
+              </div>
+                  <%= render partial: "/recipes/sidebar" %>
             </div>
+
           </div>
-              <%= render partial: "/recipes/sidebar" %>
+
+              
         </div>
 
+              <!-- END OF DELIVERY ADDRESS SECTION -->
+
       </div>
-
-          
-    </div>
-
-          <!-- END OF DELIVERY ADDRESS SECTION -->
-
+    </article>
   </div>
+</div>
 
 
   <!-- Main container end -->
