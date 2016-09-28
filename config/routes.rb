@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/users/:id/cabinet', to: 'users#cabinet'
   get '/users/:id/recipes', to: 'users#recipes'
   get '/users/:id/timeline', to: 'users#timeline'
+  get '/users/:id/nearby', to: 'users#nearby'
 
   get '/recipes', to: 'recipes#index'
   get '/recipes/new', to: 'recipes#new', as: 'new_recipe'

@@ -2,4 +2,7 @@
 <a href="/users/<%= @user.id %>/cabinet"><button><%= @user.username %>'s Liquor Cabinet</button></a>
 <a href="/users/<%= @user.id %>/recipes"><button><%= @user.username %>'s Recipes</button></a>
 <a href="/users/<%= @user.id %>/timeline"><button><%= @user.username %>'s Drink Timeline</button></a>
+<% if current_user && current_user.id == @user.id %>
+  <a href="/users/<%= @user.id %>/nearby"><button>Drinks that are Popular Near You</button></a>
+<% end %>
 <hr>
