@@ -141,6 +141,9 @@
                           <% end %>
                           <%= @random_recipe.name %>
                         </li>
+                        <% if @random_recipe.photo_credit && @random_recipe.photo_credit_url %>
+                          <p>Photo by <a href="<%= @random_recipe.photo_credit_url %>"><%= @random_recipe.photo_credit %></a></p>
+                        <% end %>
                       </ul>
                     </a>
                   </div>
@@ -161,8 +164,12 @@
                                 <%= image_tag visit.recipe.card_image.thumb %>
                               <% end %>
                               <%= visit.recipe.name %>
+
                             </li>
                           </a>
+                          <% if visit.recipe.photo_credit && visit.recipe.photo_credit_url %>
+                            <p>Photo by <a href="<%= visit.recipe.photo_credit_url %>"><%= visit.recipe.photo_credit %></a></p>
+                          <% end %>
                           <hr>
                         <% end %>                      
                       </ul>
